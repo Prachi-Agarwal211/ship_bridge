@@ -1,0 +1,902 @@
+.pageContainer {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Background glows */
+.glowBlob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glowOrange {
+  background: radial-gradient(circle, #f97316 0%, transparent 70%);
+}
+
+.glowGreen {
+  background: radial-gradient(circle, #22c55e 0%, transparent 70%);
+}
+
+.glowBlue {
+  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+}
+
+/* SECTION 1: HERO */
+.heroSection {
+  position: relative;
+  padding: 10rem 0 6rem 0;
+  background: linear-gradient(to bottom, #000000 0%, #050b06 100%);
+  overflow: hidden;
+}
+
+.heroContent {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.overline {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #f97316;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.highlightOrange {
+  color: #f97316;
+}
+
+.heroSub {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #d1d5db;
+  margin-bottom: 4rem;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: #f97316;
+}
+
+.breadcrumbSeparator {
+  color: #4b5563;
+}
+
+.heroPreviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.previewCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.25rem;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.previewCard:hover {
+  transform: translateY(-8px);
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.previewImageWrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.previewImage {
+  object-fit: cover;
+}
+
+/* PRODUCT SECTIONS GENERAL */
+.productSection {
+  padding: 8rem 0;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.productSection:nth-child(even) {
+  background-color: #050507;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.imageColumn {
+  position: relative;
+}
+
+.productImageCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  transition: border-color 0.3s ease;
+}
+
+.productImageCard:hover {
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.productImageWrapper {
+  position: relative;
+  aspect-ratio: 1.1 / 1;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.productImageMobile {
+  aspect-ratio: 0.85 / 1;
+}
+
+.productImage {
+  object-fit: cover;
+}
+
+.badgePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.badgeOrange {
+  background: rgba(249, 115, 22, 0.1);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.badgeGreen {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badgeGradient {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.productTitle {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.productSub {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f97316;
+  margin-bottom: 1.5rem;
+}
+
+.platformPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+.productDescription {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #d1d5db;
+  margin-bottom: 2.5rem;
+}
+
+/* Feature checklist lists */
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.featureList2Col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.featureItem {
+  display: flex;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featureItem:hover {
+  transform: translateY(-6px);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1);
+}
+
+.featureIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f97316;
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+}
+
+.featureTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.featureDesc {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+
+/* Horizontal flow strip */
+.flowStrip {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.flowTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #22c55e;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.flowSteps {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flowStep {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d1d5db;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.flowArrow {
+  color: #4b5563;
+  font-weight: bold;
+}
+
+/* App download buttons */
+.downloadRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.downloadButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.2s ease;
+}
+
+.downloadButton:hover {
+  border-color: #f97316;
+  background: rgba(249, 115, 22, 0.05);
+  transform: translateY(-2px);
+}
+
+.storeIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Status badges with pulsing dot animation */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(17, 24, 39, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.pulsingDot {
+  width: 8px;
+  height: 8px;
+  background-color: #f97316;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+  animation: pulse 1.6s infinite;
+}
+
+.pulsingDotGreen {
+  background-color: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulseGreen 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(249, 115, 22, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+  }
+}
+
+@keyframes pulseGreen {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+/* Tech stack badge row */
+.techBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.techBadge {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.35rem 0.9rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+/* SECTION 5: TECHNOLOGY STACK */
+.techSection {
+  padding: 8rem 0;
+  background-color: #070709;
+  position: relative;
+}
+
+.techHeader {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.architectureVisual {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.archLayerCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.archLayerCard:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(249, 115, 22, 0.25);
+}
+
+.archLayerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.layerTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.layerLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9ca3af;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.layerContent {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.techHighlightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.techHighlightTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.techHighlightItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.techCheckmark {
+  color: #22c55e;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.techHighlightText h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.techHighlightText p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+
+/* SECTION 6: DEVELOPMENT ROADMAP */
+.roadmapSection {
+  padding: 8rem 0;
+  position: relative;
+  background-color: #000000;
+}
+
+.roadmapHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.roadmapTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+
+.roadmapTimeline::before {
+  content: '';
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #22c55e 0%, #22c55e 40%, #f97316 40%, #f97316 70%, #4b5563 70%, #4b5563 100%);
+  z-index: 1;
+}
+
+.roadmapPhase {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+.phaseIndicator {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border: 3px solid #4b5563;
+  z-index: 10;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.roadmapPhase:hover .phaseIndicator {
+  transform: scale(1.1);
+}
+
+.phaseGreen .phaseIndicator {
+  border-color: #22c55e;
+  color: #22c55e;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+.phaseOrange .phaseIndicator {
+  border-color: #f97316;
+  color: #f97316;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.2);
+}
+
+.phaseBlue .phaseIndicator {
+  border-color: #06b6d4;
+  color: #06b6d4;
+}
+
+.phasePurple .phaseIndicator {
+  border-color: #a855f7;
+  color: #a855f7;
+}
+
+.phaseGradient .phaseIndicator {
+  border-color: #22c55e;
+  color: #f97316;
+}
+
+.phaseCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.roadmapPhase:hover .phaseCard {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.phaseGreen:hover .phaseCard {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.phaseOrange:hover .phaseCard {
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.phaseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.phaseName {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.phaseFocus {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+}
+
+.phaseFocusGreen {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.phaseFocusOrange {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.08);
+}
+
+.phaseBulletGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.phaseBullet {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #d1d5db;
+}
+
+.bulletDot {
+  color: #f97316;
+  font-weight: bold;
+}
+
+.phaseGreen .bulletDot {
+  color: #22c55e;
+}
+
+.activeLabel {
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: #ea580c;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.activeLabelGreen {
+  background: #16a34a;
+}
+
+/* SECTION 7: CTA */
+.ctaSection {
+  padding: 6rem 0 8rem 0;
+  position: relative;
+  background-color: #000000;
+}
+
+.ctaBanner {
+  background: linear-gradient(135deg, #0a0a0c 0%, #1e0f07 100%);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 2rem;
+  padding: 5rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+
+.ctaTitle {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.ctaSub {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #d1d5db;
+  max-width: 650px;
+  margin: 0 auto 3rem auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaFilled {
+  background-color: #f97316;
+  color: #ffffff;
+  border: 1px solid #f97316;
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.ctaFilled:hover {
+  background-color: #ea580c;
+  border-color: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+}
+
+.ctaOutlined {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ctaOutlined:hover {
+  border-color: #f97316;
+  background-color: rgba(249, 115, 22, 0.05);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+  .productGrid, .techGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .imageColumn {
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  .productSection:nth-child(even) .productGrid {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 992px) {
+  .heroPreviews {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .phaseBulletGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+  .heroSub {
+    font-size: 1.1rem;
+  }
+  .productTitle {
+    font-size: 2.2rem;
+  }
+  .productSub {
+    font-size: 1.15rem;
+  }
+  .featureList2Col {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .roadmapTimeline::before {
+    left: 1.5rem;
+  }
+  .roadmapPhase {
+    gap: 1.5rem;
+  }
+  .phaseIndicator {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.15rem;
+  }
+  .phaseCard {
+    padding: 1.5rem;
+  }
+  .phaseName {
+    font-size: 1.3rem;
+  }
+  .ctaTitle {
+    font-size: 2.4rem;
+  }
+}

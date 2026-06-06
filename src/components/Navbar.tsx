@@ -31,10 +31,10 @@ const Navbar = () => {
             ))}
           </ul>
         </li>
-        <li><Link href="/#product">Product</Link></li>
-        <li><Link href="/#company">Company</Link></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Franchise</a></li>
+        <li><Link href="/product">Product</Link></li>
+        <li><Link href="/about">Company</Link></li>
+        <li><Link href="/careers">Careers</Link></li>
+        <li><Link href="/franchise">Franchise</Link></li>
         <li><a href="#">Contact</a></li>
       </ul>
       <div className={styles.placeholder}></div>

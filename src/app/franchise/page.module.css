@@ -1,0 +1,620 @@
+.pageContainer {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Background glows */
+.glowBlob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glowOrange {
+  background: radial-gradient(circle, #f97316 0%, transparent 70%);
+}
+
+.glowGreen {
+  background: radial-gradient(circle, #22c55e 0%, transparent 70%);
+}
+
+/* SECTION 1: HERO */
+.heroSection {
+  position: relative;
+  padding: 10rem 0 6rem 0;
+  background: linear-gradient(to bottom, #000000 0%, #0d0d12 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+.overline {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #f97316;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.highlightOrange {
+  color: #f97316;
+}
+
+.heroSub {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #d1d5db;
+  margin-bottom: 3rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.ctaFilled {
+  background-color: #f97316;
+  color: #ffffff;
+  border: 1px solid #f97316;
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.ctaFilled:hover {
+  background-color: #ea580c;
+  border-color: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+}
+
+.ctaOutlined {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ctaOutlined:hover {
+  border-color: #f97316;
+  background-color: rgba(249, 115, 22, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Floating stat chips */
+.statChips {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.statChip {
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.statChip:hover {
+  transform: translateY(-3px);
+  border-color: #f97316;
+}
+
+/* SECTION 2: WHY FRANCHISE */
+.whySection {
+  padding: 7rem 0;
+  position: relative;
+  background-color: #08080a;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+
+.sectionLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #22c55e;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.underlineBar {
+  width: 70px;
+  height: 4px;
+  background-color: #f97316;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.whyCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whyCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(249, 115, 22, 0.35);
+  box-shadow: 0 12px 30px rgba(249, 115, 22, 0.08);
+}
+
+.whyIcon {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.whyCardTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.whyCardDesc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #9ca3af;
+}
+
+/* SECTION 3: FRANCHISE MODEL */
+.modelSection {
+  padding: 7rem 0;
+  position: relative;
+  background-color: #000000;
+}
+
+.modelGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.modelCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 1.25rem;
+  padding: 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.modelCard:hover {
+  transform: translateY(-8px);
+  border-color: #f97316;
+  box-shadow: 0 20px 45px rgba(249, 115, 22, 0.15);
+}
+
+.modelTier {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modelSub {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+  min-height: 3rem;
+}
+
+.modelStatBlock {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.5rem 0;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modelStatItem {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.modelStatLabel {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.modelStatValue {
+  color: #f97316;
+  font-weight: 800;
+}
+
+.modelFeaturesList {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.modelFeatureItem {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  display: flex;
+  gap: 0.75rem;
+  line-height: 1.4;
+}
+
+.checkmarkIcon {
+  color: #22c55e;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+/* SECTION 4: HOW TO APPLY */
+.applySection {
+  padding: 6rem 0;
+  position: relative;
+  background-color: #08080a;
+}
+
+.processStrip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  position: relative;
+  margin-top: 3.5rem;
+}
+
+.processStep {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 0.75rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(5px);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.processStep:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.stepNumber {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  color: #f97316;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem auto;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.1);
+}
+
+.stepTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* SECTION 5: LEAD FORM */
+.formSection {
+  padding: 7rem 0;
+  position: relative;
+  background-color: #000000;
+}
+
+.formCard {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 1.5rem;
+  padding: 4rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.formTitle {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.formGridFull {
+  grid-column: 1 / span 2;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #d1d5db;
+}
+
+.formInput {
+  background-color: rgba(17, 24, 39, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 0.85rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, outline 0.2s ease;
+}
+
+.formInput:focus {
+  border-color: #f97316;
+  outline: none;
+}
+
+.formSelect {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f97316'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+}
+
+.textareaInput {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submitBtn {
+  grid-column: 1 / span 2;
+  background-color: #f97316;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  margin-top: 1rem;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: #ea580c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Success banner checkmark animation */
+.successBanner {
+  grid-column: 1 / span 2;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.checkmarkWrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+
+/* SECTION 6: FAQ ACCORDION */
+.faqSection {
+  padding: 7rem 0 9rem 0;
+  position: relative;
+  background-color: #08080a;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease;
+}
+
+.faqItem:hover {
+  border-color: rgba(249, 115, 22, 0.2);
+}
+
+.faqItemActive {
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.faqQuestionBlock {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faqQuestion {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.faqArrow {
+  transition: transform 0.2s ease;
+  color: #f97316;
+}
+
+.faqItemActive .faqArrow {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 0 2rem 1.5rem 2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #9ca3af;
+  border-top: 1px solid transparent;
+}
+
+.faqItemActive .faqAnswer {
+  border-top-color: rgba(255, 255, 255, 0.04);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1200px) {
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+  .whyGrid, .modelGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .processStrip {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+  .heroSub {
+    font-size: 1.1rem;
+  }
+  .whyGrid, .modelGrid, .processStrip {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .formCard {
+    padding: 2rem;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .formGridFull, .submitBtn, .successBanner {
+    grid-column: 1 / span 1;
+  }
+}

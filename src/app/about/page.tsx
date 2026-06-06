@@ -1,0 +1,468 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import styles from "./page.module.css";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "About Us | ShipBridge Logistics",
+    description: "Learn about ShipBridge Logistics, India's premier logistics aggregator. Our story, mission, vision, core values, and the expert team driving tech-enabled relocations across India.",
+  };
+}
+
+export default function AboutPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.shipbridge.in",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About Us",
+        "item": "https://www.shipbridge.in/about",
+      },
+    ],
+  };
+
+  return (
+    <div className={styles.pageContainer}>
+      <Navbar />
+
+      {/* Background Glow Blobs */}
+      <div className={`${styles.glowBlob} ${styles.glowOrange}`} style={{ top: "10%", right: "5%", width: "500px", height: "500px" }}></div>
+      <div className={`${styles.glowBlob} ${styles.glowGreen}`} style={{ top: "35%", left: "5%", width: "600px", height: "600px" }}></div>
+      <div className={`${styles.glowBlob} ${styles.glowOrange}`} style={{ bottom: "10%", right: "10%", width: "550px", height: "550px" }}></div>
+
+      {/* SECTION 1: HERO BANNER */}
+      <section className={styles.heroSection}>
+        <div className={styles.container}>
+          <div className={styles.heroContent}>
+            {/* Breadcrumb */}
+            <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+              <Link href="/">Home</Link>
+              <span className={styles.breadcrumbSeparator}>&gt;</span>
+              <span aria-current="page">About Us</span>
+            </nav>
+
+            <h1 className={styles.heroTitle}>
+              Building Bridges.<br />
+              <span className={styles.highlightOrange}>Delivering Trust.</span>
+            </h1>
+
+            <p className={styles.heroSub}>
+              We are India's most reliable tech-enabled logistics and relocation platform, connecting customers with verified service providers across every city and village.
+            </p>
+
+            <div className={styles.statPills}>
+              <div className={styles.statPill}>50,000+ Moves Completed</div>
+              <div className={styles.statPill}>200+ Cities Served</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2: OUR STORY */}
+      <section className={styles.storySection} id="story">
+        <div className={styles.container}>
+          <div className={styles.storyGrid}>
+            <div className={styles.storyText}>
+              <span className={styles.sectionLabel}>HOW WE STARTED</span>
+              <h2 className={styles.sectionTitle}>Our Story</h2>
+              <div className={styles.underlineBar}></div>
+              
+              <p className={styles.storyNarrative}>
+                ShipBridge was born out of a simple frustration — moving was always chaotic, expensive, and filled with uncertainty. In 2024, our founders set out to fix that. We built a platform that brings technology, trust, and transparency to every single move. From household shifts in Mumbai to exhibition logistics in Delhi, ShipBridge is the name India moves with.
+              </p>
+
+              {/* Timeline strip */}
+              <div className={styles.timelineGrid}>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineMilestone}>2024 Q1</div>
+                  <h4 className={styles.timelineTitle}>Idea & Foundation</h4>
+                  <p className={styles.timelineDesc}>Born in Jaipur, Rajasthan</p>
+                </div>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineMilestone}>2024 Q2</div>
+                  <h4 className={styles.timelineTitle}>Product Build</h4>
+                  <p className={styles.timelineDesc}>Flutter app + Admin portal</p>
+                </div>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineMilestone}>2025 Q1</div>
+                  <h4 className={styles.timelineTitle}>Pilot Launch</h4>
+                  <p className={styles.timelineDesc}>5 cities, 500+ early users</p>
+                </div>
+                <div className={styles.timelineCard}>
+                  <div className={styles.timelineMilestone}>2025 Q4</div>
+                  <h4 className={styles.timelineTitle}>Pan-India</h4>
+                  <p className={styles.timelineDesc}>50+ cities target</p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.storyImageCard}>
+              <div className={styles.storyImageWrapper}>
+                <Image
+                  src="/company/founder.png"
+                  alt="ShipBridge Founders"
+                  fill
+                  unoptimized
+                  priority
+                  className={styles.storyImage}
+                />
+                <div className={styles.imageOverlay}></div>
+                <div className={styles.storyImageLabel}>
+                  <h4>Bridging India's Logistics</h4>
+                  <p>Technology • Trust • Transparency</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: MISSION & VISION */}
+      <section className={styles.mvSection}>
+        <div className={styles.container}>
+          <div className={styles.mvGrid}>
+            {/* Mission Card */}
+            <div className={styles.mvCard}>
+              <div className={styles.mvIconContainer}>
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </div>
+              <h3 className={styles.mvCardTitle}>Our Mission</h3>
+              <p className={styles.mvCardBody}>
+                To democratize access to reliable, technology-driven logistics for every household, business, and institution across India — from metros to the most remote villages.
+              </p>
+            </div>
+
+            {/* Vision Card */}
+            <div className={styles.mvCard}>
+              <div className={styles.mvIconContainer} style={{ color: "#22c55e", backgroundColor: "rgba(34, 197, 94, 0.1)", borderColor: "rgba(34, 197, 94, 0.2)" }}>
+                <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
+              <h3 className={styles.mvCardTitle}>Our Vision</h3>
+              <p className={styles.mvCardBody}>
+                To become India's #1 asset-light logistics aggregator platform, powering 10 million+ moves annually by 2030 through AI-driven automation and a pan-India transporter network.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: CORE VALUES */}
+      <section className={styles.valuesSection}>
+        <div className={styles.container}>
+          <div className={styles.valuesHeader}>
+            <span className={styles.sectionLabel}>WHAT DRIVES US</span>
+            <h2 className={styles.sectionTitle}>Our Core Values</h2>
+            <div className={styles.underlineBar}></div>
+          </div>
+
+          <div className={styles.valuesGrid}>
+            {/* Reliability */}
+            <div className={styles.valueCard}>
+              <div className={styles.hexIconWrapper}>🛡️</div>
+              <h3 className={styles.valueTitle}>Reliability</h3>
+              <p className={styles.valueBody}>We deliver what we promise, every single time.</p>
+            </div>
+
+            {/* Speed */}
+            <div className={styles.valueCard}>
+              <div className={styles.hexIconWrapper}>⚡</div>
+              <h3 className={styles.valueTitle}>Speed</h3>
+              <p className={styles.valueBody}>Efficient logistics that saves your time and money.</p>
+            </div>
+
+            {/* Security */}
+            <div className={styles.valueCard}>
+              <div className={styles.hexIconWrapper}>🔒</div>
+              <h3 className={styles.valueTitle}>Security</h3>
+              <p className={styles.valueBody}>Your goods are insured, tracked, and protected.</p>
+            </div>
+
+            {/* Transparency */}
+            <div className={styles.valueCard}>
+              <div className={styles.hexIconWrapper}>🌐</div>
+              <h3 className={styles.valueTitle}>Transparency</h3>
+              <p className={styles.valueBody}>No hidden charges. Full visibility on every move.</p>
+            </div>
+
+            {/* Trust */}
+            <div className={styles.valueCard}>
+              <div className={styles.hexIconWrapper}>🤝</div>
+              <h3 className={styles.valueTitle}>Trust</h3>
+              <p className={styles.valueBody}>Verified professionals. Background-checked partners.</p>
+            </div>
+
+            {/* Innovation */}
+            <div className={styles.valueCard}>
+              <div className={styles.hexIconWrapper}>🚀</div>
+              <h3 className={styles.valueTitle}>Innovation</h3>
+              <p className={styles.valueBody}>Powered by AI, Flutter apps, and real-time data.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: THE TEAM */}
+      <section className={styles.teamSection}>
+        <div className={styles.container}>
+          <div className={styles.teamHeader}>
+            <span className={styles.sectionLabel}>BRAINS BEHIND SHIPBRIDGE</span>
+            <h2 className={styles.sectionTitle}>Meet Our Team</h2>
+            <div className={styles.underlineBar}></div>
+          </div>
+
+          <div className={styles.teamGrid}>
+            {/* Ashish Joshi */}
+            <div className={styles.teamCard}>
+              <div className={styles.teamImageContainer}>
+                <Image
+                  src="/company/founder.png"
+                  alt="Ashish Joshi"
+                  fill
+                  unoptimized
+                  className={styles.teamImage}
+                />
+              </div>
+              <div className={styles.teamInfo}>
+                <h3 className={styles.teamName}>Ashish Joshi</h3>
+                <span className={styles.teamRole}>Founder & CEO</span>
+                <p className={styles.teamBio}>
+                  Strategic leader with deep expertise in SME logistics ecosystems, market expansion, and B2B partnerships.
+                </p>
+              </div>
+            </div>
+
+            {/* Prachi Agarwal */}
+            <div className={styles.teamCard}>
+              <div className={styles.teamImageContainer}>
+                <Image
+                  src="/company/coo.png"
+                  alt="Prachi Agarwal"
+                  fill
+                  unoptimized
+                  className={styles.teamImage}
+                />
+              </div>
+              <div className={styles.teamInfo}>
+                <h3 className={styles.teamName}>Prachi Agarwal</h3>
+                <span className={styles.teamRole}>Chief Operations Officer (COO)</span>
+                <p className={styles.teamBio}>
+                  AI & Automation specialist managing scalable platform infrastructure and tech-enabled logistics operations.
+                </p>
+              </div>
+            </div>
+
+            {/* Anurag Singh */}
+            <div className={styles.teamCard}>
+              <div className={styles.teamImageContainer}>
+                <Image
+                  src="/company/cto.png"
+                  alt="Anurag Singh"
+                  fill
+                  unoptimized
+                  className={styles.teamImage}
+                />
+              </div>
+              <div className={styles.teamInfo}>
+                <h3 className={styles.teamName}>Anurag Singh</h3>
+                <span className={styles.teamRole}>Chief Technology Officer (CTO)</span>
+                <p className={styles.teamBio}>
+                  AI Systems Architect leading platform design, intelligent workflows, and backend scalability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: BY THE NUMBERS */}
+      <section className={styles.statsSection}>
+        <div className={styles.container}>
+          <div className={styles.statsGrid}>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>50,000+</span>
+              <span className={styles.statLabel}>Moves Completed</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>200+</span>
+              <span className={styles.statLabel}>Cities Served</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>98%</span>
+              <span className={styles.statLabel}>Customer Satisfaction</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>500+</span>
+              <span className={styles.statLabel}>Verified Partners</span>
+            </div>
+          </div>
+          <div className={styles.statsFooterText}>
+            And we're just getting started.
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: WHY CHOOSE SHIPBRIDGE */}
+      <section className={styles.whySection}>
+        <div className={styles.container}>
+          <div className={styles.whyHeader}>
+            <span className={styles.sectionLabel}>WHY WE STAND OUT</span>
+            <h2 className={styles.sectionTitle}>Why ShipBridge Stands Apart</h2>
+            <div className={styles.underlineBar}></div>
+          </div>
+
+          <div className={styles.whyGrid}>
+            {/* Item 1 */}
+            <div className={styles.whyItem}>
+              <div className={styles.whyIcon}>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div className={styles.whyText}>
+                <h4 className={styles.whyTitle}>Deep Tier 2/3 & Rural Reach</h4>
+                <p className={styles.whyDesc}>Unmatched last-mile penetration across India's underserved markets.</p>
+              </div>
+            </div>
+
+            {/* Item 2 */}
+            <div className={styles.whyItem}>
+              <div className={styles.whyIcon}>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div className={styles.whyText}>
+                <h4 className={styles.whyTitle}>Local Transporter Integration</h4>
+                <p className={styles.whyDesc}>We onboard and empower local transporters with tech, branding, and capital.</p>
+              </div>
+            </div>
+
+            {/* Item 3 */}
+            <div className={styles.whyItem}>
+              <div className={styles.whyIcon}>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div className={styles.whyText}>
+                <h4 className={styles.whyTitle}>Asset-Light Scalable Model</h4>
+                <p className={styles.whyDesc}>Zero truck ownership. 100% scalable. High ROI.</p>
+              </div>
+            </div>
+
+            {/* Item 4 */}
+            <div className={styles.whyItem}>
+              <div className={styles.whyIcon}>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div className={styles.whyText}>
+                <h4 className={styles.whyTitle}>Standardized SME Services</h4>
+                <p className={styles.whyDesc}>Reliable, priced, and tech-managed service protocols.</p>
+              </div>
+            </div>
+
+            {/* Item 5 */}
+            <div className={styles.whyItem}>
+              <div className={styles.whyIcon}>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div className={styles.whyText}>
+                <h4 className={styles.whyTitle}>Real-Time Tracking</h4>
+                <p className={styles.whyDesc}>Live GPS updates via our customer Flutter app.</p>
+              </div>
+            </div>
+
+            {/* Item 6 */}
+            <div className={styles.whyItem}>
+              <div className={styles.whyIcon}>
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div className={styles.whyText}>
+                <h4 className={styles.whyTitle}>AI-Powered Logistics (Coming Soon)</h4>
+                <p className={styles.whyDesc}>Route optimization, demand forecasting, and smart pricing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: CTA BANNER */}
+      <section className={styles.ctaSection}>
+        <div className={styles.container}>
+          <div className={styles.ctaBanner}>
+            <h2 className={styles.ctaTitle}>Ready to Move Smarter?</h2>
+            <p className={styles.ctaSub}>Join thousands of families and businesses who trust ShipBridge.</p>
+            <div className={styles.ctaButtons}>
+              <button className={styles.ctaFilled}>Book a Move</button>
+              <button className={styles.ctaOutlined}>Become a Partner</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Placeholder Footer */}
+      <footer style={{ borderTop: "1px solid #111", padding: "3rem 0", backgroundColor: "#08080a" }}>
+        <div className={styles.container} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "2rem" }}>
+          <div>
+            <h4 style={{ color: "#fff", marginBottom: "1rem" }}>ShipBridge Logistics</h4>
+            <p style={{ color: "#9ca3af", fontSize: "0.9rem", maxWidth: "300px" }}>
+              India's premier logistics and relocation aggregator platform.
+            </p>
+          </div>
+          <div style={{ display: "flex", gap: "4rem" }}>
+            <div>
+              <h5 style={{ color: "#fff", marginBottom: "0.75rem", fontSize: "0.95rem" }}>Company</h5>
+              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.85rem" }}>
+                <li><Link href="/" style={{ color: "#9ca3af" }}>Home</Link></li>
+                <li><Link href="/about" style={{ color: "#f97316" }}>About Us</Link></li>
+                <li><a href="#" style={{ color: "#9ca3af" }}>Careers</a></li>
+                <li><a href="#" style={{ color: "#9ca3af" }}>Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 style={{ color: "#fff", marginBottom: "0.75rem", fontSize: "0.95rem" }}>Services</h5>
+              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.85rem" }}>
+                <li><Link href="/services/household" style={{ color: "#9ca3af" }}>Household Shifting</Link></li>
+                <li><Link href="/services/office" style={{ color: "#9ca3af" }}>Office Shifting</Link></li>
+                <li><Link href="/services/warehouse" style={{ color: "#9ca3af" }}>Warehouse Storage</Link></li>
+                <li><Link href="/services/vehicle" style={{ color: "#9ca3af" }}>Vehicle Transport</Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className={styles.container} style={{ marginTop: "3rem", paddingTop: "1.5rem", borderTop: "1px solid #1f2937", textAlign: "center", fontSize: "0.8rem", color: "#6b7280" }}>
+          &copy; {new Date().getFullYear()} ShipBridge Logistics. All rights reserved.
+        </div>
+      </footer>
+
+      {/* JSON-LD Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+    </div>
+  );
+}

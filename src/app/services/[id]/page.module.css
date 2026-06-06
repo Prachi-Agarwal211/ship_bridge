@@ -36,11 +36,11 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 /* Back navigation */
@@ -74,14 +74,29 @@
   margin-bottom: 6rem;
 }
 
+.overlineWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 .overline {
   font-size: 0.85rem;
   font-weight: 800;
   color: #f97316;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  display: block;
+}
+
+.whyPill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 0.2rem 0.75rem;
+  border-radius: 50px;
 }
 
 .title {
@@ -179,15 +194,244 @@
 }
 
 /* ==========================================================================
-   Booking Form Section
+   SECTION 2: SERVICE FLOW
+   ========================================================================== */
+.flowSection {
+  padding: 6rem 0;
+  position: relative;
+  background-color: #050507;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+
+.sectionLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #22c55e;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.underlineBar {
+  width: 70px;
+  height: 4px;
+  background-color: #f97316;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+.flowTimeline {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding: 1.5rem 0.5rem;
+  scrollbar-width: thin;
+}
+
+.flowCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 1rem;
+  padding: 2rem;
+  min-width: 280px;
+  flex: 1;
+  backdrop-filter: blur(10px);
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flowCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.08);
+}
+
+.flowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.flowNumber {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  color: #f97316;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.flowIcon {
+  font-size: 1.75rem;
+}
+
+.flowCardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.flowCardDesc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+
+/* ==========================================================================
+   SECTION 3: WHAT'S INCLUDED
+   ========================================================================== */
+.includedSection {
+  padding: 6rem 0;
+  position: relative;
+  background-color: #000000;
+}
+
+.includedGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.includedCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 1.25rem;
+  padding: 3.5rem;
+  backdrop-filter: blur(12px);
+}
+
+.includedCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 1.25rem;
+}
+
+.includedCardIcon {
+  font-size: 2rem;
+}
+
+.includedCardTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.checklist {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.checklistItem {
+  display: flex;
+  gap: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #d1d5db;
+}
+
+.checkIconGreen {
+  color: #22c55e;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.checkIconOrange {
+  color: #f97316;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   SECTION 4: PRICING GUIDE
+   ========================================================================== */
+.pricingSection {
+  padding: 6rem 0;
+  position: relative;
+  background-color: #08080a;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.pricingCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.pricingCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.pricingCardIcon {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.pricingCardTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.pricingCardDesc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #9ca3af;
+}
+
+.pricingNote {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f97316;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   SECTION 5: ENHANCED FORM
    ========================================================================== */
 .bookingSection {
-  margin-bottom: 8rem;
+  padding: 6rem 0;
+  position: relative;
+  background-color: #000000;
 }
 
 .formCard {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(249, 115, 22, 0.25);
   border-radius: 24px;
   padding: 3.5rem;
   backdrop-filter: blur(16px);
@@ -201,7 +445,7 @@
 }
 
 .formHeader h3 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
 }
@@ -254,6 +498,15 @@
   box-shadow: 0 0 10px rgba(249, 115, 22, 0.15);
 }
 
+.formSelect {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f97316'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+}
+
 .textareaInput {
   min-height: 120px;
   resize: vertical;
@@ -264,7 +517,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #f97316 0%, #ff8e3c 100%);
+  background: #f97316;
   color: #ffffff;
   padding: 1.1rem 3rem;
   font-weight: 700;
@@ -273,18 +526,20 @@
   border: none;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(249, 115, 22, 0.25);
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.3, 1);
+  transition: all 0.3s ease;
   width: 100%;
   margin-top: 1rem;
 }
 
-.submitBtn:hover {
+.submitBtn:hover:not(:disabled) {
+  background-color: #ea580c;
   transform: translateY(-2px);
   box-shadow: 0 15px 30px rgba(249, 115, 22, 0.4);
 }
 
-.submitBtn:active {
-  transform: translateY(0);
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .submitArrow {
@@ -297,6 +552,159 @@
   transform: translateX(5px);
 }
 
+/* Success notification banner */
+.successBanner {
+  grid-column: span 2;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.checkmarkWrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.80rem;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   SECTION 6: FAQ ACCORDION
+   ========================================================================== */
+.faqSection {
+  padding: 6rem 0;
+  position: relative;
+  background-color: #08080a;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease;
+}
+
+.faqItem:hover {
+  border-color: rgba(249, 115, 22, 0.2);
+}
+
+.faqItemActive {
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.faqQuestionBlock {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faqQuestion {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.faqArrow {
+  transition: transform 0.2s ease;
+  color: #f97316;
+}
+
+.faqItemActive .faqArrow {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 0 2rem 1.5rem 2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #9ca3af;
+  border-top: 1px solid transparent;
+}
+
+.faqItemActive .faqAnswer {
+  border-top-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ==========================================================================
+   SECTION 7: RELATED SERVICES STRIP
+   ========================================================================== */
+.relatedSection {
+  padding: 6rem 0 8rem 0;
+  position: relative;
+  background-color: #000000;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.relatedCard {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  text-decoration: none;
+}
+
+.relatedCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(249, 115, 22, 0.35);
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.08);
+}
+
+.relatedOverline {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.relatedTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.relatedDesc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+
 /* ==========================================================================
    Footer Section
    ========================================================================== */
@@ -304,6 +712,7 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 3rem 0;
   text-align: center;
+  background-color: #08080a;
 }
 
 .footerText {
@@ -314,8 +723,8 @@
 /* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
-@media (max-width: 992px) {
-  .heroGrid {
+@media (max-width: 1200px) {
+  .heroGrid, .includedGrid {
     grid-template-columns: 1fr;
     gap: 3.5rem;
   }
@@ -326,8 +735,8 @@
     margin: 0 auto;
   }
   
-  .formCard {
-    padding: 2.5rem;
+  .pricingGrid, .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -340,6 +749,11 @@
     font-size: 2.5rem;
   }
   
+  .pricingGrid, .relatedGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
   .formGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -350,6 +764,10 @@
   }
   
   .formCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .includedCard {
     padding: 2rem 1.5rem;
   }
 }
