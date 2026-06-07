@@ -256,20 +256,6 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, var(--color-orange), #ff9a44);
-  color: #fff;
-  text-decoration: none;
-  padding: 0.8rem 2rem;
-  border-radius: 100px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.exploreBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(249, 115, 22, 0.5);
 }
 
 /* ── Navigation Arrows ── */

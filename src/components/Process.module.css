@@ -1,59 +1,42 @@
 .section {
-  background-color: transparent;
-  padding: 8rem 0;
   position: relative;
-  overflow: visible; /* Need visible for sticky to work cleanly sometimes, but hidden x is better */
   width: 100%;
-  color: #ffffff;
-}
-
-.ambientGlow {
-  position: absolute;
-  top: 30%;
-  left: 20%;
-  width: 60vw;
-  height: 60vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, transparent 70%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
+  padding: 8rem 0;
+  color: #fff;
+  z-index: 10;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 5rem);
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
   display: flex;
   gap: 4rem;
-  position: relative;
-  z-index: 1;
 }
 
-/* ── LEFT SIDE: Sticky Header ── */
-.stickyColumn {
-  flex: 1;
+/* LEFT COLUMN - Sticky Header */
+.headerColumn {
+  flex: 0 0 400px;
   position: relative;
 }
 
-.stickyContent {
+.stickyHeader {
   position: sticky;
-  top: 25vh; /* Sticks a quarter way down the screen */
-  padding-right: 2rem;
+  top: 20vh;
 }
 
 .overline {
   display: block;
   font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   color: var(--color-orange);
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .title {
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -1px;
@@ -62,226 +45,201 @@
 
 .subtitle {
   font-size: 1.1rem;
-  line-height: 1.7;
-  color: #a1a1aa;
-  max-width: 450px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2.5rem;
 }
 
-/* ── RIGHT SIDE: Scrolling Pipeline ── */
-.scrollingColumn {
-  flex: 1.2;
+.ctaButton {
   position: relative;
-  padding: 4rem 0 4rem 4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-/* The Vertical Track */
-.laserTrack {
+.ctaButton::before {
+  content: '';
   position: absolute;
-  top: 4rem;
-  bottom: 4rem;
-  left: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  inset: 0;
+  border-radius: 50px;
+  padding: 2px;
+  background: linear-gradient(90deg, var(--color-green), var(--color-orange));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
-/* The Glowing Laser Line */
-.laserLine {
+.ctaButton::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: #ffffff;
+  border-radius: 48px;
+  z-index: 0;
+  transition: background 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: scale(1.05);
+}
+
+.ctaButton:hover::after {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.btnText {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--color-green), var(--color-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+/* RIGHT COLUMN - Timeline */
+.timelineColumn {
+  flex: 1;
+  position: relative;
+  height: 1200px; /* Gives enough vertical space for scroll drawing */
+}
+
+.svgWrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, var(--color-orange), var(--color-green));
-  box-shadow: 0 0 15px var(--color-orange), 0 0 30px var(--color-green);
-  transform-origin: top;
-  border-radius: 2px;
-}
-
-.stepsList {
-  display: flex;
-  flex-direction: column;
-  gap: 6rem; /* Large gap for scrolling space */
-}
-
-.stepItem {
-  position: relative;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0.4;
-  transform: translateX(20px);
-}
-
-/* The node on the track */
-.stepNode {
-  position: absolute;
-  top: 24px;
-  left: -4rem; /* Reach back to the track */
-  width: 16px;
-  height: 16px;
-  transform: translateX(-50%);
-  background: #000;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  z-index: 2;
-  transition: all 0.4s ease;
-}
-
-.stepNodeInner {
-  position: absolute;
-  inset: 2px;
-  background: transparent;
-  border-radius: 50%;
-  transition: all 0.4s ease;
-}
-
-/* The Content Card */
-.stepCard {
-  background: rgba(15, 15, 18, 0.5);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-
-.stepCardGlow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 10% 10%, rgba(249, 115, 22, 0), transparent 50%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
   pointer-events: none;
 }
 
-.stepHeader {
+.timelineSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+
+/* Nodes */
+.stepNode {
+  position: absolute;
+  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  z-index: 2;
+  /* Will be animated by GSAP */
 }
 
-.stepNum {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.2);
-  letter-spacing: 2px;
-  transition: color 0.4s ease;
+.dot {
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 5px rgba(249, 115, 22, 0.4);
+  position: relative;
+  z-index: 3;
 }
 
-.stepIcon {
-  font-size: 2rem;
-  opacity: 0.2;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+/* Giant Number Background */
+.massiveNumber {
+  position: absolute;
+  top: -60px;
+  font-size: 10rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+}
+
+/* Content Box */
+.stepContent {
+  position: absolute;
+  top: 40px;
+  width: 320px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 16px;
+  z-index: 2;
+}
+
+.alignLeft {
+  left: 50%;
+  transform: translateX(-10%); /* Shifts to the right of the dot */
+}
+
+.alignRight {
+  right: 50%;
+  transform: translateX(10%); /* Shifts to the left of the dot */
 }
 
 .stepTitle {
-  font-size: 1.8rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 1rem;
-  transition: color 0.4s ease;
-}
-
-.stepDesc {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 0.4s ease;
-}
-
-/* ── ACTIVE STATE (When step is in center of viewport) ── */
-.stepActive {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.stepActive .stepNode {
-  border-color: var(--color-orange);
-  box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
-}
-
-.stepActive .stepNodeInner {
-  background: var(--color-orange);
-}
-
-.stepActive .stepCard {
-  background: rgba(15, 15, 18, 0.9);
-  border-color: rgba(249, 115, 22, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(249, 115, 22, 0.1) inset;
-}
-
-.stepActive .stepCardGlow {
-  background: radial-gradient(circle at 10% 10%, rgba(249, 115, 22, 0.15), transparent 60%);
-  opacity: 1;
-}
-
-.stepActive .stepNum {
-  color: var(--color-orange);
-}
-
-.stepActive .stepIcon {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.stepActive .stepTitle {
+  margin-bottom: 0.5rem;
   color: #fff;
 }
 
-.stepActive .stepDesc {
-  color: #d4d4d8; /* text-gray-300 */
+.stepDesc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
 }
 
-/* ── RESPONSIVENESS ── */
+
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
-    gap: 3rem;
   }
-  .stickyColumn {
+  
+  .headerColumn {
     flex: none;
+    width: 100%;
   }
-  .stickyContent {
+
+  .stickyHeader {
     position: relative;
     top: 0;
-    padding-right: 0;
-    text-align: center;
   }
-  .subtitle {
-    margin: 0 auto;
+
+  .timelineColumn {
+    height: 800px;
   }
-  .scrollingColumn {
-    padding: 2rem 0 2rem 3rem;
-  }
-  .laserTrack {
-    left: 1rem;
-    top: 2rem;
-    bottom: 2rem;
-  }
-  .stepNode {
-    left: -2rem;
+  
+  .stepContent {
+    width: 250px;
   }
 }
 
-@media (max-width: 640px) {
-  .scrollingColumn {
-    padding-left: 2rem;
+@media (max-width: 768px) {
+  .timelineColumn {
+    height: 1000px;
+    margin-top: 2rem;
   }
-  .laserTrack {
-    left: 0.5rem;
+  
+  .stepContent {
+    width: 200px;
+    padding: 1rem;
   }
-  .stepNode {
-    left: -1.5rem;
-    width: 12px;
-    height: 12px;
-  }
-  .stepCard {
-    padding: 1.5rem;
-  }
+
   .stepTitle {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+  }
+
+  .massiveNumber {
+    font-size: 6rem;
+    top: -30px;
   }
 }

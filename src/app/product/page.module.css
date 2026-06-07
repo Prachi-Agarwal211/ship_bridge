@@ -15,27 +15,7 @@
   z-index: 10;
 }
 
-/* Background glows */
-.glowBlob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 1;
-}
 
-.glowOrange {
-  background: radial-gradient(circle, #f97316 0%, transparent 70%);
-}
-
-.glowGreen {
-  background: radial-gradient(circle, #22c55e 0%, transparent 70%);
-}
-
-.glowBlue {
-  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
-}
 
 .heroSection {
   position: relative;
@@ -131,11 +111,12 @@
 }
 
 .previewCard {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.25rem;
   padding: 1rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   transition: transform 0.4s ease, border-color 0.4s ease;
 }
@@ -164,7 +145,7 @@
 }
 
 .productSection:nth-child(even) {
-  background-color: #050507;
+  background-color: transparent;
 }
 
 .productGrid {
@@ -180,11 +161,12 @@
 
 .productImageCard {
   position: relative;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.5rem;
   padding: 1rem;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
   z-index: 2;
   transition: border-color 0.3s ease;
@@ -383,20 +365,6 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  padding: 0.6rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: border-color 0.3s ease, background 0.3s ease, transform 0.2s ease;
-}
-
-.downloadButton:hover {
-  border-color: #f97316;
-  background: rgba(249, 115, 22, 0.05);
-  transform: translateY(-2px);
 }
 
 .storeIcon {
@@ -528,23 +496,7 @@
 }
 
 .ctaFilled {
-  background-color: #f97316;
-  color: #ffffff;
-  border: 1px solid #f97316;
-  padding: 1rem 2.5rem;
-  border-radius: 0.5rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
-}
-
-.ctaFilled:hover {
-  background-color: #ea580c;
-  border-color: #ea580c;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+  display: inline-block;
 }
 
 .ctaOutlined {

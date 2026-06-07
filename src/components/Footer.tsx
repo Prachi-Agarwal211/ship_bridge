@@ -81,8 +81,8 @@ export default function Footer() {
           <div className={`${styles.footerCol} ${styles.ctaCol}`} data-reveal>
             <h4>GET MOVING</h4>
             <p className={styles.ctaText}>Ready to shift smarter? Book your move in under 60 seconds.</p>
-            <Link href="/services/household" className={styles.footerCta}>
-              Book a Move
+            <Link href="/services/household" className={`${styles.footerCta} global-btn`}>
+              <span className="global-btn-text">Book a Move</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>

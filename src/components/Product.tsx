@@ -152,8 +152,8 @@ export default function Product() {
 
             {/* CTA Buttons Row */}
             <div className={styles.ctaRow} data-reveal>
-              <button className={styles.downloadButton}>
-                <span>Download App</span>
+              <button className={`${styles.downloadButton} global-btn`}>
+                <span className="global-btn-text">Download App</span>
                 <div className={styles.storeIcons}>
                   <svg viewBox="0 0 24 24" className={styles.storeIcon} fill="currentColor">
                     <path d="M5 3.00005C4.69 3.00005 4.39 3.12005 4.16 3.35005C3.86 3.65005 3.75 4.09005 3.86 4.50005L12.35 12.9901L3.86 21.4801C3.75 21.8901 3.86 22.3301 4.16 22.6301C4.39 22.8601 4.69 22.9801 5 22.9801C5.23 22.9801 5.46 22.9101 5.66 22.7801L19.4 14.8801C19.78 14.6601 20 14.2801 20 13.8801C20 13.4801 19.78 13.1001 19.4 12.8801L5.66 4.98005C5.46 4.85005 5.23 4.78005 5 4.78005V3.00005Z"/>

@@ -198,3 +198,63 @@ body::before {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* GLOBAL BUTTON STYLES */
+.global-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  background: #ffffff; /* White background directly on the element */
+  color: var(--color-green); /* Ensures icons/svgs are visible on white background */
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+  z-index: 1;
+}
+
+.global-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  padding: 2px;
+  background: linear-gradient(90deg, var(--color-green), var(--color-orange));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2; /* Border renders on top but is masked to the edge */
+}
+
+.global-btn:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.global-btn-text {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--color-green), var(--color-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+.global-btn svg {
+  fill: url(#global-btn-grad);
+}
+.global-btn svg[stroke="currentColor"] {
+  stroke: url(#global-btn-grad);
+  fill: none;
+}
+.global-btn svg[fill="none"] {
+  fill: none;
+}
+

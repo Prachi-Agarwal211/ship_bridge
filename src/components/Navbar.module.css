@@ -239,49 +239,9 @@
 }
 
 .ctaBtn {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(10, 10, 10, 0.8);
-  color: #ffffff;
-  padding: 0.8rem 1.8rem;
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.ctaBtn::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: var(--radius-full);
-  background: linear-gradient(135deg, var(--color-orange), var(--color-green), var(--color-orange));
-  background-size: 200% 200%;
-  z-index: -2;
-  animation: glowMove 3s linear infinite;
-}
-
-.ctaBtn::after {
-  content: '';
-  position: absolute;
-  inset: 2px;
-  border-radius: var(--radius-full);
-  background: rgba(10, 10, 10, 0.95);
-  z-index: -1;
-  transition: background 0.3s ease;
-}
-
-.ctaBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
-}
-
-.ctaBtn:hover::after {
-  background: rgba(20, 20, 20, 0.8);
+  /* Only keeping properties that don't conflict with global-btn, 
+     global-btn handles all colors, borders, and hover states.
+     The media query below handles hiding it on mobile. */
 }
 
 /* ── HAMBURGER MENU ── */

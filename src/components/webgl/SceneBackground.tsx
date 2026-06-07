@@ -34,51 +34,48 @@ const fragmentShader = `
     return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
   }
 
-  float fbm(vec2 p) {
-    float v = 0.0;
-    float a = 0.5;
-    vec2 shift = vec2(100.0);
-    mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
-    for (int i = 0; i < 4; ++i) {
-      v += a * noise(p);
-      p = rot * p * 2.0 + shift;
-      a *= 0.5;
-    }
-    return v;
-  }
-
   void main() {
     vec2 uv = vUv;
-    float t = uTime * 0.03; // Even slower animation
-
-    vec2 q = vec2(fbm(uv + t * 0.2), fbm(uv + vec2(1.0)));
-    vec2 r = vec2(fbm(uv + 1.0 * q + vec2(1.7, 9.2) + 0.1 * t),
-                  fbm(uv + 1.0 * q + vec2(8.3, 2.8) + 0.1 * t));
-    float f = fbm(uv + r);
-
-    // Deep black/green base
-    vec3 color = mix(vec3(0.01, 0.02, 0.015), vec3(0.01, 0.04, 0.02), clamp(f * f * 3.0, 0.0, 1.0));
-
-    // Soft emerald/mint green volumetric glow
-    vec2 greenQ = vec2(fbm(uv + vec2(4.0, 2.1) + t * 0.15), fbm(uv + vec2(6.1) - t * 0.1));
-    color = mix(color, vec3(0.1, 0.9, 0.4), clamp(length(greenQ), 0.0, 1.0) * 0.08);
+    float t = uTime * 0.4; // Slightly faster for visible movement
     
-    // Additional deeper forest green highlights
-    vec2 darkGreenQ = vec2(fbm(uv * 1.5 + t * 0.1), fbm(uv * 1.5 - t * 0.1));
-    color = mix(color, vec3(0.0, 0.5, 0.2), clamp(length(darkGreenQ), 0.0, 1.0) * 0.05);
+    // Create organic flowing coordinates
+    vec2 p1 = vec2(noise(uv * 1.5 + t * 0.2), noise(uv * 2.0 - t * 0.15));
+    vec2 p2 = vec2(noise(uv * 2.5 - t * 0.1), noise(uv * 1.5 + t * 0.2));
+    
+    // Base color: Deep absolute black
+    vec3 color = vec3(0.00, 0.01, 0.005);
+    
+    // Deep dark green base flow - widened area but reduced brightness
+    float baseMask = smoothstep(0.2, 0.85, noise(uv * 2.0 + p1 * 2.0));
+    color = mix(color, vec3(0.015, 0.1, 0.04), baseMask * 0.6);
+    
+    // Mid-green body
+    float midGreen = smoothstep(0.35, 0.9, noise(uv * 3.0 - p2 * 1.5));
+    color = mix(color, vec3(0.02, 0.18, 0.08), midGreen * 0.5);
+    
+    // Smooth, creative flowing volumetric highlights instead of distinct "random lines"
+    float flowNoise = noise(uv * 2.5 + p2 * 1.5 - p1 * 1.0 + t * 0.3);
+    // Soft, glowing bright spots that morph organically
+    float volumetricLight = smoothstep(0.4, 0.9, flowNoise);
+    // Masked to the base fluid to look like internal glowing energy
+    volumetricLight *= smoothstep(0.1, 0.7, baseMask);
+    
+    // Add a subtle moving color shift (dark green to bright neon green) to the highlights
+    vec3 glowColor = mix(vec3(0.05, 0.4, 0.15), vec3(0.1, 0.7, 0.3), noise(uv * 4.0 + t));
+    color += glowColor * volumetricLight * 0.45;
 
-    // Mouse interaction - subtle green glow
+    // Mouse interaction - very subtle
     float mouseDist = length(uv - uMouse);
-    float mouseGlow = exp(-mouseDist * mouseDist * 4.0) * 0.08;
-    color += vec3(0.1, 0.9, 0.4) * mouseGlow;
+    float mouseGlow = exp(-mouseDist * mouseDist * 18.0) * 0.02;
+    color += vec3(0.1, 0.4, 0.2) * mouseGlow;
 
     // Vignette
     float vignette = uv.x * (1.0 - uv.x) * uv.y * (1.0 - uv.y);
-    vignette = pow(vignette * 15.0, 0.4);
-    color *= vignette * 0.6 + 0.4;
+    vignette = pow(vignette * 15.0, 0.3);
+    color *= vignette * 0.8 + 0.2;
 
-    // Grain
-    float grain = noise(uv * 300.0 + t * 10.0) * 0.015;
+    // Subtle cinematic grain
+    float grain = (fract(sin(dot(uv, vec2(12.9898, 78.233) * 2.0)) * 43758.5453) - 0.5) * 0.025;
     color += grain;
 
     gl_FragColor = vec4(color, 1.0);

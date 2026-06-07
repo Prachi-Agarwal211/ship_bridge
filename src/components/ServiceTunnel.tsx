@@ -281,8 +281,8 @@ export default function ServiceTunnel() {
                       ))}
                     </div>
 
-                    <Link href={`/services/${service.id}`} className={styles.exploreBtn}>
-                      Explore Service
+                    <Link href={`/services/${service.id}`} className={`${styles.exploreBtn} global-btn`}>
+                      <span className="global-btn-text">Explore Service</span>
                     </Link>
                   </div>
                 </div>

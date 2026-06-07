@@ -107,10 +107,7 @@ export default function FranchiseClient() {
     <div className={styles.pageContainer} ref={containerRef}>
       <Navbar />
 
-      {/* Background Glow Blobs */}
-      <div className={`${styles.glowBlob} ${styles.glowOrange}`} style={{ top: "10%", right: "5%", width: "500px", height: "500px" }}></div>
-      <div className={`${styles.glowBlob} ${styles.glowGreen}`} style={{ top: "30%", left: "5%", width: "600px", height: "600px" }}></div>
-      <div className={`${styles.glowBlob} ${styles.glowOrange}`} style={{ bottom: "15%", right: "8%", width: "550px", height: "550px" }}></div>
+
 
       {/* SECTION 1: HERO */}
       <section className={styles.heroSection}>
@@ -127,8 +124,8 @@ export default function FranchiseClient() {
             </p>
 
             <div className={`hero-elem ${styles.ctaButtons}`}>
-              <a href="mailto:partners@shipbridge.in" className={styles.ctaFilled}>
-                Apply for Franchise
+              <a href="mailto:partners@shipbridge.in" className={`${styles.ctaFilled} global-btn`}>
+                <span className="global-btn-text">Apply for Franchise</span>
               </a>
               <a href="/Shipbridge_Planning_final.pdf" target="_blank" rel="noopener noreferrer" className={styles.ctaOutlined}>
                 Download Brochure

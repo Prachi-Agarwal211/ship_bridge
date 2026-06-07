@@ -136,6 +136,12 @@ export default function RootLayout({
         <ReactLenis root options={{ lerp: 0.08, duration: 1.2, syncTouch: false, autoRaf: false }}>
           <GSAPProvider>
             <SceneBackgroundClient />
+            <svg style={{ width: 0, height: 0, position: 'absolute' }} aria-hidden="true" focusable="false">
+              <linearGradient id="global-btn-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="var(--color-green)" />
+                <stop offset="100%" stopColor="var(--color-orange)" />
+              </linearGradient>
+            </svg>
             <CustomCursor />
             {children}
             <Footer />

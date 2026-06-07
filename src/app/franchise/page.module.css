@@ -15,23 +15,7 @@
   z-index: 10;
 }
 
-/* Background glows */
-.glowBlob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 1;
-}
 
-.glowOrange {
-  background: radial-gradient(circle, #f97316 0%, transparent 70%);
-}
-
-.glowGreen {
-  background: radial-gradient(circle, #22c55e 0%, transparent 70%);
-}
 
 /* SECTION 1: HERO */
 .heroSection {
@@ -88,23 +72,7 @@
 }
 
 .ctaFilled {
-  background-color: #f97316;
-  color: #ffffff;
-  border: 1px solid #f97316;
-  padding: 1rem 2.5rem;
-  border-radius: 0.5rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
-}
-
-.ctaFilled:hover {
-  background-color: #ea580c;
-  border-color: #ea580c;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+  display: inline-block;
 }
 
 .ctaOutlined {
@@ -151,11 +119,10 @@
   border-color: #f97316;
 }
 
-/* SECTION 2: WHY FRANCHISE */
 .whySection {
   padding: 7rem 0;
   position: relative;
-  background-color: #08080a;
+  background-color: transparent;
 }
 
 .sectionHeader {
@@ -193,11 +160,12 @@
 }
 
 .whyCard {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
   padding: 2.5rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -239,13 +207,14 @@
 }
 
 .modelCard {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(249, 115, 22, 0.25);
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1.25rem;
   padding: 3.5rem 2.5rem;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   position: relative;
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
@@ -323,11 +292,10 @@
   margin-top: 0.15rem;
 }
 
-/* SECTION 4: HOW TO APPLY */
 .applySection {
   padding: 6rem 0;
   position: relative;
-  background-color: #08080a;
+  background-color: transparent;
 }
 
 .processStrip {
@@ -339,13 +307,14 @@
 }
 
 .processStep {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   padding: 2rem 1.5rem;
   text-align: center;
   position: relative;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 
@@ -377,11 +346,10 @@
 
 
 
-/* SECTION 6: FAQ ACCORDION */
 .faqSection {
   padding: 7rem 0 9rem 0;
   position: relative;
-  background-color: #08080a;
+  background-color: transparent;
 }
 
 .faqList {
@@ -393,11 +361,12 @@
 }
 
 .faqItem {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;
   overflow: hidden;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   transition: border-color 0.3s ease;
 }
 

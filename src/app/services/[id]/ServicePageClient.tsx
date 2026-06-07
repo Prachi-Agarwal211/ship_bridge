@@ -893,12 +893,12 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
               </div>
 
               {/* Submit Button */}
-              <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
+              <button type="submit" disabled={isSubmitting} className={`${styles.submitBtn} global-btn`}>
                 {isSubmitting ? (
-                  <span>Submitting Request...</span>
+                  <span className="global-btn-text">Submitting Request...</span>
                 ) : (
                   <>
-                    <span>Submit Request</span>
+                    <span className="global-btn-text">Submit Request</span>
                     <svg className={styles.submitArrow} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>

@@ -328,10 +328,10 @@ export default function CareersClient() {
                       
                       <a
                         href={`mailto:careers@shipbridge.in?subject=Application for ${encodeURIComponent(job.role)}`}
-                        className={styles.applyLinkBtn}
+                        className={`${styles.applyLinkBtn} global-btn`}
                         onClick={(e) => e.stopPropagation()}
                       >
-                        Apply For This Role
+                        <span className="global-btn-text">Apply For This Role</span>
                       </a>
                     </div>
                   )}

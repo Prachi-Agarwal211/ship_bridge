@@ -99,8 +99,8 @@ export default function Navbar() {
           </ul>
 
           <div className={styles.navActions}>
-            <Link href="/quote" className={styles.ctaBtn}>
-              Get a Quote
+            <Link href="/quote" className={`${styles.ctaBtn} global-btn`}>
+              <span className="global-btn-text">Get a Quote</span>
             </Link>
             
             <button 

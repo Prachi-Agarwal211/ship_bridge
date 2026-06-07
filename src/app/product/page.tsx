@@ -195,17 +195,17 @@ export default function ProductCatalogPage() {
 
               {/* Action Buttons */}
               <div className={styles.downloadRow}>
-                <button className={styles.downloadButton}>
+                <button className={`${styles.downloadButton} global-btn`}>
                   <svg viewBox="0 0 24 24" className={styles.storeIcon} fill="currentColor">
                     <path d="M5 3.00005C4.69 3.00005 4.39 3.12005 4.16 3.35005C3.86 3.65005 3.75 4.09005 3.86 4.50005L12.35 12.9901L3.86 21.4801C3.75 21.8901 3.86 22.3301 4.16 22.6301C4.39 22.8601 4.69 22.9801 5 22.9801C5.23 22.9801 5.46 22.9101 5.66 22.7801L19.4 14.8801C19.78 14.6601 20 14.2801 20 13.8801C20 13.4801 19.78 13.1001 19.4 12.8801L5.66 4.98005C5.46 4.85005 5.23 4.78005 5 4.78005V3.00005Z"/>
                   </svg>
-                  <span>Play Store</span>
+                  <span className="global-btn-text">Play Store</span>
                 </button>
-                <button className={styles.downloadButton}>
+                <button className={`${styles.downloadButton} global-btn`}>
                   <svg viewBox="0 0 24 24" className={styles.storeIcon} fill="currentColor">
                     <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.1 16.67C20.08 16.74 19.67 18.11 18.71 19.5M15.97 4.17C16.63 3.37 17.07 2.28 16.95 1C16 1.04 14.9 1.6 14.25 2.38C13.69 3.04 13.2 4.14 13.34 5.4C14.39 5.48 15.4 4.87 15.97 4.17Z"/>
                   </svg>
-                  <span>App Store</span>
+                  <span className="global-btn-text">App Store</span>
                 </button>
               </div>
 
@@ -453,7 +453,9 @@ export default function ProductCatalogPage() {
             <h2 className={styles.ctaTitle}>Interested in Partnering or Investing?</h2>
             <p className={styles.ctaSub}>We're building the logistics infrastructure India deserves. Join us.</p>
             <div className={styles.ctaButtons}>
-              <a href="mailto:contact@shipbridge.in" className={styles.ctaFilled}>Contact Us</a>
+              <a href="mailto:contact@shipbridge.in" className={`${styles.ctaFilled} global-btn`}>
+                <span className="global-btn-text">Contact Us</span>
+              </a>
               <Link href="/franchise" className={styles.ctaOutlined}>View Franchise Opportunities</Link>
             </div>
           </div>
@@ -462,6 +464,6 @@ export default function ProductCatalogPage() {
 
       {/* Footer */}
       <footer></footer>
-    </ScrollRevealWrapper>
+    </div>
   );
 }

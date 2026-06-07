@@ -35,10 +35,7 @@ export default function AboutPage() {
     <div className={styles.pageContainer}>
       <Navbar />
 
-      {/* Background Glow Blobs */}
-      <div className={`${styles.glowBlob} ${styles.glowOrange}`} style={{ top: "10%", right: "5%", width: "500px", height: "500px" }}></div>
-      <div className={`${styles.glowBlob} ${styles.glowGreen}`} style={{ top: "35%", left: "5%", width: "600px", height: "600px" }}></div>
-      <div className={`${styles.glowBlob} ${styles.glowOrange}`} style={{ bottom: "10%", right: "10%", width: "550px", height: "550px" }}></div>
+
 
       {/* SECTION 1: HERO BANNER */}
       <section className={styles.heroSection}>
@@ -405,7 +402,9 @@ export default function AboutPage() {
             <h2 className={styles.ctaTitle}>Ready to Move Smarter?</h2>
             <p className={styles.ctaSub}>Join thousands of families and businesses who trust ShipBridge.</p>
             <div className={styles.ctaButtons}>
-              <Link href="/product" className={styles.ctaFilled}>Book a Move</Link>
+              <Link href="/product" className={`${styles.ctaFilled} global-btn`}>
+                <span className="global-btn-text">Book a Move</span>
+              </Link>
               <Link href="/franchise" className={styles.ctaOutlined}>Become a Partner</Link>
             </div>
           </div>
