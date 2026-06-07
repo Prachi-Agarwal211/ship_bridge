@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import FranchiseClient from "./FranchiseClient";
+import Navbar from "@/components/Navbar";
+import ScrollRevealWrapper from "@/components/ScrollRevealWrapper";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Franchise Opportunities | ShipBridge Logistics",
@@ -7,5 +10,16 @@ export const metadata: Metadata = {
 };
 
 export default function FranchisePage() {
-  return <FranchiseClient />;
+  return (
+    <ScrollRevealWrapper className={styles.pageContainer}>
+      <Navbar />
+
+      {/* BACKGROUND EFFECTS */}
+      <div className={styles.glowEffect1}></div>
+      
+      <FranchiseClient />
+
+      <footer></footer>
+    </ScrollRevealWrapper>
+  );
 }

@@ -4,61 +4,13 @@ import Image from 'next/image';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import styles from './Product.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Product() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useGSAP(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 75%',
-        end: 'bottom 20%',
-      }
-    });
-
-    // Reveal image column
-    tl.from('.product-image-card', {
-      x: -50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out'
-    });
-
-    // Staggered reveal for bottom cards
-    tl.from('.product-bottom-card', {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: 'back.out(1.2)'
-    }, '-=0.4');
-
-    // Reveal text content
-    tl.from('.product-text-content > *', {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: 'power3.out'
-    }, '-=0.6');
-
-    // Reveal bento features
-    tl.from('.product-bento-card', {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: 'power3.out'
-    }, '-=0.4');
-
-  }, { scope: sectionRef });
+  const sectionRef = useScrollReveal();
 
   return (
     <section className={styles.productSection} id="product" ref={sectionRef}>
@@ -68,7 +20,7 @@ export default function Product() {
         <div className={styles.productGrid}>
           {/* Left Side: Mockup Image & Bottom row card */}
           <div className={styles.imageColumn}>
-            <div className={`product-image-card ${styles.imageCard}`}>
+            <div className={`product-image-card ${styles.imageCard}`} data-reveal>
               <div className={styles.cardGlow}></div>
               
               <div className={styles.imageContainer}>
@@ -84,7 +36,7 @@ export default function Product() {
             </div>
 
             {/* Bottom floating horizontal row card */}
-            <div className={styles.bottomCardRow}>
+            <div className={styles.bottomCardRow} data-reveal>
               {/* Card item 1 */}
               <div className={`product-bottom-card ${styles.bottomCardItem}`}>
                 <svg className={styles.bottomCardIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -126,17 +78,17 @@ export default function Product() {
 
           {/* Right Side: Product Details, Copy, and Features Grid */}
           <div className={`product-text-content ${styles.contentDetails}`}>
-            <div className={styles.overlineWrapper}>
+            <div className={styles.overlineWrapper} data-reveal>
               <span className={styles.overline}>PLATFORM</span>
               <div className={styles.overlineBar}></div>
             </div>
             
-            <h2 className={styles.title}>
+            <h2 className={styles.title} data-reveal>
               Smart Logistics. <br />
               <span className={styles.highlight}>Seamless Control.</span>
             </h2>
 
-            <p className={styles.description}>
+            <p className={styles.description} data-reveal>
               ShipBridge is a smart logistics platform designed to make moving simple, fast, and stress-free. From household shifting to enterprise freight, our digital ecosystem connects you with reliable solutions instantly.
             </p>
 
@@ -199,7 +151,7 @@ export default function Product() {
             </div>
 
             {/* CTA Buttons Row */}
-            <div className={styles.ctaRow}>
+            <div className={styles.ctaRow} data-reveal>
               <button className={styles.downloadButton}>
                 <span>Download App</span>
                 <div className={styles.storeIcons}>

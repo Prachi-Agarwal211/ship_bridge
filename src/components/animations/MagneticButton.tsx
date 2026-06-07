@@ -42,5 +42,5 @@ export default function MagneticButton({ children, strength = 30 }: MagneticButt
     };
   }, { scope: magnetic });
 
-  return cloneElement(children, { ref: magnetic });
+  return cloneElement(children as ReactElement<any>, { ref: magnetic });
 }

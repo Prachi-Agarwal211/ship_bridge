@@ -15,26 +15,47 @@ export default function Services() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const cards = gsap.utils.toArray('.service-card', trackRef.current);
-    
-    // Only apply horizontal scroll pin on non-mobile
     let mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
+      // Fix: Subtract right padding to avoid over-scrolling past last card
+      const getScrollAmount = () => {
+        if (!trackRef.current) return 0;
+        const trackWidth = trackRef.current.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        const paddingRight = Math.min(viewportWidth * 0.05, 80);
+        return -(trackWidth - viewportWidth + paddingRight);
+      };
+
       gsap.to(trackRef.current, {
-        x: () => -(trackRef.current!.scrollWidth - window.innerWidth),
+        x: getScrollAmount,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${trackRef.current!.scrollWidth - window.innerWidth}`,
+          end: () => {
+            const trackWidth = trackRef.current?.scrollWidth ?? 0;
+            return `+=${trackWidth - window.innerWidth}`;
+          },
           pin: true,
-          scrub: 1,
+          scrub: 1.2,
           invalidateOnRefresh: true,
+          anticipatePin: 1,
+        }
+      });
+
+      // Reveal header on scroll in
+      gsap.from('.services-header', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
         }
       });
     });
@@ -55,18 +76,17 @@ export default function Services() {
               alt={service.title}
               fill
               className={styles.image}
-              sizes="(max-width: 768px) 100vw, 480px"
+              sizes="(max-width: 768px) 85vw, 450px"
               placeholder="blur"
               blurDataURL="data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACQAQCdASoIAAUAAUAmJaQAA3AA/v02LAAA/v8AAAAAA=="
             />
           </div>
-          <div className={styles.overlay}></div>
+          <div className={styles.overlay} />
           <div className={styles.cardContent}>
             <div className={styles.cardHeader}>
               <span className={styles.categoryTag}>{service.subtitle}</span>
               <h3 className={styles.cardTitle}>{service.title}</h3>
             </div>
-            
             <div className={styles.cardHoverContent}>
               <p className={styles.descriptionText}>{service.description}</p>
               <div className={styles.tagsContainer}>
@@ -85,23 +105,23 @@ export default function Services() {
   };
 
   return (
-    <section className={styles.servicesSection} id="services" ref={sectionRef}>
-      <div className={styles.sectionHeader}>
+    <section className={styles.section} id="services" ref={sectionRef}>
+      <div className={`services-header ${styles.header}`}>
         <div className={styles.headerContent}>
           <span className={styles.overline}>WHAT WE OFFER</span>
           <h2 className={styles.title}>
-            Our Premium <br/>
-            <span className={styles.highlight}>Logistics Services</span>
+            Our Premium <br />
+            <span className={styles.orange}>Logistics Services</span>
           </h2>
-          <div className={styles.headerBar}></div>
+          <div className={styles.headerBar} />
         </div>
-        
+
         <div className={styles.headerInfo}>
           <p>
             Asset-light infrastructure combined with deep industry expertise.
-            We provide end-to-end supply chain visibility and reliability.
+            End-to-end visibility and reliability, across India.
           </p>
-          <div className={styles.dragIndicator}>
+          <div className={styles.dragIndicator} aria-hidden="true">
             <span>←</span> SCROLL TO EXPLORE <span>→</span>
           </div>
         </div>

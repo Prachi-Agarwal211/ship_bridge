@@ -119,19 +119,7 @@ const JOB_OPENINGS: JobOpening[] = [
 export default function CareersClient() {
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
   
-  // Form State
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [role, setRole] = useState("");
-  const [portfolio, setPortfolio] = useState("");
-  const [whyText, setWhyText] = useState("");
-  const [resumeName, setResumeName] = useState<string>("");
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -180,58 +168,7 @@ export default function CareersClient() {
     setExpandedJob((prev) => (prev === jobId ? null : jobId));
   };
 
-  const handleApplyClick = (jobRole: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setRole(jobRole);
-    const formElement = document.getElementById("apply-form");
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setResumeName(e.target.files[0].name);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const submissionData = {
-      name,
-      email,
-      phone,
-      role,
-      portfolio,
-      whyText,
-      resumeName,
-      submittedAt: new Date().toISOString()
-    };
-
-    // Simulate submission to Google Sheets API / Web App
-    try {
-      // Mock API call timer
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Submitting to Google Sheets Database:", submissionData);
-      setIsSuccess(true);
-      
-      // Clear Form Fields
-      setName("");
-      setEmail("");
-      setPhone("");
-      setRole("");
-      setPortfolio("");
-      setWhyText("");
-      setResumeName("");
-      if (fileInputRef.current) fileInputRef.current.value = "";
-    } catch (err) {
-      console.error("Error submitting application form: ", err);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className={styles.pageContainer} ref={containerRef}>
@@ -272,16 +209,12 @@ export default function CareersClient() {
                 <span className={styles.statLabel}>Founders</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statVal}>10x</span>
-                <span className={styles.statLabel}>Growing Fast</span>
+                <span className={styles.statVal}>Rapid</span>
+                <span className={styles.statLabel}>Growth</span>
               </div>
               <div className={styles.statItem}>
                 <span className={styles.statVal}>100%</span>
                 <span className={styles.statLabel}>Remote-Friendly</span>
-              </div>
-              <div className={styles.statItem}>
-                <span className={styles.statVal}>ESOPs</span>
-                <span className={styles.statLabel}>Equity Available</span>
               </div>
             </div>
           </div>
@@ -393,12 +326,13 @@ export default function CareersClient() {
                         </ul>
                       </div>
                       
-                      <button
-                        onClick={(e) => handleApplyClick(job.role, e)}
+                      <a
+                        href={`mailto:careers@shipbridge.in?subject=Application for ${encodeURIComponent(job.role)}`}
                         className={styles.applyLinkBtn}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         Apply For This Role
-                      </button>
+                      </a>
                     </div>
                   )}
                 </div>
@@ -408,138 +342,7 @@ export default function CareersClient() {
         </div>
       </section>
 
-      {/* SECTION 4: APPLICATION FORM */}
-      <section className={styles.formSection} id="apply-form">
-        <div className={styles.container}>
-          <div className={styles.formCard}>
-            <h2 className={styles.formTitle}>Submit Your Application</h2>
 
-            <form onSubmit={handleSubmit} className={styles.formGrid}>
-              
-              {isSuccess && (
-                <div className={styles.successBanner}>
-                  🎉 Application submitted successfully! Our team will review your profile and contact you soon.
-                </div>
-              )}
-
-              {/* Name */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="applicantName">Full Name *</label>
-                <input
-                  type="text"
-                  id="applicantName"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Email */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="applicantEmail">Email Address *</label>
-                <input
-                  type="email"
-                  id="applicantEmail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@example.com"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Phone */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="applicantPhone">Phone Number *</label>
-                <input
-                  type="tel"
-                  id="applicantPhone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Enter 10 digit phone number"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Role Dropdown */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="applicantRole">Role Applying For *</label>
-                <select
-                  id="applicantRole"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  className={`${styles.formInput} ${styles.formSelect}`}
-                  required
-                >
-                  <option value="">Select a position</option>
-                  {JOB_OPENINGS.map((job) => (
-                    <option key={job.id} value={job.role}>
-                      {job.role}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* LinkedIn URL */}
-              <div className={`${styles.inputGroup} ${styles.formGridFull}`}>
-                <label htmlFor="applicantLink">LinkedIn / Portfolio URL *</label>
-                <input
-                  type="url"
-                  id="applicantLink"
-                  value={portfolio}
-                  onChange={(e) => setPortfolio(e.target.value)}
-                  placeholder="https://linkedin.com/in/username"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Textarea bio */}
-              <div className={`${styles.inputGroup} ${styles.formGridFull}`}>
-                <label htmlFor="applicantWhy">Why ShipBridge? *</label>
-                <textarea
-                  id="applicantWhy"
-                  value={whyText}
-                  onChange={(e) => setWhyText(e.target.value)}
-                  placeholder="Tell us why you are interested in joining ShipBridge and what makes you a great fit..."
-                  className={`${styles.formInput} ${styles.textareaInput}`}
-                  required
-                ></textarea>
-              </div>
-
-              {/* File upload */}
-              <div className={`${styles.inputGroup} ${styles.formGridFull}`}>
-                <label>Resume / CV Upload *</label>
-                <div className={styles.fileInputWrapper}>
-                  <input
-                    type="file"
-                    accept=".pdf,.doc,.docx"
-                    onChange={handleFileChange}
-                    ref={fileInputRef}
-                    required
-                  />
-                  <div className={styles.fileInputLabel}>
-                    {resumeName ? `📄 Selected: ${resumeName}` : "Drag & Drop or Click to Upload Resume (PDF, DOCX)"}
-                  </div>
-                </div>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={styles.submitBtn}
-              >
-                {isSubmitting ? "Submitting Application..." : "Submit Application"}
-              </button>
-
-            </form>
-          </div>
-        </div>
-      </section>
 
     </div>
   );

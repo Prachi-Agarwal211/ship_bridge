@@ -1,5 +1,5 @@
 .pageContainer {
-  background-color: #000000;
+  background-color: transparent;
   color: #ffffff;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
@@ -48,11 +48,12 @@
 
 .heroVideo {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  filter: brightness(0.4) saturate(0.7);
   z-index: 0;
 }
 
@@ -481,300 +482,13 @@
   color: #d1d5db;
 }
 
-/* SECTION 5: TECHNOLOGY STACK */
-.techSection {
-  padding: 8rem 0;
-  background-color: #070709;
-  position: relative;
-}
 
-.techHeader {
-  text-align: center;
-  margin-bottom: 4.5rem;
-}
-
-.techGrid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.architectureVisual {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.archLayerCard {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-  backdrop-filter: blur(10px);
-  position: relative;
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.archLayerCard:hover {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(249, 115, 22, 0.25);
-}
-
-.archLayerHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-}
-
-.layerTitle {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #f97316;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.layerLabel {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #9ca3af;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-}
-
-.layerContent {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #d1d5db;
-  font-weight: 500;
-}
-
-.techHighlightColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-
-.techHighlightTitle {
-  font-size: 1.8rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-
-.techHighlightItem {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.techCheckmark {
-  color: #22c55e;
-  flex-shrink: 0;
-  margin-top: 0.25rem;
-}
-
-.techHighlightText h4 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.25rem;
-}
-
-.techHighlightText p {
-  font-size: 0.9rem;
-  color: #9ca3af;
-  line-height: 1.4;
-}
-
-/* SECTION 6: DEVELOPMENT ROADMAP */
-.roadmapSection {
-  padding: 8rem 0;
-  position: relative;
-  background-color: #000000;
-}
-
-.roadmapHeader {
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.roadmapTimeline {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  position: relative;
-}
-
-.roadmapTimeline::before {
-  content: '';
-  position: absolute;
-  left: 2rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, #22c55e 0%, #22c55e 40%, #f97316 40%, #f97316 70%, #4b5563 70%, #4b5563 100%);
-  z-index: 1;
-}
-
-.roadmapPhase {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2.5rem;
-  position: relative;
-  z-index: 5;
-}
-
-.phaseIndicator {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  background-color: #111827;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 900;
-  border: 3px solid #4b5563;
-  z-index: 10;
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
-}
-
-.roadmapPhase:hover .phaseIndicator {
-  transform: scale(1.1);
-}
-
-.phaseGreen .phaseIndicator {
-  border-color: #22c55e;
-  color: #22c55e;
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
-}
-
-.phaseOrange .phaseIndicator {
-  border-color: #f97316;
-  color: #f97316;
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.2);
-}
-
-.phaseBlue .phaseIndicator {
-  border-color: #06b6d4;
-  color: #06b6d4;
-}
-
-.phasePurple .phaseIndicator {
-  border-color: #a855f7;
-  color: #a855f7;
-}
-
-.phaseGradient .phaseIndicator {
-  border-color: #22c55e;
-  color: #f97316;
-}
-
-.phaseCard {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 1.25rem;
-  padding: 2.5rem;
-  backdrop-filter: blur(10px);
-  position: relative;
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.roadmapPhase:hover .phaseCard {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.phaseGreen:hover .phaseCard {
-  border-color: rgba(34, 197, 94, 0.3);
-}
-
-.phaseOrange:hover .phaseCard {
-  border-color: rgba(249, 115, 22, 0.3);
-}
-
-.phaseHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.phaseName {
-  font-size: 1.6rem;
-  font-weight: 800;
-}
-
-.phaseFocus {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-}
-
-.phaseFocusGreen {
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.08);
-}
-
-.phaseFocusOrange {
-  color: #f97316;
-  background: rgba(249, 115, 22, 0.08);
-}
-
-.phaseBulletGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.phaseBullet {
-  display: flex;
-  gap: 0.75rem;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #d1d5db;
-}
-
-.bulletDot {
-  color: #f97316;
-  font-weight: bold;
-}
-
-.phaseGreen .bulletDot {
-  color: #22c55e;
-}
-
-.activeLabel {
-  font-size: 0.75rem;
-  font-weight: 800;
-  background: #ea580c;
-  color: #fff;
-  padding: 0.25rem 0.75rem;
-  border-radius: 50px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.activeLabelGreen {
-  background: #16a34a;
-}
 
 /* SECTION 7: CTA */
 .ctaSection {
   padding: 6rem 0 8rem 0;
   position: relative;
-  background-color: #000000;
+  background-color: transparent;
 }
 
 .ctaBanner {
@@ -896,23 +610,6 @@
   .featureList2Col {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-  }
-  .roadmapTimeline::before {
-    left: 1.5rem;
-  }
-  .roadmapPhase {
-    gap: 1.5rem;
-  }
-  .phaseIndicator {
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.15rem;
-  }
-  .phaseCard {
-    padding: 1.5rem;
-  }
-  .phaseName {
-    font-size: 1.3rem;
   }
   .ctaTitle {
     font-size: 2.4rem;

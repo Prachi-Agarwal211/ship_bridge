@@ -1,4 +1,4 @@
-.servicesSection {
+.section {
   background-color: var(--color-bg);
   padding-top: var(--space-section);
   position: relative;
@@ -8,7 +8,7 @@
 }
 
 /* Header layout: side-by-side on desktop, stacked on mobile */
-.sectionHeader {
+.header {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 clamp(1.5rem, 5vw, 4rem);
@@ -66,7 +66,7 @@
   letter-spacing: -1px;
 }
 
-.highlight {
+.orange {
   color: var(--color-orange);
 }
 
@@ -95,7 +95,8 @@
 
 /* Individual Card wrapper */
 .cardWrapper {
-  width: 450px; /* Fixed width for horizontal scroll */
+  width: min(450px, 75vw); /* Show 1 full card + peek of next on all screens */
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -272,7 +273,7 @@
 
 /* Mobile & Tablet Fallback */
 @media (max-width: 992px) {
-  .sectionHeader {
+  .header {
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
@@ -283,59 +284,58 @@
   }
 }
 
-@media (max-width: 768px) {
-  .servicesSection {
+@media (max-width: 767px) {
+  .section {
     padding-bottom: var(--space-section);
   }
-  
-  /* Reset horizontal track for native scroll snap */
+
+  /* Native scroll snap — no GSAP pin needed */
+  .trackContainer {
+    overflow: visible;
+  }
+
   .servicesTrack {
     width: 100%;
-    padding-left: clamp(1.5rem, 5vw, 4rem);
-    padding-right: clamp(1.5rem, 5vw, 4rem);
-    gap: 1.5rem;
+    display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scroll-padding-left: clamp(1.5rem, 5vw, 4rem);
-    scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-left: clamp(1.5rem, 5vw, 2rem);
+    padding-right: clamp(1.5rem, 5vw, 2rem);
+    gap: 1.25rem;
   }
-  
+
   .servicesTrack::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
   }
 
   .cardWrapper {
-    width: 85vw; /* Show peeking next card */
+    width: 80vw; /* Show 80% card + 10% peek */
+    min-width: 280px;
+    max-width: 400px;
     flex: 0 0 auto;
     scroll-snap-align: start;
   }
-  
+
   .card {
-    height: 500px;
+    height: 480px;
     cursor: pointer;
   }
 
-  /* Show content partially on mobile without hover */
-  .cardHeader {
-    transform: translateY(0);
-  }
-  
+  /* On mobile, always show card details without hover */
   .cardHoverContent {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    max-height: 200px !important;
+    margin-top: 1rem !important;
   }
-  
+
   .descriptionText {
-    display: none; /* Hide description to save space */
-  }
-  
-  .dragIndicator span:last-child {
     display: none;
   }
+
   .dragIndicator {
     font-size: 0.65rem;
-  }
-  .dragIndicator::before {
-    content: 'SWIPE ';
   }
 }

@@ -1,0 +1,313 @@
+.tunnelSection {
+  position: relative;
+  background-color: transparent;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 0;
+  --tunnel-glow: transparent; 
+}
+
+/* Dynamic background glow crossfade */
+.tunnelGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--tunnel-glow) 0%, transparent 70%);
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+  transition: background 0.5s ease-out;
+}
+
+/* Header & Dots */
+.header {
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 20;
+}
+
+.sectionTitle {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.progressDots {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.dotActive {
+  background: #ffffff;
+  transform: scale(1.2);
+}
+
+/* Carousel Mechanics */
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 500px;
+  max-height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  touch-action: pan-y;
+  perspective: 1500px; /* Essential for 3D flip child */
+}
+
+/* GSAP animated wrapper (handles the z-axis positioning, scaling, blurring) */
+.cardWrapper {
+  position: absolute;
+  left: 50%;
+  margin-left: -22.5%;
+  width: 45%;
+  height: 100%;
+  will-change: transform, filter, opacity;
+  transform-origin: center center;
+  perspective: 1500px; /* Essential for 3D flip inner */
+}
+
+@media (max-width: 768px) {
+  .cardWrapper {
+    width: 80%;
+    margin-left: -40%;
+  }
+}
+
+/* 3D Flip Card Inner container */
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Only flip if the card is the active one in the center */
+.cardActive:hover .flipCardInner {
+  transform: rotateY(180deg);
+  box-shadow: 0 25px 50px rgba(249, 115, 22, 0.2);
+}
+
+/* Front and Back common styles */
+.flipCardFront, .flipCardBack {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* FRONT SIDE */
+.flipCardFront {
+  background-color: #111;
+}
+
+.imageContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cardImage {
+  object-fit: cover;
+}
+
+.cardImageBack {
+  object-fit: cover;
+  /* Flip the image horizontally so it's not mirrored on the back */
+  transform: scaleX(-1);
+}
+
+.frontOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem 2rem;
+  text-align: left;
+}
+
+.cardNumber {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+.frontTitle {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.frontSubtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+
+/* BACK SIDE (Glassmorphism over image) */
+.flipCardBack {
+  transform: rotateY(180deg);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.glassOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.65);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+/* Decorative glowing orb on the back */
+.backGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.backTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.backDescription {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 90%;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.tagBadge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-orange), #ff9a44);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exploreBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(249, 115, 22, 0.5);
+}
+
+/* ── Navigation Arrows ── */
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.navArrow:hover {
+  background: rgba(249, 115, 22, 0.3);
+  border-color: rgba(249, 115, 22, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prevArrow {
+  left: 5%;
+}
+
+.nextArrow {
+  right: 5%;
+}
+
+@media (max-width: 768px) {
+  .navArrow {
+    display: none; /* Hide on mobile to prioritize swipe/drag */
+  }
+}

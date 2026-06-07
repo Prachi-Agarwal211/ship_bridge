@@ -264,7 +264,7 @@
   position: absolute;
   top: 75%; /* Positioned lower down from the center */
   left: 50%; /* Perfectly centered horizontally on the container */
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%) translateY(-50%); /* Static layout — never touched by animation */
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -279,18 +279,12 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(249, 115, 22, 0.15);
   width: 80%; /* Spans horizontally as a clear rectangle */
   max-width: 320px;
-  animation: labelFadeIn 0.8s ease forwards;
+  animation: memberFadeIn 0.5s ease forwards;
 }
 
-@keyframes labelFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px) translateX(-50%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) translateX(-50%);
-  }
+@keyframes memberFadeIn {
+  from { opacity: 0; translate: 0 12px; }
+  to   { opacity: 1; translate: 0 0;  }
 }
 
 .memberName {

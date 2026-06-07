@@ -49,7 +49,7 @@ export default function AboutPage() {
           playsInline
           className={styles.heroVideo}
         >
-          <source src="/truck.mp4" type="video/mp4" />
+          <source src="/videos/about-hero.mp4" type="video/mp4" />
         </video>
         <div className={styles.heroOverlay}></div>
         <div className={styles.container}>
@@ -62,17 +62,18 @@ export default function AboutPage() {
             </nav>
 
             <h1 className={styles.heroTitle}>
-              Building Bridges.<br />
-              <span className={styles.highlightOrange}>Delivering Trust.</span>
+              Building India's<br />
+              <span className={styles.highlightOrange}>Logistics Future.</span>
             </h1>
 
             <p className={styles.heroSub}>
-              We are India's most reliable tech-enabled logistics and relocation platform, connecting customers with verified service providers across every city and village.
+              We're building the technology to make every move in India simpler, safer, and more transparent — starting from Jaipur.
             </p>
 
-            <div className={styles.statPills}>
-              <div className={styles.statPill}>50,000+ Moves Completed</div>
-              <div className={styles.statPill}>200+ Cities Served</div>
+            <div className={styles.foundingStrip}>
+              <span className={styles.foundingItem}>📍 Founded in Jaipur, Rajasthan • 2026</span>
+              <span className={styles.foundingDivider}>|</span>
+              <span className={styles.foundingItem}>🚀 Building India's Logistics Future</span>
             </div>
           </div>
         </div>
@@ -88,28 +89,28 @@ export default function AboutPage() {
               <div className={styles.underlineBar}></div>
               
               <p className={styles.storyNarrative}>
-                ShipBridge was born out of a simple frustration — moving was always chaotic, expensive, and filled with uncertainty. In 2024, our founders set out to fix that. We built a platform that brings technology, trust, and transparency to every single move. From household shifts in Mumbai to exhibition logistics in Delhi, ShipBridge is the name India moves with.
+                ShipBridge was born out of a simple frustration — moving was always chaotic, expensive, and filled with uncertainty. In 2026, our founders set out to fix that. We built a platform that brings technology, trust, and transparency to every single move. From household shifts in Mumbai to exhibition logistics in Delhi, ShipBridge is the name India moves with.
               </p>
 
               {/* Timeline strip */}
               <div className={styles.timelineGrid}>
-                <div className={styles.timelineCard}>
-                  <div className={styles.timelineMilestone}>2024 Q1</div>
+                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.1s' }}>
+                  <div className={styles.timelineMilestone}>2026 Q1</div>
                   <h4 className={styles.timelineTitle}>Idea & Foundation</h4>
                   <p className={styles.timelineDesc}>Born in Jaipur, Rajasthan</p>
                 </div>
-                <div className={styles.timelineCard}>
-                  <div className={styles.timelineMilestone}>2024 Q2</div>
+                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.2s' }}>
+                  <div className={styles.timelineMilestone}>2026 Q2</div>
                   <h4 className={styles.timelineTitle}>Product Build</h4>
                   <p className={styles.timelineDesc}>Flutter app + Admin portal</p>
                 </div>
-                <div className={styles.timelineCard}>
-                  <div className={styles.timelineMilestone}>2025 Q1</div>
+                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.3s' }}>
+                  <div className={styles.timelineMilestone}>2026 Q3</div>
                   <h4 className={styles.timelineTitle}>Pilot Launch</h4>
                   <p className={styles.timelineDesc}>5 cities, 500+ early users</p>
                 </div>
-                <div className={styles.timelineCard}>
-                  <div className={styles.timelineMilestone}>2025 Q4</div>
+                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.4s' }}>
+                  <div className={styles.timelineMilestone}>2026 Q4</div>
                   <h4 className={styles.timelineTitle}>Pan-India</h4>
                   <p className={styles.timelineDesc}>50+ cities target</p>
                 </div>
@@ -253,7 +254,8 @@ export default function AboutPage() {
                 <h3 className={styles.teamName}>Ashish Joshi</h3>
                 <span className={styles.teamRole}>Founder & CEO</span>
                 <p className={styles.teamBio}>
-                  Strategic leader with deep expertise in SME logistics ecosystems, market expansion, and B2B partnerships.
+                  Ashish leads ShipBridge's business development, partnerships, and market expansion. 
+                  Building the operational backbone of the platform from the ground up.
                 </p>
               </div>
             </div>
@@ -273,7 +275,8 @@ export default function AboutPage() {
                 <h3 className={styles.teamName}>Prachi Agarwal</h3>
                 <span className={styles.teamRole}>Chief Operations Officer (COO)</span>
                 <p className={styles.teamBio}>
-                  AI & Automation specialist managing scalable platform infrastructure and tech-enabled logistics operations.
+                  Prachi owns all operations — from booking workflows to partner onboarding. 
+                  She ensures every move runs on time and to standard.
                 </p>
               </div>
             </div>
@@ -293,7 +296,8 @@ export default function AboutPage() {
                 <h3 className={styles.teamName}>Anurag Singh</h3>
                 <span className={styles.teamRole}>Chief Technology Officer (CTO)</span>
                 <p className={styles.teamBio}>
-                  AI Systems Architect leading platform design, intelligent workflows, and backend scalability.
+                  Anurag architects the ShipBridge technology stack — Flutter apps, FastAPI backend, 
+                  and the AI intelligence layer currently in development.
                 </p>
               </div>
             </div>
@@ -301,32 +305,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* SECTION 6: BY THE NUMBERS */}
-      <section className={styles.statsSection}>
-        <div className={styles.container}>
-          <div className={styles.statsGrid}>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>50,000+</span>
-              <span className={styles.statLabel}>Moves Completed</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>200+</span>
-              <span className={styles.statLabel}>Cities Served</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>98%</span>
-              <span className={styles.statLabel}>Customer Satisfaction</span>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNumber}>500+</span>
-              <span className={styles.statLabel}>Verified Partners</span>
-            </div>
-          </div>
-          <div className={styles.statsFooterText}>
-            And we're just getting started.
-          </div>
-        </div>
-      </section>
+
 
       {/* SECTION 7: WHY CHOOSE SHIPBRIDGE */}
       <section className={styles.whySection}>
@@ -426,8 +405,8 @@ export default function AboutPage() {
             <h2 className={styles.ctaTitle}>Ready to Move Smarter?</h2>
             <p className={styles.ctaSub}>Join thousands of families and businesses who trust ShipBridge.</p>
             <div className={styles.ctaButtons}>
-              <button className={styles.ctaFilled}>Book a Move</button>
-              <button className={styles.ctaOutlined}>Become a Partner</button>
+              <Link href="/product" className={styles.ctaFilled}>Book a Move</Link>
+              <Link href="/franchise" className={styles.ctaOutlined}>Become a Partner</Link>
             </div>
           </div>
         </div>

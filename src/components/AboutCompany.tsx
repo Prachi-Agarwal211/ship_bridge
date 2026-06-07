@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ParallaxElement from "./animations/ParallaxElement";
 import styles from "./AboutCompany.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -36,7 +35,6 @@ const TEAM_MEMBERS: TeamMember[] = [
 
 export default function AboutCompany() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -44,7 +42,7 @@ export default function AboutCompany() {
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: sectionRef.current,
+        trigger: '#company',
         start: 'top 75%',
         end: 'bottom 20%',
       }
@@ -84,16 +82,7 @@ export default function AboutCompany() {
       ease: 'power3.out'
     }, '-=0.6');
 
-    // Deck of Cards sticky effect
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: 'top top',
-      end: '+=100%',
-      pin: true,
-      pinSpacing: false,
-    });
-
-  }, { scope: sectionRef });
+  });
 
   // Autoplay loop: auto-advances the slideshow every 4 seconds
   useEffect(() => {
@@ -113,7 +102,7 @@ export default function AboutCompany() {
   };
 
   return (
-    <section className={styles.aboutSection} id="company" ref={sectionRef}>
+    <section className={styles.aboutSection} id="company">
       {/* Background ambient lighting glows */}
       <div className={styles.sectionGlowOrange}></div>
       <div className={styles.sectionGlowGreen}></div>
@@ -162,22 +151,20 @@ export default function AboutCompany() {
               
               {/* Highlight 1: Reliable */}
               <div className={`about-highlight ${styles.highlightItem}`}>
-                <ParallaxElement speed={0.5}>
-                  <div className={styles.hexIconBox}>
-                    <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
-                      <defs>
-                        <linearGradient id="hexGradient" x1="0" y1="0" x2="1" y2="1">
-                          <stop offset="0%" stopColor="#f97316" />
-                          <stop offset="100%" stopColor="#22c55e" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M 24 2 L 44 13 L 44 39 L 24 50 L 4 39 L 4 13 Z" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                    </svg>
-                    <svg className={styles.highlightIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                    </svg>
-                  </div>
-                </ParallaxElement>
+                <div className={styles.hexIconBox}>
+                  <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
+                    <defs>
+                      <linearGradient id="hexGradient" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#f97316" />
+                        <stop offset="100%" stopColor="#22c55e" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M 24 2 L 44 13 L 44 39 L 24 50 L 4 39 L 4 13 Z" stroke="url(#hexGradient)" strokeWidth="1.5" />
+                  </svg>
+                  <svg className={styles.highlightIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                  </svg>
+                </div>
                 <div className={styles.highlightText}>
                   <h4>Reliable</h4>
                   <p>We deliver what we promise.</p>

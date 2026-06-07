@@ -30,7 +30,7 @@ const FAQ_DATA: FAQItem[] = [
   },
   {
     question: "What tech support do I get?",
-    answer: "Franchise partners get full enterprise access to our complete product suite: the Customer App listing, the Operations Admin Portal (lead CRM, tracking, invoice engines), and the RISHVA driver navigation system."
+    answer: "Franchise partners get full enterprise access to our complete product suite: the Customer App listing, the Operations Admin Portal (lead CRM, tracking, invoice engines), and the ShipBridge driver navigation system."
   },
   {
     question: "How long does onboarding take?",
@@ -41,17 +41,7 @@ const FAQ_DATA: FAQItem[] = [
 export default function FranchiseClient() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
-  // Form State
-  const [name, setName] = useState("");
-  const [cityState, setCityState] = useState("");
-  const [investment, setInvestment] = useState("");
-  const [occupation, setOccupation] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -111,48 +101,7 @@ export default function FranchiseClient() {
     setExpandedFaq((prev) => (prev === index ? null : index));
   };
 
-  const handleApplyClick = () => {
-    const formElement = document.getElementById("apply-form");
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const submissionData = {
-      name,
-      cityState,
-      investment,
-      occupation,
-      phone,
-      email,
-      message,
-      submittedAt: new Date().toISOString()
-    };
-
-    // Simulate Google Sheets submission
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Submitting Franchise Request to Google Sheets:", submissionData);
-      setIsSuccess(true);
-
-      // Clear Form Fields
-      setName("");
-      setCityState("");
-      setInvestment("");
-      setOccupation("");
-      setPhone("");
-      setEmail("");
-      setMessage("");
-    } catch (err) {
-      console.error("Error submitting franchise form:", err);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className={styles.pageContainer} ref={containerRef}>
@@ -178,12 +127,12 @@ export default function FranchiseClient() {
             </p>
 
             <div className={`hero-elem ${styles.ctaButtons}`}>
-              <button onClick={handleApplyClick} className={styles.ctaFilled}>
+              <a href="mailto:partners@shipbridge.in" className={styles.ctaFilled}>
                 Apply for Franchise
-              </button>
-              <button className={styles.ctaOutlined}>
+              </a>
+              <a href="/Shipbridge_Planning_final.pdf" target="_blank" rel="noopener noreferrer" className={styles.ctaOutlined}>
                 Download Brochure
-              </button>
+              </a>
             </div>
 
             <div className={`hero-elem ${styles.statChips}`}>
@@ -351,7 +300,7 @@ export default function FranchiseClient() {
               <ul className={styles.modelFeaturesList}>
                 <li className={styles.modelFeatureItem}>
                   <span className={styles.checkmarkIcon}>✓</span>
-                  <span>RISHVA vendor application access</span>
+                  <span>Vendor application access</span>
                 </li>
                 <li className={styles.modelFeatureItem}>
                   <span className={styles.checkmarkIcon}>✓</span>
@@ -405,134 +354,7 @@ export default function FranchiseClient() {
         </div>
       </section>
 
-      {/* SECTION 5: LEAD FORM */}
-      <section className={styles.formSection} id="apply-form">
-        <div className={styles.container}>
-          <div className={styles.formCard}>
-            <h2 className={styles.formTitle}>Apply for Franchise</h2>
 
-            <form onSubmit={handleSubmit} className={styles.formGrid}>
-              
-              {isSuccess && (
-                <div className={styles.successBanner}>
-                  <span className={styles.checkmarkWrapper}>✓</span>
-                  <span>Request submitted successfully! Our expansion manager will reach out with the brochure pack.</span>
-                </div>
-              )}
-
-              {/* Name */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="franchiseName">Full Name *</label>
-                <input
-                  type="text"
-                  id="franchiseName"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* City/State */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="franchiseCity">City / State *</label>
-                <input
-                  type="text"
-                  id="franchiseCity"
-                  value={cityState}
-                  onChange={(e) => setCityState(e.target.value)}
-                  placeholder="Jaipur, Rajasthan"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Investment Capacity */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="franchiseInvestment">Investment Capacity *</label>
-                <select
-                  id="franchiseInvestment"
-                  value={investment}
-                  onChange={(e) => setInvestment(e.target.value)}
-                  className={`${styles.formInput} ${styles.formSelect}`}
-                  required
-                >
-                  <option value="">Select capital range</option>
-                  <option value="50k-1L">₹50,000 – ₹1 Lakh (Transporter)</option>
-                  <option value="2L-5L">₹2 Lakhs – ₹5 Lakhs (Area Agent)</option>
-                  <option value="5L-10L">₹5 Lakhs – ₹10 Lakhs (City Partner)</option>
-                  <option value="10L+">₹10 Lakhs+ (Regional Hub)</option>
-                </select>
-              </div>
-
-              {/* Current Occupation */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="franchiseOccupation">Current Occupation *</label>
-                <input
-                  type="text"
-                  id="franchiseOccupation"
-                  value={occupation}
-                  onChange={(e) => setOccupation(e.target.value)}
-                  placeholder="Business owner, driver, manager, etc."
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Phone */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="franchisePhone">Phone Number *</label>
-                <input
-                  type="tel"
-                  id="franchisePhone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="10 digit phone number"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Email */}
-              <div className={styles.inputGroup}>
-                <label htmlFor="franchiseEmail">Email Address *</label>
-                <input
-                  type="email"
-                  id="franchiseEmail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@example.com"
-                  className={styles.formInput}
-                  required
-                />
-              </div>
-
-              {/* Message */}
-              <div className={`${styles.inputGroup} ${styles.formGridFull}`}>
-                <label htmlFor="franchiseMsg">Message / Queries</label>
-                <textarea
-                  id="franchiseMsg"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Provide additional details about your business background or target regions..."
-                  className={`${styles.formInput} ${styles.textareaInput}`}
-                ></textarea>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={styles.submitBtn}
-              >
-                {isSubmitting ? "Submitting Application..." : "Submit Application"}
-              </button>
-
-            </form>
-          </div>
-        </div>
-      </section>
 
       {/* SECTION 6: FAQ SECTION */}
       <section className={styles.faqSection}>

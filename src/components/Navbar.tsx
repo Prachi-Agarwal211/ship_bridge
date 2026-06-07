@@ -13,17 +13,28 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
+    let rafId: number;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolledProgress = (winScroll / height) * 100;
-      document.documentElement.style.setProperty('--scroll-progress', `${scrolledProgress}%`);
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 80);
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = height > 0 ? (winScroll / height) * 100 : 0;
+        document.documentElement.style.setProperty('--scroll-progress', `${Math.min(progress, 100)}%`);
+      });
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -58,12 +69,25 @@ export default function Navbar() {
               </button>
               <div className={styles.megaMenu}>
                 <div className={styles.megaMenuInner}>
-                  {SERVICES_DATA.map((service) => (
-                    <Link key={service.id} href={`/services/${service.id}`} className={styles.megaMenuItem}>
-                      <h4>{service.title}</h4>
-                      <p>{service.subtitle}</p>
-                    </Link>
-                  ))}
+                  {SERVICES_DATA.map((service) => {
+                    const iconMap: Record<string, string> = {
+                      household: "🏠",
+                      office: "🏢",
+                      warehouse: "🏭",
+                      local: "🚚",
+                      vehicle: "🚗",
+                      exhibition: "🎪"
+                    };
+                    return (
+                      <Link key={service.id} href={`/services/${service.id}`} className={styles.megaMenuItem}>
+                        <div className={styles.megaMenuIcon}>{iconMap[service.id] || "📦"}</div>
+                        <div className={styles.megaMenuContent}>
+                          <h4>{service.title}</h4>
+                          <p>{service.subtitle}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </li>

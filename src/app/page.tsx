@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
+import ServiceTunnel from '@/components/ServiceTunnel';
 import Process from '@/components/Process';
 import Product from '@/components/Product';
 import AboutCompany from '@/components/AboutCompany';
@@ -10,7 +10,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <Services />
+      <ServiceTunnel />
       <Process />
       <Product />
       <AboutCompany />

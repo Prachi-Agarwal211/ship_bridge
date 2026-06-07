@@ -6,96 +6,198 @@
   z-index: var(--z-raised);
 }
 
+/* ── MARQUEE ──────────────────────────────────────────── */
 .marqueeWrapper {
-  padding: 1.5rem 0;
+  padding: 1.25rem 0;
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-orange-muted);
+  background: rgba(249, 115, 22, 0.04);
   overflow: hidden;
+}
+
+.marqueeTrack {
+  display: inline-flex;
   white-space: nowrap;
+  animation: footerMarquee 35s linear infinite;
+  will-change: transform;
+}
+
+@keyframes footerMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
 }
 
 .marqueeItem {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
   font-weight: 900;
   color: var(--color-orange);
   text-transform: uppercase;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
+  padding: 0 0.25rem;
+  opacity: 0.7;
 }
 
+/* ── MAIN GRID ────────────────────────────────────────── */
 .footerMain {
   max-width: 1400px;
   margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
 }
 
 .footerGrid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
   margin-bottom: 4rem;
 }
 
+/* ── COLUMNS ──────────────────────────────────────────── */
 .footerCol h3 {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 1rem;
   color: #fff;
   letter-spacing: -0.5px;
 }
 
 .footerCol h4 {
-  font-size: 0.9rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--color-orange);
-  margin-bottom: 1.5rem;
-  letter-spacing: 1px;
+  margin-bottom: 1.25rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .footerCol p {
   color: var(--color-text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 1.5rem;
+  font-size: 0.95rem;
   max-width: 300px;
 }
 
+.brandName {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+/* Contact links */
 .contactInfo {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.contactInfo a {
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   color: var(--color-text-muted);
+  font-size: 0.9rem;
   transition: color 0.3s ease;
-  font-size: 0.95rem;
 }
 
-.contactInfo a:hover {
+.contactLink:hover {
   color: #fff;
 }
 
+/* Nav links */
 .footerCol ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.75rem;
 }
 
 .footerCol ul a {
   color: var(--color-text-muted);
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  display: inline-block;
+  font-size: 0.92rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.footerCol ul a::before {
+  content: '→';
+  font-size: 0.75rem;
+  color: var(--color-orange);
+  opacity: 0;
+  margin-right: 0;
+  transition: all 0.25s ease;
+  width: 0;
+  overflow: hidden;
 }
 
 .footerCol ul a:hover {
   color: #fff;
-  transform: translateX(4px);
+  padding-left: 0;
 }
 
+.footerCol ul a:hover::before {
+  opacity: 1;
+  margin-right: 0.4rem;
+  width: 1rem;
+}
+
+/* CTA column */
+.ctaCol { }
+
+.ctaText {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 220px;
+}
+
+.footerCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--color-orange);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  white-space: nowrap;
+}
+
+.footerCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
+}
+
+.footerCtaOutline {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255,255,255,0.65);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.footerCtaOutline:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* ── BOTTOM BAR ───────────────────────────────────────── */
 .footerBottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   padding-top: 2rem;
   border-top: 1px solid var(--color-border);
 }
@@ -103,24 +205,30 @@
 .footerBottom p {
   color: var(--color-text-dim);
   font-size: 0.85rem;
+  margin: 0;
+  max-width: none;
+}
+
+.tagline {
+  color: rgba(249, 115, 22, 0.6) !important;
+  font-style: italic;
+  font-size: 0.82rem !important;
 }
 
 .socialIcons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .socialIcons a {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
   transition: all 0.3s ease;
 }
 
@@ -128,19 +236,47 @@
   border-color: var(--color-orange);
   color: var(--color-orange);
   background: var(--color-orange-muted);
+  transform: translateY(-2px);
 }
 
-@media (max-width: 992px) {
+/* ═══════════════ RESPONSIVE ════════════════════════════ */
+@media (max-width: 1200px) {
   .footerGrid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1.5fr 1fr 1fr;
   }
+  .ctaCol {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .ctaText { margin-bottom: 0; }
 }
 
 @media (max-width: 768px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+  .ctaCol {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
   .footerBottom {
     flex-direction: column;
-    gap: 1.5rem;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
   }
 }

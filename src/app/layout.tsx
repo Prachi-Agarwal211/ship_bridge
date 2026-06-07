@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import dynamic from 'next/dynamic';
 import { ReactLenis } from 'lenis/react';
 import GSAPProvider from '@/components/providers/GSAPProvider';
 import "./globals.css";
 
 import CustomCursor from '@/components/CustomCursor';
+import SceneBackgroundClient from '@/components/webgl/SceneBackgroundClient';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,14 +21,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.shipbridge.in"),
-  title: "ShipBridge Logistics | Apka Bhrosa, Humari Pahechan.",
+  title: "ShipBridge | India's Premier Logistics & Relocation Platform",
   description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
   keywords: "logistics India, household shifting, office relocation, packers movers India, vehicle transport, warehousing India, exhibition logistics, Tier 2 logistics, SME logistics India, ShipBridge",
   openGraph: {
     type: "website",
     url: "https://www.shipbridge.in",
     siteName: "ShipBridge Logistics",
-    title: "ShipBridge Logistics | Apka Bhrosa, Humari Pahechan.",
+    title: "ShipBridge | India's Premier Logistics & Relocation Platform",
     description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@ShipBridge",
-    title: "ShipBridge Logistics | Apka Bhrosa, Humari Pahechan.",
+    title: "ShipBridge | India's Premier Logistics & Relocation Platform",
     description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
     images: ["/seo/og-image.jpg"],
   },
@@ -133,8 +133,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="lenis lenis-smooth">
       <body className={inter.className}>
-        <ReactLenis root options={{ lerp: 0.08, duration: 1.2, syncTouch: false, autoRaf: true }}>
+        <ReactLenis root options={{ lerp: 0.08, duration: 1.2, syncTouch: false, autoRaf: false }}>
           <GSAPProvider>
+            <SceneBackgroundClient />
             <CustomCursor />
             {children}
             <Footer />
