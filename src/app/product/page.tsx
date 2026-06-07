@@ -36,6 +36,16 @@ export default function ProductCatalogPage() {
 
       {/* SECTION 1: HERO */}
       <section className={styles.heroSection}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={styles.heroVideo}
+        >
+          <source src="/b_create_a_video_like_.mp4" type="video/mp4" />
+        </video>
+        <div className={styles.heroOverlay}></div>
         <div className={styles.container}>
           <div className={styles.heroContent}>
             {/* Breadcrumb */}
@@ -771,39 +781,6 @@ export default function ProductCatalogPage() {
         </div>
       </section>
 
-      {/* Placeholder Footer */}
-      <footer style={{ borderTop: "1px solid #111", padding: "3rem 0", backgroundColor: "#08080a" }}>
-        <div className={styles.container} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "2rem" }}>
-          <div>
-            <h4 style={{ color: "#fff", marginBottom: "1rem" }}>ShipBridge Logistics</h4>
-            <p style={{ color: "#9ca3af", fontSize: "0.9rem", maxWidth: "300px" }}>
-              India's premier logistics and relocation aggregator platform.
-            </p>
-          </div>
-          <div style={{ display: "flex", gap: "4rem" }}>
-            <div>
-              <h5 style={{ color: "#fff", marginBottom: "0.75rem", fontSize: "0.95rem" }}>Company</h5>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.85rem" }}>
-                <li><Link href="/" style={{ color: "#9ca3af" }}>Home</Link></li>
-                <li><Link href="/about" style={{ color: "#9ca3af" }}>About Us</Link></li>
-                <li><a href="#" style={{ color: "#9ca3af" }}>Careers</a></li>
-                <li><a href="#" style={{ color: "#9ca3af" }}>Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h5 style={{ color: "#fff", marginBottom: "0.75rem", fontSize: "0.95rem" }}>Products</h5>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.85rem" }}>
-                <li><Link href="/product" style={{ color: "#f97316" }}>Customer App</Link></li>
-                <li><Link href="/product" style={{ color: "#f97316" }}>Admin Portal</Link></li>
-                <li><Link href="/product" style={{ color: "#f97316" }}>RISHVA System</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className={styles.container} style={{ marginTop: "3rem", paddingTop: "1.5rem", borderTop: "1px solid #1f2937", textAlign: "center", fontSize: "0.8rem", color: "#6b7280" }}>
-          &copy; {new Date().getFullYear()} ShipBridge Logistics. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }

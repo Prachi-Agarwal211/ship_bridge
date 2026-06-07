@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import styles from "./page.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface FAQItem {
   question: string;
@@ -47,6 +52,60 @@ export default function FranchiseClient() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const tl = gsap.timeline();
+    tl.from('.hero-elem', {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      delay: 0.2
+    });
+
+    gsap.from('.why-card', {
+      scrollTrigger: {
+        trigger: '.why-section',
+        start: 'top 75%',
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'back.out(1.2)'
+    });
+
+    gsap.from('.model-card', {
+      scrollTrigger: {
+        trigger: '.model-section',
+        start: 'top 75%',
+      },
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power2.out'
+    });
+
+    gsap.from('.process-step', {
+      scrollTrigger: {
+        trigger: '.apply-section',
+        start: 'top 75%',
+      },
+      y: 30,
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'back.out(1.5)'
+    });
+  }, { scope: containerRef });
 
   const handleFaqClick = (index: number) => {
     setExpandedFaq((prev) => (prev === index ? null : index));
@@ -96,7 +155,7 @@ export default function FranchiseClient() {
   };
 
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.pageContainer} ref={containerRef}>
       <Navbar />
 
       {/* Background Glow Blobs */}
@@ -108,17 +167,17 @@ export default function FranchiseClient() {
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <span className={styles.overline}>PARTNERSHIP OPPORTUNITIES</span>
-            <h1 className={styles.heroTitle}>
+            <span className={`hero-elem ${styles.overline}`}>PARTNERSHIP OPPORTUNITIES</span>
+            <h1 className={`hero-elem ${styles.heroTitle}`}>
               Become a ShipBridge<br />
               <span className={styles.highlightOrange}>Franchise Partner</span>
             </h1>
 
-            <p className={styles.heroSub}>
+            <p className={`hero-elem ${styles.heroSub}`}>
               Join India's fastest-growing logistics network. Start your own ShipBridge franchise with low investment, full tech support, and a proven operating model.
             </p>
 
-            <div className={styles.ctaButtons}>
+            <div className={`hero-elem ${styles.ctaButtons}`}>
               <button onClick={handleApplyClick} className={styles.ctaFilled}>
                 Apply for Franchise
               </button>
@@ -127,7 +186,7 @@ export default function FranchiseClient() {
               </button>
             </div>
 
-            <div className={styles.statChips}>
+            <div className={`hero-elem ${styles.statChips}`}>
               <div className={styles.statChip}>₹5L+ Monthly Revenue Potential</div>
               <div className={styles.statChip}>15-Day Onboarding</div>
               <div className={styles.statChip}>Zero Inventory Required</div>
@@ -137,7 +196,7 @@ export default function FranchiseClient() {
       </section>
 
       {/* SECTION 2: WHY FRANCHISE WITH US */}
-      <section className={styles.whySection}>
+      <section className={`why-section ${styles.whySection}`}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>WHY PARTNER WITH US</span>
@@ -147,42 +206,42 @@ export default function FranchiseClient() {
 
           <div className={styles.whyGrid}>
             {/* Card 1 */}
-            <div className={styles.whyCard}>
+            <div className={`why-card ${styles.whyCard}`}>
               <span className={styles.whyIcon}>💰</span>
               <h3 className={styles.whyCardTitle}>Low Capital Entry</h3>
               <p className={styles.whyCardDesc}>Start your franchise business with as low as ₹2–5 Lakhs initial capital investment.</p>
             </div>
 
             {/* Card 2 */}
-            <div className={styles.whyCard}>
+            <div className={`why-card ${styles.whyCard}`}>
               <span className={styles.whyIcon}>💻</span>
               <h3 className={styles.whyCardTitle}>Complete Tech Suite</h3>
               <p className={styles.whyCardDesc}>Full workspace access to ShipBridge customer apps, operations portals, and vendor routing clients.</p>
             </div>
 
             {/* Card 3 */}
-            <div className={styles.whyCard}>
+            <div className={`why-card ${styles.whyCard}`}>
               <span className={styles.whyIcon}>📈</span>
               <h3 className={styles.whyCardTitle}>Proven Brand</h3>
               <p className={styles.whyCardDesc}>Leverage ShipBridge's growing brand reputation and standardized operational credibility.</p>
             </div>
 
             {/* Card 4 */}
-            <div className={styles.whyCard}>
+            <div className={`why-card ${styles.whyCard}`}>
               <span className={styles.whyIcon}>📣</span>
               <h3 className={styles.whyCardTitle}>Marketing Support</h3>
               <p className={styles.whyCardDesc}>Access target localized digital campaigns, SEO tools, and WhatsApp marketing templates.</p>
             </div>
 
             {/* Card 5 */}
-            <div className={styles.whyCard}>
+            <div className={`why-card ${styles.whyCard}`}>
               <span className={styles.whyIcon}>🎓</span>
               <h3 className={styles.whyCardTitle}>Training Program</h3>
               <p className={styles.whyCardDesc}>Benefit from a 15-day intensive onboarding training program with ongoing operations assistance.</p>
             </div>
 
             {/* Card 6 */}
-            <div className={styles.whyCard}>
+            <div className={`why-card ${styles.whyCard}`}>
               <span className={styles.whyIcon}>🤝</span>
               <h3 className={styles.whyCardTitle}>Revenue Sharing</h3>
               <p className={styles.whyCardDesc}>Transparent commission structure with direct, hassle-free monthly payout schemes.</p>
@@ -192,7 +251,7 @@ export default function FranchiseClient() {
       </section>
 
       {/* SECTION 3: FRANCHISE MODEL */}
-      <section className={styles.modelSection}>
+      <section className={`model-section ${styles.modelSection}`}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>PARTNER TIERS</span>
@@ -202,7 +261,7 @@ export default function FranchiseClient() {
 
           <div className={styles.modelGrid}>
             {/* City Partner */}
-            <div className={styles.modelCard}>
+            <div className={`model-card ${styles.modelCard}`}>
               <h3 className={styles.modelTier}>City Partner</h3>
               <p className={styles.modelSub}>Manage a full city cluster — vehicles, drivers, customer leads, and local warehousing hubs.</p>
               
@@ -238,7 +297,7 @@ export default function FranchiseClient() {
             </div>
 
             {/* Area Agent */}
-            <div className={styles.modelCard}>
+            <div className={`model-card ${styles.modelCard}`}>
               <h3 className={styles.modelTier}>Area Agent</h3>
               <p className={styles.modelSub}>Cover a district or local area — generate shifting leads, schedule services, and coordinate local pickups.</p>
               
@@ -274,7 +333,7 @@ export default function FranchiseClient() {
             </div>
 
             {/* Transporter Partner */}
-            <div className={styles.modelCard}>
+            <div className={`model-card ${styles.modelCard}`}>
               <h3 className={styles.modelTier}>Transporter</h3>
               <p className={styles.modelSub}>Bring your own fleet of trucks or delivery vehicles directly into the ShipBridge logistics grid.</p>
               
@@ -313,7 +372,7 @@ export default function FranchiseClient() {
       </section>
 
       {/* SECTION 4: HOW TO APPLY */}
-      <section className={styles.applySection}>
+      <section className={`apply-section ${styles.applySection}`}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>APPLICATION FLOW</span>
@@ -322,23 +381,23 @@ export default function FranchiseClient() {
           </div>
 
           <div className={styles.processStrip}>
-            <div className={styles.processStep}>
+            <div className={`process-step ${styles.processStep}`}>
               <div className={styles.stepNumber}>1</div>
               <h4 className={styles.stepTitle}>Apply Online</h4>
             </div>
-            <div className={styles.processStep}>
+            <div className={`process-step ${styles.processStep}`}>
               <div className={styles.stepNumber}>2</div>
               <h4 className={styles.stepTitle}>Eligibility Check</h4>
             </div>
-            <div className={styles.processStep}>
+            <div className={`process-step ${styles.processStep}`}>
               <div className={styles.stepNumber}>3</div>
               <h4 className={styles.stepTitle}>Agreement Signing</h4>
             </div>
-            <div className={styles.processStep}>
+            <div className={`process-step ${styles.processStep}`}>
               <div className={styles.stepNumber}>4</div>
               <h4 className={styles.stepTitle}>Training Program</h4>
             </div>
-            <div className={styles.processStep}>
+            <div className={`process-step ${styles.processStep}`}>
               <div className={styles.stepNumber}>5</div>
               <h4 className={styles.stepTitle}>Go Live</h4>
             </div>
@@ -520,31 +579,6 @@ export default function FranchiseClient() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{ borderTop: "1px solid #111", padding: "3rem 0", backgroundColor: "#08080a" }}>
-        <div className={styles.container} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "2rem" }}>
-          <div>
-            <h4 style={{ color: "#fff", marginBottom: "1rem" }}>ShipBridge Logistics</h4>
-            <p style={{ color: "#9ca3af", fontSize: "0.9rem", maxWidth: "300px" }}>
-              India's premier logistics and relocation aggregator platform.
-            </p>
-          </div>
-          <div style={{ display: "flex", gap: "4rem" }}>
-            <div>
-              <h5 style={{ color: "#fff", marginBottom: "0.75rem", fontSize: "0.95rem" }}>Company</h5>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.85rem" }}>
-                <li><Link href="/" style={{ color: "#9ca3af" }}>Home</Link></li>
-                <li><Link href="/about" style={{ color: "#9ca3af" }}>About Us</Link></li>
-                <li><Link href="/careers" style={{ color: "#9ca3af" }}>Careers</Link></li>
-                <li><Link href="/franchise" style={{ color: "#f97316" }}>Franchise</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className={styles.container} style={{ marginTop: "3rem", paddingTop: "1.5rem", borderTop: "1px solid #1f2937", textAlign: "center", fontSize: "0.8rem", color: "#6b7280" }}>
-          &copy; {new Date().getFullYear()} ShipBridge Logistics. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }

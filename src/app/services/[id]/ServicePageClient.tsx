@@ -979,14 +979,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
       </main>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.container}>
-          <p className={styles.footerText}>
-            &copy; {new Date().getFullYear()} ShipBridge Logistics. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

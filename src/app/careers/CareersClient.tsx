@@ -2,8 +2,13 @@
 
 import React, { useState, useRef } from "react";
 import Link from "next/link";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
 import styles from "./page.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface JobOpening {
   id: string;
@@ -127,6 +132,49 @@ export default function CareersClient() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    // Hero timeline
+    const tl = gsap.timeline();
+    tl.from('.hero-elem', {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      delay: 0.2
+    });
+
+    // Reveal culture cards
+    gsap.from('.culture-card', {
+      scrollTrigger: {
+        trigger: '.culture-section',
+        start: 'top 75%',
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'back.out(1.2)'
+    });
+
+    // Reveal jobs
+    gsap.from('.job-card-anim', {
+      scrollTrigger: {
+        trigger: '.jobs-section',
+        start: 'top 80%',
+      },
+      x: -30,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power2.out'
+    });
+  }, { scope: containerRef });
 
   const handleJobCardClick = (jobId: string) => {
     setExpandedJob((prev) => (prev === jobId ? null : jobId));
@@ -186,7 +234,7 @@ export default function CareersClient() {
   };
 
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.pageContainer} ref={containerRef}>
       <Navbar />
 
       {/* Particle Background */}
@@ -208,17 +256,17 @@ export default function CareersClient() {
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <span className={styles.overline}>WE ARE HIRING</span>
-            <h1 className={styles.heroTitle}>
+            <span className={`hero-elem ${styles.overline}`}>WE ARE HIRING</span>
+            <h1 className={`hero-elem ${styles.heroTitle}`}>
               Build the Future of<br />
               <span className={styles.highlightOrange}>Indian Logistics</span>
             </h1>
 
-            <p className={styles.heroSub}>
+            <p className={`hero-elem ${styles.heroSub}`}>
               We're a small team building something big. If you're passionate about logistics, technology, and making India move smarter — we want to hear from you.
             </p>
 
-            <div className={styles.statRow}>
+            <div className={`hero-elem ${styles.statRow}`}>
               <div className={styles.statItem}>
                 <span className={styles.statVal}>3</span>
                 <span className={styles.statLabel}>Founders</span>
@@ -241,7 +289,7 @@ export default function CareersClient() {
       </section>
 
       {/* SECTION 2: OUR CULTURE */}
-      <section className={styles.cultureSection}>
+      <section className={`culture-section ${styles.cultureSection}`}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>WORKING AT SHIPBRIDGE</span>
@@ -251,28 +299,28 @@ export default function CareersClient() {
 
           <div className={styles.cultureGrid}>
             {/* Culture 1 */}
-            <div className={styles.cultureCard}>
+            <div className={`culture-card ${styles.cultureCard}`}>
               <span className={styles.cultureIcon}>⚡</span>
               <h3 className={styles.cultureTitle}>Move Fast</h3>
               <p className={styles.cultureDesc}>We ship features, not decks. Speed and iteration are in our DNA.</p>
             </div>
 
             {/* Culture 2 */}
-            <div className={styles.cultureCard}>
+            <div className={`culture-card ${styles.cultureCard}`}>
               <span className={styles.cultureIcon}>🛡️</span>
               <h3 className={styles.cultureTitle}>Own It</h3>
               <p className={styles.cultureDesc}>Everyone here is a founder at heart. We value high agency and ownership.</p>
             </div>
 
             {/* Culture 3 */}
-            <div className={styles.cultureCard}>
+            <div className={`culture-card ${styles.cultureCard}`}>
               <span className={styles.cultureIcon}>🤝</span>
               <h3 className={styles.cultureTitle}>Customer First</h3>
               <p className={styles.cultureDesc}>Every product design decision starts and ends with customer empathy.</p>
             </div>
 
             {/* Culture 4 */}
-            <div className={styles.cultureCard}>
+            <div className={`culture-card ${styles.cultureCard}`}>
               <span className={styles.cultureIcon}>🇮🇳</span>
               <h3 className={styles.cultureTitle}>Build for India</h3>
               <p className={styles.cultureDesc}>We're solving real-world, localized problems for real transporters & users.</p>
@@ -282,7 +330,7 @@ export default function CareersClient() {
       </section>
 
       {/* SECTION 3: OPEN POSITIONS */}
-      <section className={styles.jobsSection} id="positions">
+      <section className={`jobs-section ${styles.jobsSection}`} id="positions">
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>OPPORTUNITIES</span>
@@ -296,7 +344,7 @@ export default function CareersClient() {
               return (
                 <div
                   key={job.id}
-                  className={`${styles.jobCard} ${isActive ? styles.jobCardActive : ""}`}
+                  className={`job-card-anim ${styles.jobCard} ${isActive ? styles.jobCardActive : ""}`}
                   onClick={() => handleJobCardClick(job.id)}
                 >
                   <div className={styles.jobHeader}>
@@ -493,31 +541,6 @@ export default function CareersClient() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{ borderTop: "1px solid #111", padding: "3rem 0", backgroundColor: "#08080a" }}>
-        <div className={styles.container} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "2rem" }}>
-          <div>
-            <h4 style={{ color: "#fff", marginBottom: "1rem" }}>ShipBridge Logistics</h4>
-            <p style={{ color: "#9ca3af", fontSize: "0.9rem", maxWidth: "300px" }}>
-              India's premier logistics and relocation aggregator platform.
-            </p>
-          </div>
-          <div style={{ display: "flex", gap: "4rem" }}>
-            <div>
-              <h5 style={{ color: "#fff", marginBottom: "0.75rem", fontSize: "0.95rem" }}>Company</h5>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem", fontSize: "0.85rem" }}>
-                <li><Link href="/" style={{ color: "#9ca3af" }}>Home</Link></li>
-                <li><Link href="/about" style={{ color: "#9ca3af" }}>About Us</Link></li>
-                <li><Link href="/careers" style={{ color: "#f97316" }}>Careers</Link></li>
-                <li><a href="#" style={{ color: "#9ca3af" }}>Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className={styles.container} style={{ marginTop: "3rem", paddingTop: "1.5rem", borderTop: "1px solid #1f2937", textAlign: "center", fontSize: "0.8rem", color: "#6b7280" }}>
-          &copy; {new Date().getFullYear()} ShipBridge Logistics. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }

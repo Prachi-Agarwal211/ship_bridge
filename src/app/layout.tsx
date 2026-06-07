@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import dynamic from 'next/dynamic';
+import { ReactLenis } from 'lenis/react';
+import GSAPProvider from '@/components/providers/GSAPProvider';
 import "./globals.css";
+
+import CustomCursor from '@/components/CustomCursor';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,7 +50,25 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.shipbridge.in",
   },
+  verification: {
+    google: 'YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN',
+  },
+  category: 'logistics',
+  classification: 'Business',
+  referrer: 'origin-when-cross-origin',
+  formatDetection: { email: false, telephone: false },
+  icons: {
+    icon: [
+      { url: '/logo/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/logo/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/logo/favicon.ico',
+    apple: '/logo/icon-192.png',
+  },
 };
+
+import Footer from '@/components/Footer';
 
 export default function RootLayout({
   children,
@@ -57,7 +80,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "ShipBridge Logistics",
     "url": "https://www.shipbridge.in",
-    "logo": "https://www.shipbridge.in/hero%20section/logo.jpeg",
+    "logo": "https://www.shipbridge.in/logo/logo_new.png",
     "sameAs": [
       "https://www.facebook.com/ShipBridgeLogistics",
       "https://twitter.com/ShipBridge",
@@ -75,10 +98,10 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "ShipBridge Logistics",
-    "image": "https://www.shipbridge.in/hero%20section/logo.jpeg",
+    "image": "https://www.shipbridge.in/logo/logo_new.png",
     "url": "https://www.shipbridge.in",
     "telephone": "+91-XXXXXXXXXX",
-    "logo": "https://www.shipbridge.in/hero%20section/logo.jpeg",
+    "logo": "https://www.shipbridge.in/logo/logo_new.png",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Plot No. 12, Sector 18",
@@ -108,9 +131,15 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className="lenis lenis-smooth">
       <body className={inter.className}>
-        {children}
+        <ReactLenis root options={{ lerp: 0.08, duration: 1.2, syncTouch: false, autoRaf: true }}>
+          <GSAPProvider>
+            <CustomCursor />
+            {children}
+            <Footer />
+          </GSAPProvider>
+        </ReactLenis>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

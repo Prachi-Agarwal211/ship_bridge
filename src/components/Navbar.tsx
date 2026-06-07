@@ -1,45 +1,143 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './Navbar.module.css';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES_DATA } from '@/data/services';
+import styles from './Navbar.module.css';
 
-const Navbar = () => {
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80);
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolledProgress = (winScroll / height) * 100;
+      document.documentElement.style.setProperty('--scroll-progress', `${scrolledProgress}%`);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.logoContainer}>
-        <Link href="/">
-          <Image 
-            src="/hero section/logo.jpeg" 
-            alt="Company Logo" 
-            width={80} 
-            height={80} 
-            className={styles.logo}
-          />
-        </Link>
-      </div>
-      <ul className={styles.navLinks}>
-        <li><Link href="/">Home</Link></li>
-        <li className={styles.dropdownContainer}>
-          <Link href="/#services" className={styles.dropdownTrigger}>
-            Services <span className={styles.chevron}>▼</span>
+    <>
+      <div className={styles.scrollProgress} style={{ width: 'var(--scroll-progress, 0%)' }} />
+      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+        <div className={styles.navInner}>
+          <Link href="/" className={styles.logoContainer}>
+            <Image 
+              src="/logo/logo_new.png" 
+              alt="ShipBridge Logo" 
+              width={80} 
+              height={80} 
+              className={styles.logo}
+            />
+            <div className={styles.brandText}>
+              <span className={styles.brandName}>SHIPBRIDGE</span>
+              <span className={styles.brandTag}>LOGISTICS</span>
+            </div>
           </Link>
-          <ul className={styles.dropdownMenu}>
-            {SERVICES_DATA.map((service) => (
-              <li key={service.id}>
-                <Link href={`/services/${service.id}`}>{service.title}</Link>
-              </li>
-            ))}
-          </ul>
-        </li>
-        <li><Link href="/product">Product</Link></li>
-        <li><Link href="/about">Company</Link></li>
-        <li><Link href="/careers">Careers</Link></li>
-        <li><Link href="/franchise">Franchise</Link></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      <div className={styles.placeholder}></div>
-    </nav>
-  );
-};
 
-export default Navbar;
+          <ul className={styles.desktopLinks}>
+            <li><Link href="/" className={pathname === '/' ? styles.active : ''}>Home</Link></li>
+            
+            <li className={styles.dropdownContainer}>
+              <button className={styles.dropdownTrigger}>
+                Services <span className={styles.chevron}>▼</span>
+              </button>
+              <div className={styles.megaMenu}>
+                <div className={styles.megaMenuInner}>
+                  {SERVICES_DATA.map((service) => (
+                    <Link key={service.id} href={`/services/${service.id}`} className={styles.megaMenuItem}>
+                      <h4>{service.title}</h4>
+                      <p>{service.subtitle}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </li>
+
+            <li><Link href="/product" className={pathname === '/product' ? styles.active : ''}>Product</Link></li>
+            <li><Link href="/about" className={pathname === '/about' ? styles.active : ''}>Company</Link></li>
+            <li><Link href="/careers" className={pathname === '/careers' ? styles.active : ''}>Careers</Link></li>
+            <li><Link href="/franchise" className={pathname === '/franchise' ? styles.active : ''}>Franchise</Link></li>
+          </ul>
+
+          <div className={styles.navActions}>
+            <Link href="/quote" className={styles.ctaBtn}>
+              Get a Quote
+            </Link>
+            
+            <button 
+              className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div 
+            className={styles.mobileMenu}
+            initial={{ opacity: 0, y: '-100%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '-100%' }}
+            transition={{ duration: 0.5, ease: [0.77, 0, 0.175, 1] }}
+          >
+            <div className={styles.mobileLinks}>
+              {['Home', 'Product', 'About', 'Careers', 'Franchise'].map((item, i) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                >
+                  <Link 
+                    href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                    className={styles.mobileMenuLink}
+                  >
+                    {item}
+                  </Link>
+                </motion.div>
+              ))}
+              
+              <div className={styles.mobileServicesDivider}>SERVICES</div>
+              <div className={styles.mobileServicesGrid}>
+                {SERVICES_DATA.map((service, i) => (
+                  <motion.div
+                    key={service.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 + i * 0.05 }}
+                  >
+                    <Link href={`/services/${service.id}`} className={styles.mobileServiceChip}>
+                      {service.title}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}

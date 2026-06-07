@@ -37,12 +37,30 @@
   background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
 }
 
-/* SECTION 1: HERO */
 .heroSection {
   position: relative;
   padding: 10rem 0 6rem 0;
-  background: linear-gradient(to bottom, #000000 0%, #050b06 100%);
   overflow: hidden;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.heroVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(5,11,6,0.9) 100%);
+  z-index: 1;
 }
 
 .heroContent {
@@ -64,7 +82,7 @@
 }
 
 .heroTitle {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
   letter-spacing: -2px;
   line-height: 1.1;
@@ -222,7 +240,7 @@
 }
 
 .productTitle {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 900;
   line-height: 1.2;
   margin-bottom: 0.5rem;
@@ -772,7 +790,7 @@
 }
 
 .ctaTitle {
-  font-size: 3.2rem;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 900;
   color: #ffffff;
   margin-bottom: 1.25rem;

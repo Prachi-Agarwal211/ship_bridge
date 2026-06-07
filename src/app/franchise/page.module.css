@@ -60,7 +60,7 @@
 }
 
 .heroTitle {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
   letter-spacing: -2px;
   line-height: 1.1;
@@ -173,7 +173,7 @@
 }
 
 .sectionTitle {
-  font-size: 2.8rem;
+  font-size: clamp(2.2rem, 5vw, 3rem);
   font-weight: 800;
   margin-bottom: 0.5rem;
 }
@@ -394,7 +394,7 @@
 }
 
 .formTitle {
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 800;
   text-align: center;
   margin-bottom: 3rem;
