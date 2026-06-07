@@ -163,6 +163,10 @@ export default function Product() {
                   </svg>
                 </div>
               </button>
+              <span className={styles.comingSoonBadge}>
+                <span className={styles.comingSoonDot}></span>
+                Coming Soon
+              </span>
             </div>
           </div>
         </div>

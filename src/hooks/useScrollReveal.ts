@@ -1,13 +1,13 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, RefObject } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export function useScrollReveal(options = {}) {
-  const containerRef = useRef(null)
+export function useScrollReveal(options = {}, customRef?: RefObject<any>) {
+  const containerRef = customRef || useRef(null)
 
   useGSAP(() => {
     const elements = gsap.utils.toArray('[data-reveal]', containerRef.current)

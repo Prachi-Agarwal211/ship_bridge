@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import ScrollRevealWrapper from "@/components/ScrollRevealWrapper";
 import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,7 +33,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className={styles.pageContainer}>
+    <ScrollRevealWrapper className={styles.pageContainer}>
       <Navbar />
 
 
@@ -50,13 +51,7 @@ export default function AboutPage() {
         </video>
         <div className={styles.heroOverlay}></div>
         <div className={styles.container}>
-          <div className={styles.heroContent}>
-            {/* Breadcrumb */}
-            <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-              <Link href="/">Home</Link>
-              <span className={styles.breadcrumbSeparator}>&gt;</span>
-              <span aria-current="page">About Us</span>
-            </nav>
+          <div className={styles.heroContent} data-reveal>
 
             <h1 className={styles.heroTitle}>
               Building India's<br />
@@ -64,11 +59,11 @@ export default function AboutPage() {
             </h1>
 
             <p className={styles.heroSub}>
-              We're building the technology to make every move in India simpler, safer, and more transparent — starting from Jaipur.
+              We're building the technology to make every move in India simpler, safer, and more transparent — starting from Indore.
             </p>
 
             <div className={styles.foundingStrip}>
-              <span className={styles.foundingItem}>📍 Founded in Jaipur, Rajasthan • 2026</span>
+              <span className={styles.foundingItem}>📍 Founded in Indore, Madhya Pradesh • 2026</span>
               <span className={styles.foundingDivider}>|</span>
               <span className={styles.foundingItem}>🚀 Building India's Logistics Future</span>
             </div>
@@ -80,7 +75,7 @@ export default function AboutPage() {
       <section className={styles.storySection} id="story">
         <div className={styles.container}>
           <div className={styles.storyGrid}>
-            <div className={styles.storyText}>
+            <div className={styles.storyText} data-reveal>
               <span className={styles.sectionLabel}>HOW WE STARTED</span>
               <h2 className={styles.sectionTitle}>Our Story</h2>
               <div className={styles.underlineBar}></div>
@@ -91,22 +86,70 @@ export default function AboutPage() {
 
               {/* Timeline strip */}
               <div className={styles.timelineGrid}>
-                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.1s' }}>
+                <div className={styles.timelineCard} data-reveal>
                   <div className={styles.timelineMilestone}>2026 Q1</div>
                   <h4 className={styles.timelineTitle}>Idea & Foundation</h4>
-                  <p className={styles.timelineDesc}>Born in Jaipur, Rajasthan</p>
+                  <p className={styles.timelineDesc}>Born in Indore, Madhya Pradesh</p>
                 </div>
-                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.2s' }}>
+
+                <div className={styles.chevronChain} data-reveal>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade1}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade2}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade3}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade4}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+
+                <div className={styles.timelineCard} data-reveal>
                   <div className={styles.timelineMilestone}>2026 Q2</div>
                   <h4 className={styles.timelineTitle}>Product Build</h4>
                   <p className={styles.timelineDesc}>Flutter app + Admin portal</p>
                 </div>
-                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.3s' }}>
+
+                <div className={`${styles.chevronChain} ${styles.chevronGreen}`} data-reveal>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade1}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade2}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade3}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade4}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+
+                <div className={styles.timelineCard} data-reveal>
                   <div className={styles.timelineMilestone}>2026 Q3</div>
                   <h4 className={styles.timelineTitle}>Pilot Launch</h4>
                   <p className={styles.timelineDesc}>5 cities, 500+ early users</p>
                 </div>
-                <div className={`${styles.timelineCard} ${styles.animateFadeIn}`} style={{ animationDelay: '0.4s' }}>
+
+                <div className={`${styles.chevronChain} ${styles.chevronGreen}`} data-reveal>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade1}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade2}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade3}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <svg className={`${styles.chevronSvg} ${styles.chevronFade4}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4">
+                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+
+                <div className={styles.timelineCard} data-reveal>
                   <div className={styles.timelineMilestone}>2026 Q4</div>
                   <h4 className={styles.timelineTitle}>Pan-India</h4>
                   <p className={styles.timelineDesc}>50+ cities target</p>
@@ -114,7 +157,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className={styles.storyImageCard}>
+            <div className={styles.storyImageCard} data-reveal>
               <div className={styles.storyImageWrapper}>
                 <Image
                   src="/company/founder.png"
@@ -140,7 +183,7 @@ export default function AboutPage() {
         <div className={styles.container}>
           <div className={styles.mvGrid}>
             {/* Mission Card */}
-            <div className={styles.mvCard}>
+            <div className={styles.mvCard} data-reveal>
               <div className={styles.mvIconContainer}>
                 <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10" />
@@ -155,7 +198,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vision Card */}
-            <div className={styles.mvCard}>
+            <div className={styles.mvCard} data-reveal>
               <div className={styles.mvIconContainer} style={{ color: "#22c55e", backgroundColor: "rgba(34, 197, 94, 0.1)", borderColor: "rgba(34, 197, 94, 0.2)" }}>
                 <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -174,7 +217,7 @@ export default function AboutPage() {
       {/* SECTION 4: CORE VALUES */}
       <section className={styles.valuesSection}>
         <div className={styles.container}>
-          <div className={styles.valuesHeader}>
+          <div className={styles.valuesHeader} data-reveal>
             <span className={styles.sectionLabel}>WHAT DRIVES US</span>
             <h2 className={styles.sectionTitle}>Our Core Values</h2>
             <div className={styles.underlineBar}></div>
@@ -182,42 +225,42 @@ export default function AboutPage() {
 
           <div className={styles.valuesGrid}>
             {/* Reliability */}
-            <div className={styles.valueCard}>
+            <div className={styles.valueCard} data-reveal>
               <div className={styles.hexIconWrapper}>🛡️</div>
               <h3 className={styles.valueTitle}>Reliability</h3>
               <p className={styles.valueBody}>We deliver what we promise, every single time.</p>
             </div>
 
             {/* Speed */}
-            <div className={styles.valueCard}>
+            <div className={styles.valueCard} data-reveal>
               <div className={styles.hexIconWrapper}>⚡</div>
               <h3 className={styles.valueTitle}>Speed</h3>
               <p className={styles.valueBody}>Efficient logistics that saves your time and money.</p>
             </div>
 
             {/* Security */}
-            <div className={styles.valueCard}>
+            <div className={styles.valueCard} data-reveal>
               <div className={styles.hexIconWrapper}>🔒</div>
               <h3 className={styles.valueTitle}>Security</h3>
               <p className={styles.valueBody}>Your goods are insured, tracked, and protected.</p>
             </div>
 
             {/* Transparency */}
-            <div className={styles.valueCard}>
+            <div className={styles.valueCard} data-reveal>
               <div className={styles.hexIconWrapper}>🌐</div>
               <h3 className={styles.valueTitle}>Transparency</h3>
               <p className={styles.valueBody}>No hidden charges. Full visibility on every move.</p>
             </div>
 
             {/* Trust */}
-            <div className={styles.valueCard}>
+            <div className={styles.valueCard} data-reveal>
               <div className={styles.hexIconWrapper}>🤝</div>
               <h3 className={styles.valueTitle}>Trust</h3>
               <p className={styles.valueBody}>Verified professionals. Background-checked partners.</p>
             </div>
 
             {/* Innovation */}
-            <div className={styles.valueCard}>
+            <div className={styles.valueCard} data-reveal>
               <div className={styles.hexIconWrapper}>🚀</div>
               <h3 className={styles.valueTitle}>Innovation</h3>
               <p className={styles.valueBody}>Powered by AI, Flutter apps, and real-time data.</p>
@@ -229,7 +272,7 @@ export default function AboutPage() {
       {/* SECTION 5: THE TEAM */}
       <section className={styles.teamSection}>
         <div className={styles.container}>
-          <div className={styles.teamHeader}>
+          <div className={styles.teamHeader} data-reveal>
             <span className={styles.sectionLabel}>BRAINS BEHIND SHIPBRIDGE</span>
             <h2 className={styles.sectionTitle}>Meet Our Team</h2>
             <div className={styles.underlineBar}></div>
@@ -237,7 +280,7 @@ export default function AboutPage() {
 
           <div className={styles.teamGrid}>
             {/* Ashish Joshi */}
-            <div className={styles.teamCard}>
+            <div className={styles.teamCard} data-reveal>
               <div className={styles.teamImageContainer}>
                 <Image
                   src="/company/founder.png"
@@ -258,7 +301,7 @@ export default function AboutPage() {
             </div>
 
             {/* Prachi Agarwal */}
-            <div className={styles.teamCard}>
+            <div className={styles.teamCard} data-reveal>
               <div className={styles.teamImageContainer}>
                 <Image
                   src="/company/coo.png"
@@ -279,7 +322,7 @@ export default function AboutPage() {
             </div>
 
             {/* Anurag Singh */}
-            <div className={styles.teamCard}>
+            <div className={styles.teamCard} data-reveal>
               <div className={styles.teamImageContainer}>
                 <Image
                   src="/company/cto.png"
@@ -307,7 +350,7 @@ export default function AboutPage() {
       {/* SECTION 7: WHY CHOOSE SHIPBRIDGE */}
       <section className={styles.whySection}>
         <div className={styles.container}>
-          <div className={styles.whyHeader}>
+          <div className={styles.whyHeader} data-reveal>
             <span className={styles.sectionLabel}>WHY WE STAND OUT</span>
             <h2 className={styles.sectionTitle}>Why ShipBridge Stands Apart</h2>
             <div className={styles.underlineBar}></div>
@@ -315,7 +358,7 @@ export default function AboutPage() {
 
           <div className={styles.whyGrid}>
             {/* Item 1 */}
-            <div className={styles.whyItem}>
+            <div className={styles.whyItem} data-reveal>
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -328,7 +371,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 2 */}
-            <div className={styles.whyItem}>
+            <div className={styles.whyItem} data-reveal>
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -341,7 +384,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 3 */}
-            <div className={styles.whyItem}>
+            <div className={styles.whyItem} data-reveal>
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -354,7 +397,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 4 */}
-            <div className={styles.whyItem}>
+            <div className={styles.whyItem} data-reveal>
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -367,7 +410,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 5 */}
-            <div className={styles.whyItem}>
+            <div className={styles.whyItem} data-reveal>
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -380,7 +423,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 6 */}
-            <div className={styles.whyItem}>
+            <div className={styles.whyItem} data-reveal>
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -398,7 +441,7 @@ export default function AboutPage() {
       {/* SECTION 8: CTA BANNER */}
       <section className={styles.ctaSection}>
         <div className={styles.container}>
-          <div className={styles.ctaBanner}>
+          <div className={styles.ctaBanner} data-reveal>
             <h2 className={styles.ctaTitle}>Ready to Move Smarter?</h2>
             <p className={styles.ctaSub}>Join thousands of families and businesses who trust ShipBridge.</p>
             <div className={styles.ctaButtons}>
@@ -411,6 +454,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-    </div>
+    </ScrollRevealWrapper>
   );
 }

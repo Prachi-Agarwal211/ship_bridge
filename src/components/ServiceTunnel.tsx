@@ -74,6 +74,8 @@ export default function ServiceTunnel() {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const autoplayTimer = useRef<NodeJS.Timeout | null>(null);
 
+  useScrollReveal({}, containerRef);
+
   // Auto-play mechanic
   const startAutoplay = () => {
     if (autoplayTimer.current) clearInterval(autoplayTimer.current);

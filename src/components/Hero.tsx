@@ -103,7 +103,7 @@ export default function Hero() {
       <div className={styles.content}>
         <div className={`hero-content-wrapper ${styles.contentWrapper}`}>
           <h2 className={`hero-slogan ${styles.slogan}`}>
-            Humari Soch, Aapki Pehchaan
+            Aapka Bharosa, Humari Pahechan
           </h2>
           <h1 className={`hero-title ${styles.title}`}>
             SHIP BRIDGE

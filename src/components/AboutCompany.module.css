@@ -1,5 +1,5 @@
 .aboutSection {
-  background-color: var(--color-bg);
+  background-color: transparent;
   padding: var(--space-section) 0;
   position: relative;
   overflow: hidden;

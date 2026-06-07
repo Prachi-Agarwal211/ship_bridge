@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 import styles from './Process.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -37,6 +38,7 @@ const PROCESS_STEPS = [
 
 export default function Process() {
   const containerRef = useRef<HTMLElement>(null);
+  useScrollReveal({}, containerRef);
   
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -83,7 +85,7 @@ export default function Process() {
         
         {/* Left Sticky Header */}
         <div className={styles.headerColumn}>
-          <div className={styles.stickyHeader}>
+          <div className={styles.stickyHeader} data-reveal>
             <span className={styles.overline}>SHIP BRIDGE OPERATION</span>
             <h2 className={styles.title}>
               We have the best team & process

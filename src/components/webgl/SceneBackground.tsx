@@ -38,36 +38,63 @@ const fragmentShader = `
     vec2 uv = vUv;
     float t = uTime * 0.4; // Slightly faster for visible movement
     
-    // Create organic flowing coordinates
+    // Create organic flowing coordinates for right side
     vec2 p1 = vec2(noise(uv * 1.5 + t * 0.2), noise(uv * 2.0 - t * 0.15));
     vec2 p2 = vec2(noise(uv * 2.5 - t * 0.1), noise(uv * 1.5 + t * 0.2));
     
-    // Base color: Deep absolute black
-    vec3 color = vec3(0.00, 0.01, 0.005);
+    // Create organic flowing coordinates for left side (mirrored X)
+    vec2 uvM = vec2(1.0 - uv.x, uv.y);
+    vec2 pm1 = vec2(noise(uvM * 1.5 + t * 0.2), noise(uvM * 2.0 - t * 0.15));
+    vec2 pm2 = vec2(noise(uvM * 2.5 - t * 0.1), noise(uvM * 1.5 + t * 0.2));
     
-    // Deep dark green base flow - widened area but reduced brightness
+    // Base color: Deep neutral dark
+    vec3 color = vec3(0.002, 0.003, 0.002);
+    
+    // Deep dark green base flow - right side
     float baseMask = smoothstep(0.2, 0.85, noise(uv * 2.0 + p1 * 2.0));
+    baseMask *= smoothstep(0.1, 0.7, uv.x);
     color = mix(color, vec3(0.015, 0.1, 0.04), baseMask * 0.6);
     
-    // Mid-green body
+    // Deep dark orange base flow - left side
+    float baseMaskM = smoothstep(0.2, 0.85, noise(uvM * 2.0 + pm1 * 2.0));
+    baseMaskM *= smoothstep(0.1, 0.7, uvM.x);
+    color = mix(color, vec3(0.1, 0.035, 0.005), baseMaskM * 0.6);
+    
+    // Mid-green body - right side
     float midGreen = smoothstep(0.35, 0.9, noise(uv * 3.0 - p2 * 1.5));
+    midGreen *= smoothstep(0.1, 0.7, uv.x);
     color = mix(color, vec3(0.02, 0.18, 0.08), midGreen * 0.5);
     
-    // Smooth, creative flowing volumetric highlights instead of distinct "random lines"
+    // Mid-orange body - left side
+    float midOrangeM = smoothstep(0.35, 0.9, noise(uvM * 3.0 - pm2 * 1.5));
+    midOrangeM *= smoothstep(0.1, 0.7, uvM.x);
+    color = mix(color, vec3(0.18, 0.06, 0.01), midOrangeM * 0.5);
+    
+    // Smooth, creative flowing volumetric highlights
     float flowNoise = noise(uv * 2.5 + p2 * 1.5 - p1 * 1.0 + t * 0.3);
+    float flowNoiseM = noise(uvM * 2.5 + pm2 * 1.5 - pm1 * 1.0 + t * 0.3);
+    
     // Soft, glowing bright spots that morph organically
     float volumetricLight = smoothstep(0.4, 0.9, flowNoise);
-    // Masked to the base fluid to look like internal glowing energy
     volumetricLight *= smoothstep(0.1, 0.7, baseMask);
     
-    // Add a subtle moving color shift (dark green to bright neon green) to the highlights
+    float volumetricLightM = smoothstep(0.4, 0.9, flowNoiseM);
+    volumetricLightM *= smoothstep(0.1, 0.7, baseMaskM);
+    
+    // Add subtle moving color shifts
+    // Right side: dark green to bright neon green
     vec3 glowColor = mix(vec3(0.05, 0.4, 0.15), vec3(0.1, 0.7, 0.3), noise(uv * 4.0 + t));
+    // Left side: dark orange to bright vibrant orange
+    vec3 glowColorM = mix(vec3(0.4, 0.15, 0.02), vec3(0.8, 0.35, 0.05), noise(uvM * 4.0 + t));
+    
     color += glowColor * volumetricLight * 0.45;
+    color += glowColorM * volumetricLightM * 0.45;
 
-    // Mouse interaction - very subtle
+    // Mouse interaction - very subtle, green on the right, orange on the left
     float mouseDist = length(uv - uMouse);
-    float mouseGlow = exp(-mouseDist * mouseDist * 18.0) * 0.02;
-    color += vec3(0.1, 0.4, 0.2) * mouseGlow;
+    float mouseGlow = exp(-mouseDist * mouseDist * 18.0) * 0.025;
+    vec3 mouseColor = mix(vec3(0.4, 0.15, 0.02), vec3(0.1, 0.4, 0.2), uMouse.x);
+    color += mouseColor * mouseGlow;
 
     // Vignette
     float vignette = uv.x * (1.0 - uv.x) * uv.y * (1.0 - uv.y);

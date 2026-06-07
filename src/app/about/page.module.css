@@ -162,28 +162,73 @@
 
 /* Timeline strip */
 .timelineGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
   position: relative;
 }
 
 .timelineCard {
+  flex: 1;
   background: rgba(10, 10, 10, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 0.75rem;
   padding: 1.25rem;
   position: relative;
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  transition: border-color 0.3s ease, background 0.3s ease;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
 }
 
 .timelineCard:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(249, 115, 22, 0.4);
+  border-color: rgba(249, 115, 22, 0.6);
   transform: translateY(-5px);
 }
+
+.chevronChain {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  color: #f97316; /* Default theme color orange */
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.chevronGreen {
+  color: #22c55e; /* Green theme color */
+}
+
+.chevronSvg {
+  width: 1.2rem;
+  height: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* Cascading light opacity rules */
+.chevronFade1 { opacity: 0.2; }
+.chevronFade2 { opacity: 0.4; }
+.chevronFade3 { opacity: 0.7; }
+.chevronFade4 { opacity: 1.0; }
+
+/* Premium pulse wave animation */
+@keyframes chevronPulse {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(3px);
+    opacity: 1;
+  }
+}
+
+.chevronFade1 { animation: chevronPulse 1.8s infinite 0.1s; }
+.chevronFade2 { animation: chevronPulse 1.8s infinite 0.3s; }
+.chevronFade3 { animation: chevronPulse 1.8s infinite 0.5s; }
+.chevronFade4 { animation: chevronPulse 1.8s infinite 0.7s; }
 
 @keyframes fadeInSlideUp {
   0% {
@@ -641,8 +686,12 @@
     font-size: 1.1rem;
   }
   .timelineGrid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 1.5rem;
+  }
+  .chevronChain {
+    transform: rotate(90deg);
+    margin: 0.5rem 0;
   }
   .valuesGrid, .teamGrid, .whyGrid {
     grid-template-columns: 1fr;

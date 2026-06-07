@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./page.module.css";
 import type { ServiceItem } from "@/data/services";
 
@@ -13,6 +14,7 @@ interface PageClientProps {
 }
 
 export default function ServicePageClient({ service, relatedServices }: PageClientProps) {
+  const revealRef = useScrollReveal();
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   // Form States
@@ -356,7 +358,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
   const currentConfig = serviceConfig[service.id] || serviceConfig.household;
 
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.pageContainer} ref={revealRef}>
       <Navbar />
 
       {/* Decorative Glow Blobs */}
@@ -375,7 +377,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         {/* HERO SECTION */}
         <section className={styles.heroGrid}>
           {/* Left Details Column */}
-          <div className={styles.leftContent}>
+          <div className={styles.leftContent} data-reveal>
             <div className={styles.overlineWrapper}>
               <span className={styles.overline}>{service.subtitle}</span>
               <span className={styles.whyPill}>Why This Service? &bull; {currentConfig.whyPill}</span>
@@ -423,7 +425,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
           </div>
 
           {/* Right Image Column */}
-          <div className={styles.imageCard}>
+          <div className={styles.imageCard} data-reveal>
             <Image
               src={service.image}
               alt={service.title}
@@ -438,7 +440,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
         {/* SECTION 2: SERVICE FLOW */}
         <section className={styles.flowSection}>
-          <div className={styles.sectionHeader}>
+          <div className={styles.sectionHeader} data-reveal>
             <span className={styles.sectionLabel}>STEP BY STEP</span>
             <h2 className={styles.sectionTitle}>Our Shifting Process</h2>
             <div className={styles.underlineBar}></div>
@@ -446,7 +448,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
           <div className={styles.flowTimeline}>
             {currentConfig.flowSteps.map((step, index) => (
-              <div key={step.title} className={styles.flowCard}>
+              <div key={step.title} className={styles.flowCard} data-reveal>
                 <div className={styles.flowHeader}>
                   <span className={styles.flowNumber}>{index + 1}</span>
                   <span className={styles.flowIcon}>{step.icon}</span>
@@ -463,7 +465,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
           <div className={styles.includedGrid}>
             
             {/* What We Do */}
-            <div className={styles.includedCard}>
+            <div className={styles.includedCard} data-reveal>
               <div className={styles.includedCardHeader}>
                 <span className={styles.includedCardIcon}>✅</span>
                 <h3 className={styles.includedCardTitle}>What We Do</h3>
@@ -479,7 +481,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             </div>
 
             {/* What You Need to Prepare */}
-            <div className={styles.includedCard}>
+            <div className={styles.includedCard} data-reveal>
               <div className={styles.includedCardHeader}>
                 <span className={styles.includedCardIcon}>📋</span>
                 <h3 className={styles.includedCardTitle}>What You Need to Prepare</h3>
@@ -499,7 +501,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
         {/* SECTION 4: PRICING GUIDE */}
         <section className={styles.pricingSection}>
-          <div className={styles.sectionHeader}>
+          <div className={styles.sectionHeader} data-reveal>
             <span className={styles.sectionLabel}>TRANSPARENT TARIFF</span>
             <h2 className={styles.sectionTitle}>How Pricing Works</h2>
             <div className={styles.underlineBar}></div>
@@ -507,7 +509,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
           <div className={styles.pricingGrid}>
             {/* Card 1 */}
-            <div className={styles.pricingCard}>
+            <div className={styles.pricingCard} data-reveal>
               <span className={styles.pricingCardIcon}>📊</span>
               <h4 className={styles.pricingCardTitle}>Factors That Affect Price</h4>
               <p className={styles.pricingCardDesc}>
@@ -516,7 +518,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             </div>
 
             {/* Card 2 */}
-            <div className={styles.pricingCard}>
+            <div className={styles.pricingCard} data-reveal>
               <span className={styles.pricingCardIcon}>📋</span>
               <h4 className={styles.pricingCardTitle}>How We Quote</h4>
               <p className={styles.pricingCardDesc}>
@@ -525,7 +527,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             </div>
 
             {/* Card 3 */}
-            <div className={styles.pricingCard}>
+            <div className={styles.pricingCard} data-reveal>
               <span className={styles.pricingCardIcon}>💳</span>
               <h4 className={styles.pricingCardTitle}>Payment Process</h4>
               <p className={styles.pricingCardDesc}>
@@ -534,14 +536,14 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             </div>
           </div>
 
-          <div className={styles.pricingNote}>
+          <div className={styles.pricingNote} data-reveal>
             * Final quote provided after a free consultation call
           </div>
         </section>
 
         {/* SECTION 5: ENHANCED FORM */}
         <section className={styles.bookingSection} id="booking-form">
-          <div className={styles.formCard}>
+          <div className={styles.formCard} data-reveal>
             <div className={styles.formHeader}>
               <h3>Request a Service Quote</h3>
               <p>Provide shipment parameters, and our logistics experts will compile custom quotes.</p>
@@ -911,7 +913,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
         {/* SECTION 6: FAQ ACCORDION */}
         <section className={styles.faqSection}>
-          <div className={styles.sectionHeader}>
+          <div className={styles.sectionHeader} data-reveal>
             <span className={styles.sectionLabel}>HELP DESK</span>
             <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
             <div className={styles.underlineBar}></div>
@@ -925,6 +927,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                   key={faq.question}
                   className={`${styles.faqItem} ${isActive ? styles.faqItemActive : ""}`}
                   onClick={() => toggleFaq(index)}
+                  data-reveal
                 >
                   <div className={styles.faqQuestionBlock}>
                     <h4 className={styles.faqQuestion}>{faq.question}</h4>
@@ -954,7 +957,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
         {/* SECTION 7: RELATED SERVICES STRIP */}
         <section className={styles.relatedSection}>
-          <div className={styles.sectionHeader}>
+          <div className={styles.sectionHeader} data-reveal>
             <span className={styles.sectionLabel}>ADDITIONAL SOLUTIONS</span>
             <h2 className={styles.sectionTitle}>You May Also Need</h2>
             <div className={styles.underlineBar}></div>
@@ -966,6 +969,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                 key={relService.id}
                 href={`/services/${relService.id}`}
                 className={styles.relatedCard}
+                data-reveal
               >
                 <span className={styles.relatedOverline}>{relService.subtitle}</span>
                 <h4 className={styles.relatedTitle}>{relService.title}</h4>
