@@ -122,17 +122,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
               ))}
             </div>
 
-            {/* Creative Trust Strip (stats from researched service data) */}
-            {currentConfig.stats && currentConfig.stats.length > 0 && (
-              <div className={styles.trustStrip} data-reveal>
-                {currentConfig.stats.map((stat, i) => (
-                  <div key={i} className={styles.trustItem}>
-                    <span className={styles.trustValue}>{stat.value}</span>
-                    <span className={styles.trustLabel}>{stat.label}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+
 
             {/* Customer Journey Steps Strip */}
             <div className={styles.journeyStrip}>
@@ -273,46 +263,10 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             </div>
           </div>
 
-          <div className={styles.pricingNote} data-reveal>
-            * Final quote provided after a free consultation call
-          </div>
+
         </section>
 
-        {/* SECTION: FAQ (creative trust builder + SEO rich content) */}
-        {currentConfig.faqs && currentConfig.faqs.length > 0 && (
-          <section className={styles.faqSection}>
-            <div className={styles.sectionHeader} data-reveal>
-              <span className={styles.sectionLabel}>QUESTIONS ANSWERED</span>
-              <h2 className={styles.sectionTitle}>Common Questions</h2>
-              <div className={styles.underlineBar}></div>
-            </div>
 
-            <div className={styles.faqList}>
-              {currentConfig.faqs.map((faq, idx) => {
-                const isOpen = expandedFaq === idx;
-                return (
-                  <div
-                    key={idx}
-                    className={`${styles.faqItem} ${isOpen ? styles.faqItemActive : ''}`}
-                    data-reveal
-                  >
-                    <button
-                      className={styles.faqQuestionBlock}
-                      onClick={() => setExpandedFaq(isOpen ? null : idx)}
-                      aria-expanded={isOpen}
-                    >
-                      <span className={styles.faqQuestion}>{faq.q}</span>
-                      <span className={styles.faqArrow}>▼</span>
-                    </button>
-                    {isOpen && (
-                      <div className={styles.faqAnswer}>{faq.a}</div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        )}
 
         {/* SECTION 5: ENHANCED FORM */}
         <section className={styles.bookingSection} id="booking-form">
@@ -438,15 +392,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                 )}
               </button>
 
-              {/* Creative WhatsApp CTA (high-intent alternative, prefilled) */}
-              <a
-                href={`https://wa.me/919999999999?text=${encodeURIComponent(`Hi ShipBridge, I'm interested in ${service.title}. Please call me back.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.whatsappCta}
-              >
-                💬 Or message us on WhatsApp (instant reply)
-              </a>
+
             </form>
           </div>
         </section>

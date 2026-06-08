@@ -54,40 +54,6 @@ export default function ProductCatalogPage() {
             <p className={styles.heroSub}>
               ShipBridge has built a suite of interconnected products — a customer-facing app, an AI-powered admin platform, and a vendor management system — all working in real-time to deliver the perfect move.
             </p>
-
-            <div className={styles.heroPreviews}>
-              <div className={styles.previewCard} data-reveal>
-                <div className={styles.previewImageWrapper}>
-                  <Image
-                    src="/Product/app_image.png"
-                    alt="Customer App Interface"
-                    fill
-                    
-                    className={styles.previewImage}
-                  />
-                </div>
-                <div style={{ marginTop: "1rem", textAlign: "left", padding: "0 0.5rem" }}>
-                  <span style={{ fontSize: "0.85rem", color: "#f97316", fontWeight: "700" }}>MOBILE</span>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: "800", color: "#fff", marginTop: "0.25rem" }}>Customer App</h4>
-                </div>
-              </div>
-
-              <div className={styles.previewCard} data-reveal>
-                <div className={styles.previewImageWrapper}>
-                  <Image
-                    src="/Product/admin_portal.png"
-                    alt="Admin Portal Interface"
-                    fill
-                    
-                    className={styles.previewImage}
-                  />
-                </div>
-                <div style={{ marginTop: "1rem", textAlign: "left", padding: "0 0.5rem" }}>
-                  <span style={{ fontSize: "0.85rem", color: "#22c55e", fontWeight: "700" }}>DESKTOP</span>
-                  <h4 style={{ fontSize: "1.1rem", fontWeight: "800", color: "#fff", marginTop: "0.25rem" }}>Operations Dashboard</h4>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
