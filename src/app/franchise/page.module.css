@@ -15,8 +15,6 @@
   z-index: 10;
 }
 
-
-
 /* SECTION 1: HERO */
 .heroSection {
   position: relative;
@@ -72,7 +70,9 @@
 }
 
 .ctaFilled {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ctaOutlined {
@@ -80,7 +80,7 @@
   color: #ffffff;
   border: 2px solid rgba(255, 255, 255, 0.2);
   padding: 1rem 2.5rem;
-  border-radius: 0.5rem;
+  border-radius: 50px;
   font-size: 1.05rem;
   font-weight: 700;
   cursor: pointer;
@@ -91,32 +91,6 @@
   border-color: #f97316;
   background-color: rgba(249, 115, 22, 0.05);
   transform: translateY(-2px);
-}
-
-/* Floating stat chips */
-.statChips {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.statChip {
-  background: rgba(17, 24, 39, 0.7);
-  border: 1px solid rgba(249, 115, 22, 0.2);
-  padding: 0.75rem 1.75rem;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #ffffff;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.statChip:hover {
-  transform: translateY(-3px);
-  border-color: #f97316;
 }
 
 .whySection {
@@ -193,241 +167,14 @@
   color: #9ca3af;
 }
 
-/* SECTION 3: FRANCHISE MODEL */
-.modelSection {
-  padding: 7rem 0;
-  position: relative;
-  background-color: transparent;
-}
-
-.modelGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-}
-
-.modelCard {
-  background: rgba(10, 10, 10, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1.25rem;
-  padding: 3.5rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.modelCard:hover {
-  transform: translateY(-8px);
-  border-color: #f97316;
-  box-shadow: 0 20px 45px rgba(249, 115, 22, 0.15);
-}
-
-.modelTier {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.modelSub {
-  font-size: 0.95rem;
-  color: #9ca3af;
-  margin-bottom: 2.5rem;
-  line-height: 1.5;
-  min-height: 3rem;
-}
-
-.modelStatBlock {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 1.5rem 0;
-  margin-bottom: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.modelStatItem {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
-}
-
-.modelStatLabel {
-  color: #9ca3af;
-  font-weight: 500;
-}
-
-.modelStatValue {
-  color: #f97316;
-  font-weight: 800;
-}
-
-.modelFeaturesList {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: auto;
-}
-
-.modelFeatureItem {
-  font-size: 0.9rem;
-  color: #d1d5db;
-  display: flex;
-  gap: 0.75rem;
-  line-height: 1.4;
-}
-
-.checkmarkIcon {
-  color: #22c55e;
-  flex-shrink: 0;
-  margin-top: 0.15rem;
-}
-
-.applySection {
-  padding: 6rem 0;
-  position: relative;
-  background-color: transparent;
-}
-
-.processStrip {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
-  position: relative;
-  margin-top: 3.5rem;
-}
-
-.processStep {
-  background: rgba(10, 10, 10, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  position: relative;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  transition: border-color 0.3s ease, background 0.3s ease;
-}
-
-.processStep:hover {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(249, 115, 22, 0.3);
-}
-
-.stepNumber {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background-color: rgba(249, 115, 22, 0.1);
-  border: 1px solid rgba(249, 115, 22, 0.3);
-  color: #f97316;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem auto;
-  box-shadow: 0 0 10px rgba(249, 115, 22, 0.1);
-}
-
-.stepTitle {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-
-
-.faqSection {
-  padding: 7rem 0 9rem 0;
-  position: relative;
-  background-color: transparent;
-}
-
-.faqList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.faqItem {
-  background: rgba(10, 10, 10, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  transition: border-color 0.3s ease;
-}
-
-.faqItem:hover {
-  border-color: rgba(249, 115, 22, 0.2);
-}
-
-.faqItemActive {
-  border-color: rgba(249, 115, 22, 0.4);
-}
-
-.faqQuestionBlock {
-  padding: 1.5rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-}
-
-.faqQuestion {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.faqArrow {
-  transition: transform 0.2s ease;
-  color: #f97316;
-}
-
-.faqItemActive .faqArrow {
-  transform: rotate(180deg);
-}
-
-.faqAnswer {
-  padding: 0 2rem 1.5rem 2rem;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #9ca3af;
-  border-top: 1px solid transparent;
-}
-
-.faqItemActive .faqAnswer {
-  border-top-color: rgba(255, 255, 255, 0.04);
-}
-
 /* RESPONSIVE DESIGN */
 @media (max-width: 1200px) {
   .heroTitle {
     font-size: 3.5rem;
   }
-  .whyGrid, .modelGrid {
+  .whyGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-  }
-}
-
-@media (max-width: 992px) {
-  .processStrip {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
   }
 }
 
@@ -438,17 +185,8 @@
   .heroSub {
     font-size: 1.1rem;
   }
-  .whyGrid, .modelGrid, .processStrip {
+  .whyGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-  .formCard {
-    padding: 2rem;
-  }
-  .formGrid {
-    grid-template-columns: 1fr;
-  }
-  .formGridFull, .submitBtn, .successBanner {
-    grid-column: 1 / span 1;
   }
 }

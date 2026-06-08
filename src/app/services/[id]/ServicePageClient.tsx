@@ -15,43 +15,17 @@ interface PageClientProps {
 
 export default function ServicePageClient({ service, relatedServices }: PageClientProps) {
   const revealRef = useScrollReveal();
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-
   // Form States
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-
-  // Dynamic Shifting details states
-  const [propertyType, setPropertyType] = useState("");
-  const [numRooms, setNumRooms] = useState("");
-  const [floorLevel, setFloorLevel] = useState("");
-  const [liftAvailable, setLiftAvailable] = useState("");
-
-  const [buildingType, setBuildingType] = useState("");
-  const [workstations, setWorkstations] = useState("");
-  const [serverRoom, setServerRoom] = useState("");
-
-  const [vehicleType, setVehicleType] = useState("");
-  const [vehicleMake, setVehicleMake] = useState("");
-  const [vehicleModel, setVehicleModel] = useState("");
-  const [vehicleInsurance, setVehicleInsurance] = useState("");
-
-  const [storageCategory, setStorageCategory] = useState("");
-  const [storageDuration, setStorageDuration] = useState("");
-
-  const [exhibitionDate, setExhibitionDate] = useState("");
-  const [exhibitionVenue, setExhibitionVenue] = useState("");
-  const [exhibitionStallSize, setExhibitionStallSize] = useState("");
+  const [selectedServiceId, setSelectedServiceId] = useState(service.id);
+  const [showComments, setShowComments] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
-
-  const toggleFaq = (index: number) => {
-    setExpandedFaq((prev) => (prev === index ? null : index));
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,30 +33,22 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
     setSubmitError("");
     setIsSuccess(false);
 
+    const serviceTitleMap: { [key: string]: string } = {
+      household: "Household Shifting",
+      office: "Office Shifting",
+      warehouse: "Warehouse Storage",
+      local: "Local Shifting",
+      vehicle: "Vehicle Shifting",
+      exhibition: "Exhibition Shifting",
+    };
+
     const leadData = {
-      serviceId: service.id,
-      serviceTitle: service.title,
+      serviceId: selectedServiceId,
+      serviceTitle: serviceTitleMap[selectedServiceId] || service.title,
       fullName,
       email,
       phone,
       message,
-      // dynamic properties
-      propertyType,
-      numRooms,
-      floorLevel,
-      liftAvailable,
-      buildingType,
-      workstations,
-      serverRoom,
-      vehicleType,
-      vehicleMake,
-      vehicleModel,
-      vehicleInsurance,
-      storageCategory,
-      storageDuration,
-      exhibitionDate,
-      exhibitionVenue,
-      exhibitionStallSize,
       submittedAt: new Date().toISOString()
     };
 
@@ -101,29 +67,12 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
 
       setIsSuccess(true);
 
-      // Clear common fields
+      // Clear fields
       setFullName("");
       setEmail("");
       setPhone("");
       setMessage("");
-
-      // Clear dynamic fields
-      setPropertyType("");
-      setNumRooms("");
-      setFloorLevel("");
-      setLiftAvailable("");
-      setBuildingType("");
-      setWorkstations("");
-      setServerRoom("");
-      setVehicleType("");
-      setVehicleMake("");
-      setVehicleModel("");
-      setVehicleInsurance("");
-      setStorageCategory("");
-      setStorageDuration("");
-      setExhibitionDate("");
-      setExhibitionVenue("");
-      setExhibitionStallSize("");
+      setShowComments(false);
     } catch (err: any) {
       console.error("Error submitting lead:", err);
       setSubmitError(err.message || "An unexpected error occurred.");
@@ -132,7 +81,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
     }
   };
 
-  // 1. DYNAMIC CONFIGURATIONS FOR CHECKS / FAQS / FLOWS / JOURNEYS
+  // 1. DYNAMIC CONFIGURATIONS FOR CHECKS / FLOWS / JOURNEYS
   const serviceConfig: {
     [key: string]: {
       whyPill: string;
@@ -140,7 +89,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
       flowSteps: { icon: string; title: string; brief: string }[];
       whatWeDo: string[];
       whatYouNeed: string[];
-      faqs: { question: string; answer: string }[];
     };
   } = {
     household: {
@@ -172,12 +120,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         "Defrost and dry out refrigerators 24 hours prior to shifting.",
         "Acquire societal permission gate passes for entry/exit.",
         "Label boxes containing items you need immediately after arrival."
-      ],
-      faqs: [
-        { question: "How do you handle fragile items?", answer: "We use bubble wrap, foam sheets, and high-quality corrugated boxes for all fragile items. They are labeled clearly and loaded into secure vehicle zones." },
-        { question: "Do you disassemble furniture?", answer: "Yes, our trained packers handle disassembly of beds, wardrobes, and tables at pickup, and reassemble them at the destination." },
-        { question: "Is my stuff insured?", answer: "We offer optional comprehensive transit insurance options covering damage and loss, so you move with peace of mind." },
-        { question: "How long does it take?", answer: "Shifting durations depend on size and distance. Local moves are finished same-day, while interstate shifts take 2 to 5 days." }
       ]
     },
     office: {
@@ -207,12 +149,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         "Catalog and lock confidential business records in security boxes.",
         "Direct employee personal items to be taken home prior to move day.",
         "Arrange lift usage permissions with building management."
-      ],
-      faqs: [
-        { question: "Can you work after office hours?", answer: "Yes! We schedule corporate shifts during weekends or after-hours to ensure zero disruption to your daily operations." },
-        { question: "How do you handle server equipment?", answer: "We use double-thick anti-static bubble wrap and dedicated IT crates. Servers are handled and configured by specialized tech handlers." },
-        { question: "What about confidential documents?", answer: "We provide secure, numbered document crates and catalog tags to trace confidential office files throughout transit." },
-        { question: "What's included in the quote?", answer: "Our B2B quotes cover disassembly, packing supplies, vehicle transit, unloading, assembly, and GST invoice details." }
       ]
     },
     warehouse: {
@@ -240,12 +176,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         "Compile a list of high-value items requiring climate control.",
         "Finalize insurance selections for long-term inventory storage.",
         "Secure keys and locks for custom container spaces."
-      ],
-      faqs: [
-        { question: "How secure is the warehouse?", answer: "Our storage hubs feature 24/7 CCTV surveillance, fire prevention alarms, digital stock indexes, and security guards." },
-        { question: "Is climate control available?", answer: "Yes, we provide humidity-regulated climate control slots for delicate inventory, documents, and wooden furniture items." },
-        { question: "Can I access my items anytime?", answer: "Retrieval requests can be scheduled 24 hours in advance via our admin client or call support team." },
-        { question: "Are my goods insured?", answer: "Yes, storage items are comprehensively covered by fire and theft insurance options." }
       ]
     },
     local: {
@@ -275,12 +205,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         "Block parking slots for cargo trucks at both pickup and drop points.",
         "Keep small loose items in bags to speed up packaging.",
         "Secure entry permissions from local resident associations."
-      ],
-      faqs: [
-        { question: "How fast can you complete a local move?", answer: "Local moves are completed on the same day. Booking takes under 3 minutes, and transit typically takes 1 to 4 hours." },
-        { question: "Is packing included in local shifting?", answer: "Yes! Our local packing package includes bubble wrap, tape, and boxes for fragile and electronic items." },
-        { question: "Can I book on weekends?", answer: "Yes, weekend slots are highly active. We recommend booking 3 days in advance to secure preferred morning timings." },
-        { question: "What size truck will be used?", answer: "We select trucks (Tata Ace, Mahindra Bolero, or 14-foot containers) depending on the volume of items declared in the inventory." }
       ]
     },
     vehicle: {
@@ -310,12 +234,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         "Clean the vehicle so scratch inspections are clear.",
         "Remove personal belongings and accessories from the vehicle.",
         "Prepare photocopies of RC book, insurance, and owner ID papers."
-      ],
-      faqs: [
-        { question: "How is my vehicle transported?", answer: "We use dedicated enclosed auto-carriers or secure open carriers with safety harnessing to prevent movement during transit." },
-        { question: "Is transit insurance included?", answer: "Yes, all vehicle transits include standard structural damage and scratch coverage." },
-        { question: "Do I need to empty the fuel tank?", answer: "We recommend keeping the fuel level below 1/4th tank for safety regulations during vehicle transport." },
-        { question: "What documents are required?", answer: "You need to provide copies of the vehicle Registration Certificate (RC), insurance papers, and owner ID." }
       ]
     },
     exhibition: {
@@ -345,12 +263,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         "Apply for event organizer gate passes and unloading permit slots.",
         "Pack delicate exhibit electronics in custom flight cases.",
         "Provide contact lists of booth managers present at the venue."
-      ],
-      faqs: [
-        { question: "Do you coordinate setup at the venue?", answer: "Yes, our exhibition event crew coordinates on-site booth transport, loading, and structural setup." },
-        { question: "What transit speed options do you have?", answer: "We offer express time-critical transport slots to guarantee deliveries match event setup timelines." },
-        { question: "Do you handle reverse logistics?", answer: "Yes, we coordinate packing, dismantle, and return logistics back to your warehouse post-event." },
-        { question: "What if the event gets rescheduled?", answer: "We offer flexible scheduling and safe storage buffer slots if event timings are altered." }
       ]
     }
   };
@@ -607,291 +519,51 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                   />
                 </div>
 
-                {/* Service Type (disabled indicator) */}
+                {/* Service Type (Selectable) */}
                 <div className={styles.inputGroup}>
-                  <label htmlFor="serviceType">Service Selected</label>
-                  <input
-                    type="text"
+                  <label htmlFor="serviceType">Service Selected *</label>
+                  <select
                     id="serviceType"
-                    value={service.title}
-                    disabled
-                    className={styles.formInput}
-                  />
-                </div>
-
-                {/* DYNAMIC SHIFTING FIELDS SPECIFIC TO SERVICE */}
-                {service.id === "household" && (
-                  <>
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="propertyType">Property Type *</label>
-                      <select
-                        id="propertyType"
-                        value={propertyType}
-                        onChange={(e) => setPropertyType(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select property type</option>
-                        <option value="Apartment">Apartment</option>
-                        <option value="Villa">Villa</option>
-                        <option value="Independent House">Independent House</option>
-                        <option value="Society">Society</option>
-                      </select>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="numRooms">Number of Rooms *</label>
-                      <select
-                        id="numRooms"
-                        value={numRooms}
-                        onChange={(e) => setNumRooms(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select size</option>
-                        <option value="1 BHK">1 BHK</option>
-                        <option value="2 BHK">2 BHK</option>
-                        <option value="3 BHK">3 BHK</option>
-                        <option value="4 BHK+">4 BHK+</option>
-                      </select>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="floorLevel">Floor Level *</label>
-                      <select
-                        id="floorLevel"
-                        value={floorLevel}
-                        onChange={(e) => setFloorLevel(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select floor</option>
-                        <option value="Ground Floor">Ground Floor</option>
-                        <option value="1-5 Floor">1-5 Floor</option>
-                        <option value="5-10 Floor">5-10 Floor</option>
-                        <option value="Above 10 Floor">Above 10 Floor</option>
-                      </select>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="liftAvailable">Lift Available *</label>
-                      <select
-                        id="liftAvailable"
-                        value={liftAvailable}
-                        onChange={(e) => setLiftAvailable(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select option</option>
-                        <option value="Yes">Yes, Lift is Available</option>
-                        <option value="No">No, Lift is Not Available</option>
-                      </select>
-                    </div>
-                  </>
-                )}
-
-                {service.id === "office" && (
-                  <>
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="buildingType">Building Type *</label>
-                      <select
-                        id="buildingType"
-                        value={buildingType}
-                        onChange={(e) => setBuildingType(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select building type</option>
-                        <option value="Commercial Building">Commercial Building</option>
-                        <option value="IT Park">IT Park</option>
-                        <option value="Co-working Space">Co-working Space</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="workstations">Number of Workstations *</label>
-                      <input
-                        type="number"
-                        id="workstations"
-                        value={workstations}
-                        onChange={(e) => setWorkstations(e.target.value)}
-                        placeholder="e.g. 25"
-                        className={styles.formInput}
-                        required
-                      />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="serverRoom">Server Shifting Required? *</label>
-                      <select
-                        id="serverRoom"
-                        value={serverRoom}
-                        onChange={(e) => setServerRoom(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select option</option>
-                        <option value="Yes">Yes, Server Room included</option>
-                        <option value="No">No, standard workstations only</option>
-                      </select>
-                    </div>
-                  </>
-                )}
-
-                {service.id === "vehicle" && (
-                  <>
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="vehicleType">Vehicle Type *</label>
-                      <select
-                        id="vehicleType"
-                        value={vehicleType}
-                        onChange={(e) => setVehicleType(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select vehicle type</option>
-                        <option value="Car">Car / Sedan / SUV</option>
-                        <option value="Bike">Motorcycle / Bike</option>
-                        <option value="Scooter">Scooter / Scooty</option>
-                      </select>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="vehicleMake">Vehicle Brand / Make *</label>
-                      <input
-                        type="text"
-                        id="vehicleMake"
-                        value={vehicleMake}
-                        onChange={(e) => setVehicleMake(e.target.value)}
-                        placeholder="e.g. Honda, Maruti Suzuki"
-                        className={styles.formInput}
-                        required
-                      />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="vehicleModel">Vehicle Model *</label>
-                      <input
-                        type="text"
-                        id="vehicleModel"
-                        value={vehicleModel}
-                        onChange={(e) => setVehicleModel(e.target.value)}
-                        placeholder="e.g. Unicorn, Swift"
-                        className={styles.formInput}
-                        required
-                      />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="vehicleInsurance">Transit Insurance Required? *</label>
-                      <select
-                        id="vehicleInsurance"
-                        value={vehicleInsurance}
-                        onChange={(e) => setVehicleInsurance(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select option</option>
-                        <option value="Yes">Yes, include transit insurance</option>
-                        <option value="No">No, basic liability only</option>
-                      </select>
-                    </div>
-                  </>
-                )}
-
-                {service.id === "warehouse" && (
-                  <>
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="storageCategory">Item Category *</label>
-                      <select
-                        id="storageCategory"
-                        value={storageCategory}
-                        onChange={(e) => setStorageCategory(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select category</option>
-                        <option value="Household Items">Household Items</option>
-                        <option value="Office Inventory">Office Inventory</option>
-                        <option value="Industrial Cargo">Industrial Cargo</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="storageDuration">Storage Duration Needed *</label>
-                      <select
-                        id="storageDuration"
-                        value={storageDuration}
-                        onChange={(e) => setStorageDuration(e.target.value)}
-                        className={`${styles.formInput} ${styles.formSelect}`}
-                        required
-                      >
-                        <option value="">Select duration</option>
-                        <option value="1 Month">1 Month</option>
-                        <option value="3 Months">3 Months</option>
-                        <option value="6 Months">6 Months</option>
-                        <option value="12 Months+">12 Months+</option>
-                      </select>
-                    </div>
-                  </>
-                )}
-
-                {service.id === "exhibition" && (
-                  <>
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="exhibitionDate">Event / Show Date *</label>
-                      <input
-                        type="date"
-                        id="exhibitionDate"
-                        value={exhibitionDate}
-                        onChange={(e) => setExhibitionDate(e.target.value)}
-                        className={styles.formInput}
-                        required
-                      />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="exhibitionVenue">Venue Name *</label>
-                      <input
-                        type="text"
-                        id="exhibitionVenue"
-                        value={exhibitionVenue}
-                        onChange={(e) => setExhibitionVenue(e.target.value)}
-                        placeholder="e.g. Pragati Maidan, JECC"
-                        className={styles.formInput}
-                        required
-                      />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label htmlFor="exhibitionStallSize">Stall Dimensions / Size *</label>
-                      <input
-                        type="text"
-                        id="exhibitionStallSize"
-                        value={exhibitionStallSize}
-                        onChange={(e) => setExhibitionStallSize(e.target.value)}
-                        placeholder="e.g. 3m x 3m, 6m x 6m"
-                        className={styles.formInput}
-                        required
-                      />
-                    </div>
-                  </>
-                )}
-
-                {/* Message Details */}
-                <div className={`${styles.inputGroup} ${styles.inputGroupFull}`}>
-                  <label htmlFor="message">Relocation / Cargo Details *</label>
-                  <textarea
-                    id="message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Provide details about your shipment, size, origin, destination, and timeline..."
-                    className={`${styles.formInput} ${styles.textareaInput}`}
+                    value={selectedServiceId}
+                    onChange={(e) => setSelectedServiceId(e.target.value)}
+                    className={`${styles.formInput} ${styles.formSelect}`}
                     required
-                  ></textarea>
+                  >
+                    <option value="household">Household Shifting</option>
+                    <option value="office">Office Shifting</option>
+                    <option value="warehouse">Warehouse Storage</option>
+                    <option value="local">Local Shifting</option>
+                    <option value="vehicle">Vehicle Shifting</option>
+                    <option value="exhibition">Exhibition Shifting</option>
+                  </select>
                 </div>
+
+                {/* Add Comments Toggle Button */}
+                {!showComments && (
+                  <div className={`${styles.inputGroup} ${styles.inputGroupFull} flex justify-start my-2`}>
+                    <button
+                      type="button"
+                      onClick={() => setShowComments(true)}
+                      className="text-sm font-semibold text-[#22c55e] hover:text-[#1b9e4b] transition-colors flex items-center gap-1 bg-transparent border-none cursor-pointer"
+                    >
+                      <span>+ Add Comments</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* Message / Comments Details */}
+                {showComments && (
+                  <div className={`${styles.inputGroup} ${styles.inputGroupFull}`}>
+                    <label htmlFor="message">Comments / Special Requirements</label>
+                    <textarea
+                      id="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Add any comments, special requirements or additional details here..."
+                      className={`${styles.formInput} ${styles.textareaInput}`}
+                    ></textarea>
+                  </div>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -911,49 +583,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
           </div>
         </section>
 
-        {/* SECTION 6: FAQ ACCORDION */}
-        <section className={styles.faqSection}>
-          <div className={styles.sectionHeader} data-reveal>
-            <span className={styles.sectionLabel}>HELP DESK</span>
-            <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-            <div className={styles.underlineBar}></div>
-          </div>
-
-          <div className={styles.faqList}>
-            {currentConfig.faqs.map((faq, index) => {
-              const isActive = expandedFaq === index;
-              return (
-                <div
-                  key={faq.question}
-                  className={`${styles.faqItem} ${isActive ? styles.faqItemActive : ""}`}
-                  onClick={() => toggleFaq(index)}
-                  data-reveal
-                >
-                  <div className={styles.faqQuestionBlock}>
-                    <h4 className={styles.faqQuestion}>{faq.question}</h4>
-                    <svg
-                      className={styles.faqArrow}
-                      viewBox="0 0 24 24"
-                      width="18"
-                      height="18"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      fill="none"
-                    >
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  </div>
-
-                  {isActive && (
-                    <div className={styles.faqAnswer}>
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
 
         {/* SECTION 7: RELATED SERVICES STRIP */}
         <section className={styles.relatedSection}>

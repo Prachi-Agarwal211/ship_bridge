@@ -485,6 +485,11 @@
   padding-right: 3rem;
 }
 
+.formSelect option {
+  background-color: #121212;
+  color: #ffffff;
+}
+
 .textareaInput {
   min-height: 120px;
   resize: vertical;

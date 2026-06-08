@@ -1,0 +1,357 @@
+.timelineSection {
+  background-color: #0A0A0A;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.glow {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 200, 112, 0.08) 0%, transparent 70%);
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #22c55e;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.sectionTitle {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.underlineBar {
+  width: 70px;
+  height: 4px;
+  background-color: #f97316;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ── DESKTOP HORIZONTAL TIMELINE ── */
+.desktopTimeline {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 520px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .desktopTimeline {
+    display: block;
+  }
+}
+
+.mainLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #1B5E3B;
+  transform: translateY(-50%) scaleX(1);
+  transform-origin: left;
+}
+
+.dashedLine {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border-top: 2px dashed #00C870;
+  opacity: 0.4;
+}
+
+.nodesWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.nodeCol {
+  width: 16.66%;
+  height: 100%;
+  position: relative;
+}
+
+.nodeAbove, .nodeBelow {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.nodeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 150px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+}
+
+.nodeAbove .nodeContent {
+  bottom: calc(50% + 60px);
+}
+
+.nodeBelow .nodeContent {
+  top: calc(50% + 60px);
+}
+
+.iconCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #141414;
+  border: 2px solid #00C870;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 0 15px rgba(0, 200, 112, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.iconCircle:hover {
+  transform: scale(1.1);
+}
+
+.nodeTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nodeDesc {
+  font-size: 9.5px;
+  color: #999999;
+  text-align: center;
+  line-height: 1.4;
+  max-width: 140px;
+}
+
+.stemLine {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1);
+  width: 2px;
+  background-color: #1B5E3B;
+  height: 60px;
+}
+
+.nodeAbove .stemLine {
+  bottom: 50%;
+  transform-origin: top;
+}
+
+.nodeBelow .stemLine {
+  top: 50%;
+  transform-origin: bottom;
+}
+
+.timelineDot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #0A0A0A;
+  border: 2.5px solid #00C870;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.dotGlow {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 200, 112, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dotInner {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #00C870;
+}
+
+
+/* ── MOBILE VERTICAL TIMELINE ── */
+.mobileTimeline {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .mobileTimeline {
+    display: none;
+  }
+}
+
+.mobileLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: #1B5E3B;
+  transform: translateX(-50%);
+}
+
+.mobileDashedLine {
+  width: 100%;
+  height: 100%;
+  border-left: 2px dashed #00C870;
+  opacity: 0.4;
+}
+
+.mobileNodes {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.mobileNodeItem {
+  display: flex;
+  width: 100%;
+  position: relative;
+  min-height: 140px;
+}
+
+.mobileDot {
+  position: absolute;
+  left: 50%;
+  top: 50px; /* Aligns with icon circle vertical center */
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #0A0A0A;
+  border: 2.5px solid #00C870;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.mobileStem {
+  position: absolute;
+  top: 50px;
+  height: 2px;
+  background-color: #1B5E3B;
+}
+
+.mobileNodeLeft {
+  justify-content: flex-start;
+  padding-right: 50%;
+}
+
+.mobileNodeLeft .mobileContent {
+  text-align: right;
+  align-items: flex-end;
+  padding-right: 25px;
+}
+
+.mobileNodeLeft .mobileStem {
+  right: 50%;
+  width: 25px;
+  transform-origin: right;
+}
+
+.mobileNodeRight {
+  justify-content: flex-end;
+  padding-left: 50%;
+}
+
+.mobileNodeRight .mobileContent {
+  text-align: left;
+  align-items: flex-start;
+  padding-left: 25px;
+}
+
+.mobileNodeRight .mobileStem {
+  left: 50%;
+  width: 25px;
+  transform-origin: left;
+}
+
+.mobileContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 180px;
+  gap: 6px;
+  position: relative;
+}
+
+.mobileIconWrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #141414;
+  border: 2px solid #00C870;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 0 15px rgba(0, 200, 112, 0.15);
+  margin-bottom: 6px;
+}
+
+.mobileTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mobileDesc {
+  font-size: 9.5px;
+  color: #999999;
+  line-height: 1.4;
+  max-width: 160px;
+}
