@@ -150,7 +150,7 @@ export default function AboutPage() {
                   src="/company/founder.png"
                   alt="ShipBridge Founders"
                   fill
-                  
+                  sizes="(max-width: 992px) 100vw, 40vw"
                   priority
                   className={styles.storyImage}
                 />
@@ -273,7 +273,7 @@ export default function AboutPage() {
                   src="/company/founder.png"
                   alt="Ashish Joshi"
                   fill
-                  
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
                   className={styles.teamImage}
                 />
               </div>
@@ -294,7 +294,7 @@ export default function AboutPage() {
                   src="/company/coo.png"
                   alt="Prachi Agarwal"
                   fill
-                  
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
                   className={styles.teamImage}
                 />
               </div>
@@ -315,7 +315,7 @@ export default function AboutPage() {
                   src="/company/cto.png"
                   alt="Anurag Singh"
                   fill
-                  
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
                   className={styles.teamImage}
                 />
               </div>

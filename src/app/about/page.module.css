@@ -708,9 +708,42 @@
     transform: rotate(90deg);
     margin: 0.5rem 0;
   }
-  .valuesGrid, .teamGrid, .whyGrid {
+  .valuesGrid, .whyGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .teamGrid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+  .valueCard {
+    padding: 1.25rem 1rem !important;
+  }
+  .hexIconWrapper {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .valueTitle {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+  .valueBody {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+  }
+  .whyItem {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+  }
+  .whyTitle {
+    font-size: 1.05rem;
+  }
+  .whyDesc {
+    font-size: 0.8rem;
+    line-height: 1.45;
   }
   .ctaTitle {
     font-size: 2.4rem;
@@ -718,7 +751,7 @@
   .ctaSub {
     font-size: 1.1rem;
   }
-  .mvCard, .valueCard {
+  .mvCard {
     padding: 2rem 1.5rem;
   }
   .storySection, .mvSection, .valuesSection, .teamSection, .whySection, .ctaSection {
@@ -727,7 +760,16 @@
 }
 
 @media (max-width: 480px) {
-  .mvCard, .valueCard {
+  .valuesGrid, .whyGrid {
+    gap: 0.75rem;
+  }
+  .valueCard {
+    padding: 1rem 0.8rem !important;
+  }
+  .whyItem {
+    padding: 1rem 0.8rem;
+  }
+  .mvCard {
     padding: 1.6rem 1.25rem;
   }
   .storySection, .mvSection, .valuesSection, .teamSection, .whySection, .ctaSection {

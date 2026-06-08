@@ -367,6 +367,23 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  .logoContainer {
+    gap: 0.6rem;
+  }
+  .logo {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  .brandName {
+    font-size: 1rem;
+  }
+  .brandTag {
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
+  }
   .mobileMenuLink {
     font-size: 1.65rem;
   }

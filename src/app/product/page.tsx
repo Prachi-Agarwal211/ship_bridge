@@ -69,7 +69,7 @@ export default function ProductCatalogPage() {
                   src="/Product/app_image.png"
                   alt="ShipBridge Customer App Mockup"
                   fill
-                  
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.productImage}
                 />
               </div>
@@ -167,7 +167,7 @@ export default function ProductCatalogPage() {
                   src="/Product/admin_portal.png"
                   alt="ShipBridge Admin Portal Dashboard Mockup"
                   fill
-                  
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.productImage}
                 />
               </div>
