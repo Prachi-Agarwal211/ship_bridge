@@ -24,6 +24,18 @@
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 5.5rem 0 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 4.5rem 0 2.5rem 0;
+  }
+}
+
 .heroContent {
   max-width: 850px;
   margin: 0 auto;
@@ -187,6 +199,18 @@
   }
   .whyGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+  .whyCard {
+    padding: 2rem 1.5rem;
+  }
+  .whySection {
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .whyCard {
+    padding: 1.6rem 1.25rem;
   }
 }

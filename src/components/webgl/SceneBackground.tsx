@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useMemo, useState, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 const vertexShader = `
@@ -127,11 +127,13 @@ function ShaderPlane() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  /* eslint-disable react-hooks/immutability */
   useFrame(({ clock }) => {
     uniforms.uTime.value = clock.getElapsedTime();
     uniforms.uMouse.value.x += (mouse.current.x - uniforms.uMouse.value.x) * 0.05;
     uniforms.uMouse.value.y += (mouse.current.y - uniforms.uMouse.value.y) * 0.05;
   });
+  /* eslint-enable react-hooks/immutability */
 
   return (
     <mesh ref={meshRef} scale={[2, 2, 1]}>
@@ -151,6 +153,7 @@ export default function SceneBackground() {
   useEffect(() => {
     const isMobile = /iPhone|Android/i.test(navigator.userAgent);
     const hasGoodHardware = navigator.hardwareConcurrency > 2;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShowGL(!isMobile || hasGoodHardware);
   }, []);
 

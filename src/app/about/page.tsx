@@ -7,31 +7,17 @@ import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "About Us | ShipBridge Logistics",
-    description: "Learn about ShipBridge Logistics, India's premier logistics aggregator. Our story, mission, vision, core values, and the expert team driving tech-enabled relocations across India.",
+    title: "About ShipBridge | India's Trusted Logistics & Relocation Platform",
+    description: "Founded in Indore (2026), ShipBridge is building India's most transparent logistics platform for household shifting, office moves, vehicle transport, and more. Tech-enabled, insured, pan-India.",
+    openGraph: {
+      title: "About ShipBridge Logistics",
+      description: "India's premier logistics platform. Story, team, mission for safer, simpler, transparent moves.",
+      images: [{ url: "/seo/og-image.jpg" }],
+    },
   };
 }
 
 export default function AboutPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.shipbridge.in",
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "About Us",
-        "item": "https://www.shipbridge.in/about",
-      },
-    ],
-  };
-
   return (
     <ScrollRevealWrapper className={styles.pageContainer}>
       <Navbar />
@@ -45,6 +31,7 @@ export default function AboutPage() {
           loop
           muted
           playsInline
+          preload="metadata"
           className={styles.heroVideo}
         >
           <source src="/videos/about-hero.mp4" type="video/mp4" />
@@ -59,7 +46,7 @@ export default function AboutPage() {
             </h1>
 
             <p className={styles.heroSub}>
-              We're building the technology to make every move in India simpler, safer, and more transparent — starting from Indore.
+              We&apos;re building the technology to make every move in India simpler, safer, and more transparent — starting from Indore.
             </p>
 
             <div className={styles.foundingStrip}>
@@ -163,13 +150,13 @@ export default function AboutPage() {
                   src="/company/founder.png"
                   alt="ShipBridge Founders"
                   fill
-                  unoptimized
+                  
                   priority
                   className={styles.storyImage}
                 />
                 <div className={styles.imageOverlay}></div>
                 <div className={styles.storyImageLabel}>
-                  <h4>Bridging India's Logistics</h4>
+                  <h4>Bridging India&apos;s Logistics</h4>
                   <p>Technology • Trust • Transparency</p>
                 </div>
               </div>
@@ -286,7 +273,7 @@ export default function AboutPage() {
                   src="/company/founder.png"
                   alt="Ashish Joshi"
                   fill
-                  unoptimized
+                  
                   className={styles.teamImage}
                 />
               </div>
@@ -307,7 +294,7 @@ export default function AboutPage() {
                   src="/company/coo.png"
                   alt="Prachi Agarwal"
                   fill
-                  unoptimized
+                  
                   className={styles.teamImage}
                 />
               </div>
@@ -328,7 +315,7 @@ export default function AboutPage() {
                   src="/company/cto.png"
                   alt="Anurag Singh"
                   fill
-                  unoptimized
+                  
                   className={styles.teamImage}
                 />
               </div>

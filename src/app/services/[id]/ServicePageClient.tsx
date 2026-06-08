@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./page.module.css";
 import type { ServiceItem } from "@/data/services";
+import { SERVICES_DATA, getServiceDetail } from "@/data/services";
 
 interface PageClientProps {
   service: ServiceItem;
@@ -27,24 +28,18 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
+  // FAQ accordion (uses centralized faqs from data)
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
     setIsSuccess(false);
 
-    const serviceTitleMap: { [key: string]: string } = {
-      household: "Household Shifting",
-      office: "Office Shifting",
-      warehouse: "Warehouse Storage",
-      local: "Local Shifting",
-      vehicle: "Vehicle Shifting",
-      exhibition: "Exhibition Shifting",
-    };
-
     const leadData = {
       serviceId: selectedServiceId,
-      serviceTitle: serviceTitleMap[selectedServiceId] || service.title,
+      serviceTitle: SERVICES_DATA.find(s => s.id === selectedServiceId)?.title || service.title,
       fullName,
       email,
       phone,
@@ -73,201 +68,17 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
       setPhone("");
       setMessage("");
       setShowComments(false);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error submitting lead:", err);
-      setSubmitError(err.message || "An unexpected error occurred.");
+      const msg = err instanceof Error ? err.message : "An unexpected error occurred.";
+      setSubmitError(msg);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // 1. DYNAMIC CONFIGURATIONS FOR CHECKS / FLOWS / JOURNEYS
-  const serviceConfig: {
-    [key: string]: {
-      whyPill: string;
-      journeySteps: { icon: string; title: string; desc: string }[];
-      flowSteps: { icon: string; title: string; brief: string }[];
-      whatWeDo: string[];
-      whatYouNeed: string[];
-    };
-  } = {
-    household: {
-      whyPill: "Door-to-door Premium Packing",
-      journeySteps: [
-        { icon: "🔎", title: "Survey Check", desc: "Digital or physical inventory lookup" },
-        { icon: "📦", title: "Premium Packing", desc: "Multi-layer wrap & box protection" },
-        { icon: "🚛", title: "Safe Transit", desc: "Closed-container transport trucks" },
-        { icon: "🏠", title: "Room Setup", desc: "Unpacking & furniture alignment" }
-      ],
-      flowSteps: [
-        { icon: "📍", title: "Pickup Details", brief: "Provide address, floors, and lift access" },
-        { icon: "🚚", title: "Drop Details", brief: "Provide destination address info" },
-        { icon: "📦", title: "Item Inventory", brief: "List furniture and electronics room-by-room" },
-        { icon: "🚛", title: "Vehicle Details", brief: "Select container truck sizes" },
-        { icon: "🏺", title: "Fragile Items", brief: "Specify delicate items and glassware" },
-        { icon: "🛡️", title: "Service Options", brief: "Select Premium or Standard wrap grade" },
-        { icon: "📅", title: "Schedule", brief: "Select preferred shifting date/time" },
-        { icon: "🚀", title: "Submit", brief: "Confirm details and submit lead" }
-      ],
-      whatWeDo: [
-        "Multi-layer bubble wrapping for all fragile glass and chinaware.",
-        "Custom furniture packaging with foam sheets and corner guards.",
-        "Heavy item loading, unloading, and alignment inside the new home.",
-        "Systematic wardrobe box packing to prevent wrinkles in clothing."
-      ],
-      whatYouNeed: [
-        "Keep cash, jewelry, and personal ID documents in your personal carry-on.",
-        "Defrost and dry out refrigerators 24 hours prior to shifting.",
-        "Acquire societal permission gate passes for entry/exit.",
-        "Label boxes containing items you need immediately after arrival."
-      ]
-    },
-    office: {
-      whyPill: "Weekend & After-Hours Shifting Available",
-      journeySteps: [
-        { icon: "🏢", title: "IT Audit", desc: "Desktop & server setup assessment" },
-        { icon: "⚡", title: "Tech Packing", desc: "Anti-static bubble wrap safety" },
-        { icon: "🚚", title: "Off-Hours Move", desc: "Overnight/weekend transit to limit downtime" },
-        { icon: "💻", title: "Workspace Setup", desc: "Placement and desktop wiring setup" }
-      ],
-      flowSteps: [
-        { icon: "🏢", title: "Address Details", brief: "Source and destination office locations" },
-        { icon: "💻", title: "Item Details", brief: "Tables, chairs, and desk cabinets list" },
-        { icon: "⚡", title: "IT/Electronics", brief: "Servers, switches, systems catalog" },
-        { icon: "📋", title: "Inventory", brief: "Secure tags for business files and archives" },
-        { icon: "🛡️", title: "Service Options", brief: "Standard shifting or server transport setup" },
-        { icon: "📅", title: "Schedule", brief: "Finalize weekend/night shift timings" }
-      ],
-      whatWeDo: [
-        "Anti-static bubble wrapping for servers, workstations, and network switches.",
-        "Systematic numbering and labeling of desks, drawers, and document bins.",
-        "Out-of-hours shifting options to keep downtime at absolute zero.",
-        "Desktop setup and wiring arrangements at the new corporate location."
-      ],
-      whatYouNeed: [
-        "Back up all critical databases and server configurations.",
-        "Catalog and lock confidential business records in security boxes.",
-        "Direct employee personal items to be taken home prior to move day.",
-        "Arrange lift usage permissions with building management."
-      ]
-    },
-    warehouse: {
-      whyPill: "24/7 CCTV & Climate Controlled Slots",
-      journeySteps: [
-        { icon: "🚚", title: "Safe Pickup", desc: "Professional logistics retrieval from your site" },
-        { icon: "🏷️", title: "Safe Crate", desc: "Secure barcoded packing & cataloging" },
-        { icon: "🔒", title: "CCTV Slots", desc: "Monitored, humidity-controlled compartments" },
-        { icon: "📦", title: "Retrieval", desc: "Doorstep delivery on demand" }
-      ],
-      flowSteps: [
-        { icon: "📍", title: "Pickup Details", brief: "Address and pickup schedule details" },
-        { icon: "🏭", title: "Storage Type", brief: "Climate-regulated or normal lock slots" },
-        { icon: "📦", title: "Item Details", brief: "Detailed barcode list of stored crates" },
-        { icon: "📅", title: "Schedule & Submit", brief: "Finalize storage duration and confirm" }
-      ],
-      whatWeDo: [
-        "Dedicated, humidity-regulated clean storage slots.",
-        "Digital cataloging and barcode indexing of all incoming crates.",
-        "24/7 CCTV tracking with structural security protocols and guards.",
-        "Flexible scheduling for partial or full retrieval transits."
-      ],
-      whatYouNeed: [
-        "Categorize and clean items before sending them to storage.",
-        "Compile a list of high-value items requiring climate control.",
-        "Finalize insurance selections for long-term inventory storage.",
-        "Secure keys and locks for custom container spaces."
-      ]
-    },
-    local: {
-      whyPill: "Fast, Budget-Friendly Same-Day Moves",
-      journeySteps: [
-        { icon: "📱", title: "3-Min Booking", desc: "Submit details & choose a local truck option" },
-        { icon: "📦", title: "Tape & Wrap", desc: "Quick basic wrap protection for transport" },
-        { icon: "🚚", title: "Direct Transit", desc: "Direct route shifting via local transporter" },
-        { icon: "🏁", title: "Quick Delivery", desc: "Same-day doorstep placement and alignment" }
-      ],
-      flowSteps: [
-        { icon: "📍", title: "Select Service", brief: "Configure local distance limits" },
-        { icon: "🚚", title: "Pickup Details", brief: "Source address and floor level notes" },
-        { icon: "📦", title: "Item Details", brief: "Furniture list and boxes details" },
-        { icon: "🚛", title: "Vehicle Details", brief: "Select Tata Ace, Bolero, or Containers" },
-        { icon: "📅", title: "Schedule", brief: "Choose move date and morning slots" },
-        { icon: "🚀", title: "Submit", brief: "Verify checklist and submit lead" }
-      ],
-      whatWeDo: [
-        "Rapid same-day loading, short-haul transport, and unloading.",
-        "Budget-friendly pricing packages tailored for local relocations.",
-        "Experienced drivers navigating city-specific load zones and routes.",
-        "Basic packing with high-strength cargo wrap and tapes."
-      ],
-      whatYouNeed: [
-        "Measure doorways and elevators to check if large furniture fits.",
-        "Block parking slots for cargo trucks at both pickup and drop points.",
-        "Keep small loose items in bags to speed up packaging.",
-        "Secure entry permissions from local resident associations."
-      ]
-    },
-    vehicle: {
-      whyPill: "Scratch-Free Enclosed Auto Carriers",
-      journeySteps: [
-        { icon: "📋", title: "Condition Check", desc: "Multi-point digital scratch inspection report" },
-        { icon: "🔒", title: "Carrier Safe", desc: "Side-wall harnesses inside enclosed carrier" },
-        { icon: "🛰️", title: "GPS Transit", desc: "Real-time transport tracking notifications" },
-        { icon: "🔑", title: "Safe Handover", desc: "Inspection match verification on delivery" }
-      ],
-      flowSteps: [
-        { icon: "📍", title: "Select Vehicle", brief: "Specify Car, Bike, or Scooter transit" },
-        { icon: "🚚", title: "Pickup Address", brief: "Doorstep pickup address log" },
-        { icon: "📋", title: "Make & Model", brief: "Brand, registration, status logs" },
-        { icon: "🚛", title: "Carrier Select", brief: "Open carrier or Enclosed trailer" },
-        { icon: "📅", title: "Schedule", brief: "Finalize transit dates" },
-        { icon: "🚀", title: "Submit", brief: "Review transit terms and submit" }
-      ],
-      whatWeDo: [
-        "Doorstep vehicle pickup and transport in dedicated car-carriers.",
-        "High-strength wheel harnessing and side-wall stabilization.",
-        "Complete structural scratch checks with digital condition reports.",
-        "Live GPS transit mapping links sent directly to your phone."
-      ],
-      whatYouNeed: [
-        "Keep fuel levels below 1/4th tank to meet carrier load guidelines.",
-        "Clean the vehicle so scratch inspections are clear.",
-        "Remove personal belongings and accessories from the vehicle.",
-        "Prepare photocopies of RC book, insurance, and owner ID papers."
-      ]
-    },
-    exhibition: {
-      whyPill: "Time-Critical Setup & Reverse Logistics",
-      journeySteps: [
-        { icon: "⏱️", title: "Safe Transport", desc: "Express delivery timed to stall setup schedule" },
-        { icon: "🛠️", title: "Setup Help", desc: "Dedicated crew assisting loading & stand setups" },
-        { icon: "🏢", title: "Buffer Hold", desc: "Temporary warehousing before & after show times" },
-        { icon: "🔄", title: "Return Logistics", desc: "Dismantling and safe return transport" }
-      ],
-      flowSteps: [
-        { icon: "📍", title: "Event Setup", brief: "Enter show date and timings" },
-        { icon: "🚚", title: "Venue Destination", brief: "Hall number, stall address logs" },
-        { icon: "📦", title: "Exhibit Inventory", brief: "Stall panels, displays, brochure index" },
-        { icon: "🚛", title: "Transit Carrier", brief: "Express delivery scheduler selection" },
-        { icon: "📅", title: "Schedule", brief: "On-site unloading time frame" },
-        { icon: "🚀", title: "Submit", brief: "Submit event logistics form" }
-      ],
-      whatWeDo: [
-        "Direct time-critical transport of stalls, banners, and brochures.",
-        "On-site event crew assisting with loading and stand installations.",
-        "Secure warehouse storage buffer slots before and after show times.",
-        "Complete reverse packing and return logistics to home warehouses."
-      ],
-      whatYouNeed: [
-        "Finalize booth structural specifications and unloading timelines.",
-        "Apply for event organizer gate passes and unloading permit slots.",
-        "Pack delicate exhibit electronics in custom flight cases.",
-        "Provide contact lists of booth managers present at the venue."
-      ]
-    }
-  };
-
-  const currentConfig = serviceConfig[service.id] || serviceConfig.household;
+  // Rich per-service details now come from centralized data (DRY).
+  const currentConfig = getServiceDetail(service.id);
 
   return (
     <div className={styles.pageContainer} ref={revealRef}>
@@ -311,6 +122,18 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
               ))}
             </div>
 
+            {/* Creative Trust Strip (stats from researched service data) */}
+            {currentConfig.stats && currentConfig.stats.length > 0 && (
+              <div className={styles.trustStrip} data-reveal>
+                {currentConfig.stats.map((stat, i) => (
+                  <div key={i} className={styles.trustItem}>
+                    <span className={styles.trustValue}>{stat.value}</span>
+                    <span className={styles.trustLabel}>{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Customer Journey Steps Strip */}
             <div className={styles.journeyStrip}>
               <h4 className={styles.journeyTitle}>Customer Journey Timeline</h4>
@@ -342,9 +165,9 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
               src={service.image}
               alt={service.title}
               fill
-              unoptimized
               className={styles.image}
               priority
+              sizes="(max-width: 1200px) 100vw, 45vw"
             />
             <div className={styles.imageOverlay}></div>
           </div>
@@ -425,7 +248,9 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
               <span className={styles.pricingCardIcon}>📊</span>
               <h4 className={styles.pricingCardTitle}>Factors That Affect Price</h4>
               <p className={styles.pricingCardDesc}>
-                Pricing is determined by transport distance, volume size (number of rooms/workstations), floor height, lift access availability, and packaging quality.
+                {currentConfig.pricingFactors && currentConfig.pricingFactors.length > 0
+                  ? currentConfig.pricingFactors.join(" • ")
+                  : "Pricing is determined by transport distance, volume size, floor height, lift access, and packaging quality."}
               </p>
             </div>
 
@@ -452,6 +277,42 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             * Final quote provided after a free consultation call
           </div>
         </section>
+
+        {/* SECTION: FAQ (creative trust builder + SEO rich content) */}
+        {currentConfig.faqs && currentConfig.faqs.length > 0 && (
+          <section className={styles.faqSection}>
+            <div className={styles.sectionHeader} data-reveal>
+              <span className={styles.sectionLabel}>QUESTIONS ANSWERED</span>
+              <h2 className={styles.sectionTitle}>Common Questions</h2>
+              <div className={styles.underlineBar}></div>
+            </div>
+
+            <div className={styles.faqList}>
+              {currentConfig.faqs.map((faq, idx) => {
+                const isOpen = expandedFaq === idx;
+                return (
+                  <div
+                    key={idx}
+                    className={`${styles.faqItem} ${isOpen ? styles.faqItemActive : ''}`}
+                    data-reveal
+                  >
+                    <button
+                      className={styles.faqQuestionBlock}
+                      onClick={() => setExpandedFaq(isOpen ? null : idx)}
+                      aria-expanded={isOpen}
+                    >
+                      <span className={styles.faqQuestion}>{faq.q}</span>
+                      <span className={styles.faqArrow}>▼</span>
+                    </button>
+                    {isOpen && (
+                      <div className={styles.faqAnswer}>{faq.a}</div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* SECTION 5: ENHANCED FORM */}
         <section className={styles.bookingSection} id="booking-form">
@@ -529,12 +390,9 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                     className={`${styles.formInput} ${styles.formSelect}`}
                     required
                   >
-                    <option value="household">Household Shifting</option>
-                    <option value="office">Office Shifting</option>
-                    <option value="warehouse">Warehouse Storage</option>
-                    <option value="local">Local Shifting</option>
-                    <option value="vehicle">Vehicle Shifting</option>
-                    <option value="exhibition">Exhibition Shifting</option>
+                    {SERVICES_DATA.map((s) => (
+                      <option key={s.id} value={s.id}>{s.title}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -579,6 +437,16 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                   </>
                 )}
               </button>
+
+              {/* Creative WhatsApp CTA (high-intent alternative, prefilled) */}
+              <a
+                href={`https://wa.me/919999999999?text=${encodeURIComponent(`Hi ShipBridge, I'm interested in ${service.title}. Please call me back.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.whatsappCta}
+              >
+                💬 Or message us on WhatsApp (instant reply)
+              </a>
             </form>
           </div>
         </section>
@@ -600,11 +468,13 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                 className={styles.relatedCard}
                 data-reveal
               >
+                <div className={styles.relatedThumb} style={{ backgroundImage: `url(${relService.image})` }} aria-hidden />
                 <span className={styles.relatedOverline}>{relService.subtitle}</span>
                 <h4 className={styles.relatedTitle}>{relService.title}</h4>
                 <p className={styles.relatedDesc}>
                   {relService.description.slice(0, 100)}...
                 </p>
+                <span className={styles.relatedCta}>Explore →</span>
               </Link>
             ))}
           </div>

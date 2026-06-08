@@ -280,30 +280,37 @@
 .mobileMenu {
   position: fixed;
   inset: 0;
-  background: rgba(8, 8, 10, 0.98);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background-color: #04080a;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(at 0% 0%, hsla(28, 100%, 53%, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(142, 71%, 45%, 0.06) 0px, transparent 50%);
+  background-size: 30px 30px, 100% 100%, 100% 100%;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   z-index: 150;
   display: flex;
   flex-direction: column;
-  padding: 100px clamp(1.5rem, 5vw, 4rem) 2rem;
+  padding: 96px clamp(1.25rem, 5vw, 3rem) 2.5rem;
   overflow-y: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .mobileLinks {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  gap: 1.1rem;
+  margin-bottom: 2rem;
 }
 
 .mobileMenuLink {
-  font-size: 2.5rem;
+  font-size: 2rem; /* slightly smaller for better proportion */
   font-weight: 800;
   color: #fff;
   text-decoration: none;
   transition: color 0.3s ease;
   display: inline-block;
+  padding: 0.25rem 0;
 }
 
 .mobileMenuLink:hover {
@@ -311,29 +318,33 @@
 }
 
 .mobileServicesDivider {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 2px;
   color: var(--color-text-muted);
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .mobileServicesGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .mobileServiceChip {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem;
+  padding: 0.85rem 0.9rem;
   border-radius: var(--radius-lg);
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  min-height: 44px; /* good touch target */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
 }
 
@@ -357,9 +368,13 @@
 
 @media (max-width: 768px) {
   .mobileMenuLink {
-    font-size: 2rem;
+    font-size: 1.65rem;
   }
   .mobileServicesGrid {
     grid-template-columns: 1fr;
+  }
+  .mobileServiceChip {
+    font-size: 0.82rem;
+    padding: 0.7rem 0.75rem;
   }
 }

@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Navbar from "@/components/Navbar";
 import FranchiseTimeline from "@/components/FranchiseTimeline";
 import styles from "./page.module.css";
 
@@ -31,7 +30,6 @@ export default function FranchiseClient() {
 
   return (
     <div className={styles.pageContainer} ref={containerRef}>
-      <Navbar />
 
       {/* SECTION 1: HERO */}
       <section className={styles.heroSection}>

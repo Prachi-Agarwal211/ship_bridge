@@ -6,6 +6,7 @@ import "./globals.css";
 
 import CustomCursor from '@/components/CustomCursor';
 import SceneBackgroundClient from '@/components/webgl/SceneBackgroundClient';
+import { CONTACTS } from '@/data/contacts';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,14 +21,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.shipbridge.in"),
+  metadataBase: new URL(CONTACTS.site.base),
   title: "ShipBridge | India's Premier Logistics & Relocation Platform",
   description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
   keywords: "logistics India, household shifting, office relocation, packers movers India, vehicle transport, warehousing India, exhibition logistics, Tier 2 logistics, SME logistics India, ShipBridge",
   openGraph: {
     type: "website",
-    url: "https://www.shipbridge.in",
-    siteName: "ShipBridge Logistics",
+    url: CONTACTS.site.base,
+    siteName: CONTACTS.site.name,
     title: "ShipBridge | India's Premier Logistics & Relocation Platform",
     description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
     images: [
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
         url: "/seo/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ShipBridge Logistics | Apka Bhrosa, Humari Pahechan.",
+        alt: `${CONTACTS.site.name} | ${CONTACTS.site.tagline}`,
       },
     ],
   },
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
   },
   robots: "index, follow",
   alternates: {
-    canonical: "https://www.shipbridge.in",
+    canonical: CONTACTS.site.base,
   },
   verification: {
     google: 'YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN',
@@ -78,42 +79,44 @@ export default function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ShipBridge Logistics",
-    "url": "https://www.shipbridge.in",
-    "logo": "https://www.shipbridge.in/logo/logo_new.png",
+    "name": CONTACTS.site.name,
+    "url": CONTACTS.site.base,
+    "logo": `${CONTACTS.site.base}/logo/logo_new.png`,
     "sameAs": [
-      "https://www.facebook.com/ShipBridgeLogistics",
-      "https://twitter.com/ShipBridge",
-      "https://www.linkedin.com/company/shipbridge-logistics",
-      "https://www.instagram.com/shipbridgelogistics"
+      CONTACTS.social.facebook,
+      CONTACTS.social.twitter,
+      CONTACTS.social.linkedin,
+      CONTACTS.social.instagram,
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-XXXXXXXXXX",
-      "contactType": "customer service"
-    }
+      "telephone": CONTACTS.phone,
+      "contactType": "customer service",
+      "email": CONTACTS.email.general,
+    },
   };
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "ShipBridge Logistics",
-    "image": "https://www.shipbridge.in/logo/logo_new.png",
-    "url": "https://www.shipbridge.in",
-    "telephone": "+91-XXXXXXXXXX",
-    "logo": "https://www.shipbridge.in/logo/logo_new.png",
+    "name": CONTACTS.site.name,
+    "image": `${CONTACTS.site.base}/logo/logo_new.png`,
+    "url": CONTACTS.site.base,
+    "telephone": CONTACTS.phone,
+    "email": CONTACTS.email.general,
+    "logo": `${CONTACTS.site.base}/logo/logo_new.png`,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Plot No. 12, Sector 18",
-      "addressLocality": "Gurugram",
-      "addressRegion": "Haryana",
-      "postalCode": "122015",
-      "addressCountry": "IN"
+      "streetAddress": CONTACTS.address.street,
+      "addressLocality": CONTACTS.address.city,
+      "addressRegion": CONTACTS.address.region,
+      "postalCode": CONTACTS.address.postalCode,
+      "addressCountry": CONTACTS.address.country,
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 28.4744,
-      "longitude": 77.0652
+      "latitude": CONTACTS.geo.latitude,
+      "longitude": CONTACTS.geo.longitude,
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -123,11 +126,11 @@ export default function RootLayout({
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday"
+        "Saturday",
       ],
       "opens": "09:00",
-      "closes": "18:00"
-    }
+      "closes": "18:00",
+    },
   };
 
   return (

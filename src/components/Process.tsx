@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
+import MagneticButton from '@/components/animations/MagneticButton';
 import styles from './Process.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,12 +39,29 @@ const PROCESS_STEPS = [
 
 export default function Process() {
   const containerRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile to render a completely different phone-optimized experience
+  // while keeping 100% original laptop/desktop structure + animations untouched.
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 769);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   useScrollReveal({}, containerRef);
   
   useGSAP(() => {
     if (!containerRef.current) return;
-    
-    // Draw the SVG path on scroll
+
+    // Only run the complex desktop/laptop SVG timeline animations on larger screens.
+    // This protects the original laptop structure and GSAP ScrollTrigger animations
+    // from running (or querying hidden elements) on mobile.
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+    if (!isDesktop) return;
+
+    // Draw the SVG path on scroll (desktop only)
     const path = document.querySelector('.timeline-path') as SVGPathElement;
     if (path) {
       const length = path.getTotalLength();
@@ -61,8 +79,8 @@ export default function Process() {
       });
     }
 
-    // Fade up the steps as the line reaches them
-    gsap.utils.toArray('.step-marker-container').forEach((el: any, i) => {
+    // Fade up the steps as the line reaches them (desktop only)
+    gsap.utils.toArray<HTMLElement>('.step-marker-container').forEach((el) => {
       gsap.fromTo(el,
         { scale: 0, opacity: 0, y: 30 },
         {
@@ -93,9 +111,11 @@ export default function Process() {
             <p className={styles.subtitle}>
               Simplifying logistics down to an exact science. We replaced the chaos of moving with a structured, technology-driven workflow. Every step is predictable, transparent, and flawless.
             </p>
-            <button className={`${styles.ctaButton} global-btn`}>
-              <span className="global-btn-text">Book Now</span>
-            </button>
+            <MagneticButton strength={25}>
+              <button className={`${styles.ctaButton} global-btn`}>
+                <span className="global-btn-text">Book Now</span>
+              </button>
+            </MagneticButton>
           </div>
         </div>
 
@@ -153,6 +173,38 @@ export default function Process() {
           ))}
 
         </div>
+
+        {/* Phone-native recreation: completely different vertical design for mobile.
+            Only rendered on small screens so laptop/desktop DOM + structure + all GSAP animations
+            remain 100% untouched and original. */}
+        {isMobile && (
+          <div className={styles.mobileSteps}>
+            <div className={styles.mobileStepsHeader}>
+              <span className={styles.overline}>THE FLOW, SIMPLIFIED</span>
+              <h3 className={styles.mobileStepsTitle}>How it works on your phone</h3>
+            </div>
+            <ol className={styles.mobileStepsList}>
+              {PROCESS_STEPS.map((step, index) => (
+                <li key={index} className={styles.mobileStep}>
+                  <span className={styles.mobileStepNum}>{step.num}</span>
+                  <div>
+                    <div className={styles.mobileStepTitle}>{step.title}</div>
+                    <p className={styles.mobileStepDesc}>{step.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <MagneticButton strength={25}>
+              <button 
+                className={`${styles.ctaButton} global-btn`} 
+                onClick={() => window.location.href = '/services/household#booking-form'}
+                aria-label="Start booking a move"
+              >
+                <span className="global-btn-text">Start Your Move</span>
+              </button>
+            </MagneticButton>
+          </div>
+        )}
       </div>
     </section>
   );

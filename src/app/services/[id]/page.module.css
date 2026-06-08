@@ -135,11 +135,41 @@
   transform: translateY(-2px);
 }
 
+/* Creative Trust Strip (hero, mobile friendly) */
+.trustStrip {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin: 1.25rem 0 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  min-width: 92px;
+}
+.trustValue {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #f97316;
+  line-height: 1;
+}
+.trustLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
 /* Image Card Box */
 .imageCard {
   position: relative;
   width: 100%;
-  height: 480px;
+  aspect-ratio: 16 / 10;
+  max-height: 520px;
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -515,6 +545,21 @@
   transform: translateX(5px);
 }
 
+.whatsappCta {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #22c55e;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.whatsappCta:hover {
+  color: #16a34a;
+  text-decoration: underline;
+}
+
 /* Success notification banner */
 .successBanner {
   grid-column: span 2;
@@ -647,6 +692,15 @@
   box-shadow: 0 10px 25px rgba(249, 115, 22, 0.08);
 }
 
+.relatedThumb {
+  height: 92px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
 .relatedOverline {
   font-size: 0.75rem;
   font-weight: 700;
@@ -655,6 +709,15 @@
   letter-spacing: 1.5px;
   margin-bottom: 0.5rem;
   display: block;
+}
+
+.relatedCta {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f97316;
+  letter-spacing: 0.5px;
 }
 
 .relatedTitle {
@@ -686,6 +749,118 @@
 }
 
 /* ==========================================================================
+   SECTION 8: CUSTOMER JOURNEY TIMELINE
+   ========================================================================== */
+.journeyStrip {
+  margin-top: 3.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.journeyStrip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--color-orange), var(--color-green));
+}
+
+.journeyTitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--color-orange);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.journeyTimeline {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: stretch;
+  position: relative;
+}
+
+.journeyStep {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  position: relative;
+}
+
+.journeyStepLeft {
+  flex-shrink: 0;
+}
+
+.journeyIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.1);
+  transition: all 0.3s ease;
+}
+
+.journeyStep:hover .journeyIcon {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: var(--color-orange);
+  transform: scale(1.05);
+}
+
+.journeyStepRight {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.journeyMeta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.journeyNumber {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  letter-spacing: 1px;
+}
+
+.journeyStepTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.journeyStepDesc {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.journeyArrow {
+  position: absolute;
+  right: -0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+/* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
 @media (max-width: 1200px) {
@@ -695,7 +870,6 @@
   }
   
   .imageCard {
-    height: 400px;
     max-width: 500px;
     margin: 0 auto;
   }
@@ -734,5 +908,53 @@
   
   .includedCard {
     padding: 2rem 1.5rem;
+  }
+
+  .flowTimeline {
+    gap: 1rem;
+    padding: 1rem 0.25rem;
+  }
+
+  .flowCard {
+    min-width: 240px;
+    padding: 1.5rem;
+  }
+
+  .journeyTimeline {
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .journeyArrow {
+    display: none;
+  }
+
+  .journeyStep {
+    width: 100%;
+  }
+
+  .journeyStep::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 45px;
+    bottom: -25px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-orange), rgba(255, 255, 255, 0.05));
+    opacity: 0.3;
+  }
+
+  .journeyStep:last-child::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .flowCard {
+    min-width: 220px;
+    padding: 1.25rem;
+  }
+  .journeyStrip {
+    margin-top: 1rem;
   }
 }

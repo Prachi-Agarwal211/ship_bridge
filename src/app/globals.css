@@ -201,6 +201,20 @@ body::before {
   }
 }
 
+/* Global mobile breathing room reduction */
+@media (max-width: 768px) {
+  .section-padding {
+    padding-block: clamp(2.5rem, 8vw, 4.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 
 /* GLOBAL BUTTON STYLES */
 .global-btn {

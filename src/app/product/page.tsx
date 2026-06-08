@@ -8,14 +8,17 @@ import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Our Products | ShipBridge Logistics",
-    description: "Explore the ShipBridge suite: our user-friendly Customer App for one-tap bookings and real-time GPS tracking, the robust Operations Admin Portal, and the ShipBridge Vendor App connecting transporters across India.",
+    title: "Our Products | ShipBridge Customer App, Vendor App & Operations Portal",
+    description: "The complete ShipBridge ecosystem: Customer App for instant bookings & live tracking, Vendor App for transporters, and powerful Admin Portal. Book any shifting service in under 3 minutes.",
+    openGraph: {
+      title: "ShipBridge Products - Apps & Platform",
+      description: "Mobile apps and portal for seamless logistics. Real-time tracking, easy booking, full visibility.",
+      images: [{ url: "/seo/og-image.jpg" }],
+    },
   };
 }
 
 export default function ProductCatalogPage() {
-
-
   return (
     <ScrollRevealWrapper className={styles.pageContainer}>
       <Navbar />
@@ -33,6 +36,7 @@ export default function ProductCatalogPage() {
           loop
           muted
           playsInline
+          preload="metadata"
           className={styles.heroVideo}
         >
           <source src="/videos/product-hero.mp4" type="video/mp4" />
@@ -58,7 +62,7 @@ export default function ProductCatalogPage() {
                     src="/Product/app_image.png"
                     alt="Customer App Interface"
                     fill
-                    unoptimized
+                    
                     className={styles.previewImage}
                   />
                 </div>
@@ -74,7 +78,7 @@ export default function ProductCatalogPage() {
                     src="/Product/admin_portal.png"
                     alt="Admin Portal Interface"
                     fill
-                    unoptimized
+                    
                     className={styles.previewImage}
                   />
                 </div>
@@ -99,7 +103,7 @@ export default function ProductCatalogPage() {
                   src="/Product/app_image.png"
                   alt="ShipBridge Customer App Mockup"
                   fill
-                  unoptimized
+                  
                   className={styles.productImage}
                 />
               </div>
@@ -197,7 +201,7 @@ export default function ProductCatalogPage() {
                   src="/Product/admin_portal.png"
                   alt="ShipBridge Admin Portal Dashboard Mockup"
                   fill
-                  unoptimized
+                  
                   className={styles.productImage}
                 />
               </div>

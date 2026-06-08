@@ -8,71 +8,36 @@ import gsap from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import styles from './ServiceTunnel.module.css';
+import { SERVICES_DATA } from '@/data/services';
 
 gsap.registerPlugin(Draggable);
 
-const services = [
-  { 
-    id: "household", 
-    title: "Household Shifting", 
-    subtitle: "Residential Relocation", 
-    description: "Our expert team handles your household shifting with the utmost care. From premium packaging to secure transit and setup in your new home.", 
-    image: "/services/household.jpeg", 
-    tags: ["Premium Packing", "Disassembly", "Secure Transit"], 
-    glowColor: "rgba(249, 115, 22, 0.4)" 
-  },
-  { 
-    id: "office", 
-    title: "Office Shifting", 
-    subtitle: "Corporate Relocation", 
-    description: "Minimize downtime with our efficient workspace relocations. We specialize in packing complex IT setups and office workstations.", 
-    image: "/services/office.jpeg", 
-    tags: ["IT Asset Mgmt", "Server Packing", "After-Hours"], 
-    glowColor: "rgba(6, 182, 212, 0.4)" 
-  },
-  { 
-    id: "warehouse", 
-    title: "Warehouse Storage", 
-    subtitle: "Secure Warehousing", 
-    description: "Safe, climate-controlled, and fully insured storage solutions. Features 24/7 CCTV surveillance, fire prevention, and digital stock indexing.", 
-    image: "/services/warehouse.jpeg", 
-    tags: ["24/7 CCTV", "Climate Control", "Short/Long Term"], 
-    glowColor: "rgba(168, 85, 247, 0.4)" 
-  },
-  { 
-    id: "local", 
-    title: "Local Shifting", 
-    subtitle: "Same-City Relocations", 
-    description: "Fast, reliable, and affordable moving services within your city. Our local teams navigate city routes efficiently for same-day shifts.", 
-    image: "/services/local.png", 
-    tags: ["Same-Day", "Dedicated Trucks", "Express Packing"], 
-    glowColor: "rgba(59, 130, 246, 0.4)" 
-  },
-  { 
-    id: "vehicle", 
-    title: "Vehicle Transport", 
-    subtitle: "Safe Vehicle Logistics", 
-    description: "Relocate your cars and motorcycles across long distances without adding miles or risk. We use specialized, secure auto-carriers.", 
-    image: "/services/vehicle.jpeg", 
-    tags: ["Enclosed Carriers", "GPS Tracking", "Damage-Free"], 
-    glowColor: "rgba(34, 197, 94, 0.4)" 
-  },
-  { 
-    id: "exhibition", 
-    title: "Exhibition Logistics", 
-    subtitle: "Event Logistics", 
-    description: "Time-critical setup and logistics management for exhibition pavilions, trade shows, and events. On-site assembly and secure reverse logistics.", 
-    image: "/services/exhibition.png", 
-    tags: ["Booth Setup", "Time-Critical", "Reverse Logistics"], 
-    glowColor: "rgba(236, 72, 153, 0.4)" 
-  }
+// Glow accents for the tunnel visual effect (kept here for creative home experience).
+const GLOW_COLORS = [
+  "rgba(249, 115, 22, 0.4)",
+  "rgba(6, 182, 212, 0.4)",
+  "rgba(168, 85, 247, 0.4)",
+  "rgba(59, 130, 246, 0.4)",
+  "rgba(34, 197, 94, 0.4)",
+  "rgba(236, 72, 153, 0.4)"
 ];
+
+const services = SERVICES_DATA.map((s, i) => ({
+  ...s,
+  // Use shorter descriptions for the dense tunnel cards (home showcase only).
+  description: s.description.length > 140 ? s.description.slice(0, 137) + "..." : s.description,
+  glowColor: GLOW_COLORS[i] || GLOW_COLORS[0]
+}));
 
 export default function ServiceTunnel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const autoplayTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   useScrollReveal({}, containerRef);
 
@@ -81,6 +46,7 @@ export default function ServiceTunnel() {
     if (autoplayTimer.current) clearInterval(autoplayTimer.current);
     autoplayTimer.current = setInterval(() => {
       setActiveIndex(prev => (prev + 1) % services.length);
+      setIsFlipped(false);
     }, 5000);
   };
 
@@ -93,18 +59,51 @@ export default function ServiceTunnel() {
     return stopAutoplay;
   }, [activeIndex]);
 
+  // Swipe gesture navigation for mobile screens
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    
+    const diffX = e.changedTouches[0].clientX - touchStartX.current;
+    const diffY = e.changedTouches[0].clientY - touchStartY.current;
+    
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+      if (diffX > 0) {
+        handlePrev(); // Swipe right -> previous card
+      } else {
+        handleNext(); // Swipe left -> next card
+      }
+    }
+    
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
   // Update layout when active index changes
   useGSAP(() => {
     if (!containerRef.current) return;
 
-    // Crossfade background glow
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    // Only run the heavy 3D positioning + perspective animations on laptop/desktop.
+    // This keeps the original cinematic laptop experience pristine and avoids
+    // expensive transforms/blurs on phones (where we use a simpler design).
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+    if (!isDesktop) return;
+
+    // Crossfade background glow (desktop only)
     gsap.to(containerRef.current, {
       '--tunnel-glow': services[activeIndex].glowColor,
       duration: 1.2,
       ease: 'power2.out'
     });
 
-    // Animate cards into their z-axis positions
+    // Animate cards into their z-axis positions (desktop 3D only)
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
 
@@ -135,10 +134,16 @@ export default function ServiceTunnel() {
 
   }, { dependencies: [activeIndex], scope: containerRef });
 
-  // Initialize Draggable
+  // Initialize Draggable (desktop/laptop only - mobile uses tap arrows/dots)
   useGSAP(() => {
     if (!containerRef.current) return;
-    
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+    if (!isDesktop) return;
+
     const proxy = document.createElement('div');
     
     Draggable.create(proxy, {
@@ -151,8 +156,10 @@ export default function ServiceTunnel() {
         const direction = this.getDirection("velocity");
         if (direction === "left" && activeIndex < services.length - 1) {
           setActiveIndex(prev => prev + 1);
+          setIsFlipped(false);
         } else if (direction === "right" && activeIndex > 0) {
           setActiveIndex(prev => prev - 1);
+          setIsFlipped(false);
         }
       }
     });
@@ -164,20 +171,26 @@ export default function ServiceTunnel() {
 
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
+    setIsFlipped(false);
   };
 
   const handleCardClick = (index: number) => {
     if (index !== activeIndex) {
       setActiveIndex(index);
+      setIsFlipped(false);
+    } else {
+      setIsFlipped(prev => !prev);
     }
   };
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % services.length);
+    setIsFlipped(false);
   };
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+    setIsFlipped(false);
   };
 
   return (
@@ -204,7 +217,11 @@ export default function ServiceTunnel() {
         </div>
       </div>
 
-      <div className={styles.carouselContainer}>
+      <div 
+        className={styles.carouselContainer}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Navigation Arrows */}
         <button 
           className={`${styles.navArrow} ${styles.prevArrow}`} 
@@ -224,6 +241,7 @@ export default function ServiceTunnel() {
 
         {services.map((service, i) => {
           const isActive = i === activeIndex;
+          const offset = i - activeIndex;
           
           return (
             <div 
@@ -231,7 +249,8 @@ export default function ServiceTunnel() {
               ref={(el) => {
                 if (el) cardsRef.current[i] = el;
               }}
-              className={`${styles.cardWrapper} ${isActive ? styles.cardActive : ''}`}
+              className={`${styles.cardWrapper} ${isActive ? styles.cardActive : ''} ${isActive && isFlipped ? styles.cardFlipped : ''}`}
+              data-offset={offset}
               onClick={() => handleCardClick(i)}
             >
               <div className={styles.flipCardInner}>
@@ -245,7 +264,6 @@ export default function ServiceTunnel() {
                       fill
                       className={styles.cardImage}
                       sizes="(max-width: 768px) 80vw, 40vw"
-                      unoptimized
                     />
                   </div>
                   <div className={styles.frontOverlay}>
@@ -265,7 +283,6 @@ export default function ServiceTunnel() {
                       fill
                       className={styles.cardImageBack}
                       sizes="(max-width: 768px) 80vw, 40vw"
-                      unoptimized
                     />
                   </div>
                   {/* Heavy glass overlay over the image */}

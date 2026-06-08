@@ -367,7 +367,9 @@
 
 @media (max-width: 992px) {
   .aboutGrid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
   }
   
   .leftColumn {
@@ -391,7 +393,7 @@
   
   .rightColumn {
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   
   .sliderContainer {
@@ -400,21 +402,27 @@
 }
 
 @media (max-width: 768px) {
+  .logoRow {
+    display: none; /* Hide local logo row under fixed header logo on mobile */
+  }
+
   .highlightsBar {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
+    width: 100%;
   }
   
   .highlightItem {
     justify-content: flex-start;
     text-align: left;
-    max-width: 320px;
+    max-width: 280px;
     margin: 0 auto;
     width: 100%;
   }
   
   .sliderContainer {
-    max-width: 340px;
+    max-width: 320px;
   }
 
   .navButton {
@@ -429,10 +437,17 @@
   .nextBtn {
     right: -5px;
   }
+
+  .aboutSection {
+    padding: 4rem 0;
+  }
 }
 
 @media (max-width: 480px) {
   .sliderContainer {
-    max-width: 280px;
+    max-width: 260px;
+  }
+  .aboutSection {
+    padding: 3.25rem 0;
   }
 }

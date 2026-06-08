@@ -15,6 +15,9 @@ export default function MagneticButton({ children, strength = 30 }: MagneticButt
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    const hasHover = window.matchMedia('(hover: hover)').matches;
+    if (!hasHover) return;
+
     const xTo = gsap.quickTo(magnetic.current, 'x', { duration: 1, ease: 'elastic.out(1, 0.3)' });
     const yTo = gsap.quickTo(magnetic.current, 'y', { duration: 1, ease: 'elastic.out(1, 0.3)' });
 
@@ -42,5 +45,6 @@ export default function MagneticButton({ children, strength = 30 }: MagneticButt
     };
   }, { scope: magnetic });
 
+  // eslint-disable-next-line react-hooks/refs, @typescript-eslint/no-explicit-any
   return cloneElement(children as ReactElement<any>, { ref: magnetic });
 }

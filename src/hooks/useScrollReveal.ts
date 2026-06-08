@@ -6,22 +6,31 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export function useScrollReveal(options = {}, customRef?: RefObject<any>) {
-  const containerRef = customRef || useRef(null)
+export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(options = {}, customRef?: RefObject<T | null>) {
+  const internalRef = useRef<T | null>(null)
+  const containerRef = customRef ?? internalRef
 
   useGSAP(() => {
-    const elements = gsap.utils.toArray('[data-reveal]', containerRef.current)
-    elements.forEach((el: any) => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const yVal = isMobile ? 20 : 60;
+    const durationVal = isMobile ? 0.6 : 0.9;
+    const startVal = isMobile ? 'top 92%' : 'top 85%';
+
+    const elements = gsap.utils.toArray<HTMLElement>('[data-reveal]', containerRef.current)
+    elements.forEach((el) => {
       gsap.fromTo(el,
-        { y: 60, opacity: 0 },
+        { y: yVal, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.9,
-          ease: 'power3.out',
+          duration: durationVal,
+          ease: isMobile ? 'power2.out' : 'power3.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 85%',
+            start: startVal,
             toggleActions: 'play none none none',
           },
           ...options

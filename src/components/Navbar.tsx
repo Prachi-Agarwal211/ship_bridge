@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES_DATA } from '@/data/services';
+import MagneticButton from '@/components/animations/MagneticButton';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -38,6 +39,7 @@ export default function Navbar() {
 
   // Close mobile menu on route change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMenuOpen(false);
   }, [pathname]);
 
@@ -53,6 +55,8 @@ export default function Navbar() {
               width={80} 
               height={80} 
               className={styles.logo}
+              sizes="80px"
+              priority
             />
             <div className={styles.brandText}>
               <span className={styles.brandName}>SHIPBRIDGE</span>
@@ -99,9 +103,11 @@ export default function Navbar() {
           </ul>
 
           <div className={styles.navActions}>
-            <Link href="/quote" className={`${styles.ctaBtn} global-btn`}>
-              <span className="global-btn-text">Get a Quote</span>
-            </Link>
+            <MagneticButton strength={25}>
+              <Link href="/services/household#booking-form" className={`${styles.ctaBtn} global-btn`}>
+                <span className="global-btn-text">Get a Quote</span>
+              </Link>
+            </MagneticButton>
             
             <button 
               className={`${styles.hamburger} ${menuOpen ? styles.open : ''}`}

@@ -88,8 +88,16 @@
 @media (max-width: 768px) {
   .hero {
     min-height: 100svh;
+    padding-bottom: 3.5rem;
   }
   .title {
-    font-size: clamp(3rem, 15vw, 6rem);
+    font-size: clamp(2rem, 10.5vw, 5.5rem);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-bottom: 2.5rem;
   }
 }

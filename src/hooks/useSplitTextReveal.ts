@@ -11,6 +11,12 @@ export function useSplitTextReveal() {
   const ref = useRef(null)
 
   useGSAP(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches
+    if (!isDesktop) return
+
     const split = new SplitText(ref.current, { type: 'lines,words' })
     gsap.from(split.words, {
       y: '110%',

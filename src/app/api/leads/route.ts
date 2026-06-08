@@ -10,10 +10,11 @@ export async function POST(request: Request) {
       { success: true, message: "Lead saved successfully!" },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error saving lead:", error);
+    const message = error instanceof Error ? error.message : "Failed to process lead";
     return NextResponse.json(
-      { success: false, error: error.message || "Failed to process lead" },
+      { success: false, error: message },
       { status: 400 }
     );
   }

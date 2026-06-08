@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MagneticButton from '@/components/animations/MagneticButton';
 import styles from "./AboutCompany.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -39,6 +40,9 @@ export default function AboutCompany() {
   useGSAP(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+    if (!isDesktop) return;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -91,7 +95,7 @@ export default function AboutCompany() {
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, []);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? TEAM_MEMBERS.length - 1 : prev - 1));
@@ -225,7 +229,7 @@ export default function AboutCompany() {
                       src={member.image}
                       alt={member.name}
                       fill
-                      unoptimized
+                      
                       className={styles.profileImage}
                       priority
                     />
@@ -263,26 +267,30 @@ export default function AboutCompany() {
               </div>
 
               {/* Prev Button */}
-              <button
-                onClick={handlePrev}
-                className={`${styles.navButton} ${styles.prevBtn}`}
-                aria-label="Previous Slide"
-              >
-                <svg className={styles.arrowIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+              <MagneticButton strength={20}>
+                <button
+                  onClick={handlePrev}
+                  className={`${styles.navButton} ${styles.prevBtn}`}
+                  aria-label="Previous Slide"
+                >
+                  <svg className={styles.arrowIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              </MagneticButton>
 
               {/* Next Button */}
-              <button
-                onClick={handleNext}
-                className={`${styles.navButton} ${styles.nextBtn}`}
-                aria-label="Next Slide"
-              >
-                <svg className={styles.arrowIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+              <MagneticButton strength={20}>
+                <button
+                  onClick={handleNext}
+                  className={`${styles.navButton} ${styles.nextBtn}`}
+                  aria-label="Next Slide"
+                >
+                  <svg className={styles.arrowIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </MagneticButton>
 
             </div>
           </div>

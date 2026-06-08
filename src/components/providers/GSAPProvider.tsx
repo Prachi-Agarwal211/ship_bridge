@@ -8,7 +8,7 @@ import { useLenis } from 'lenis/react'
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
 export default function GSAPProvider({ children }: { children: React.ReactNode }) {
-  const lenis = useLenis(({ scroll }) => {
+  const lenis = useLenis(() => {
     // Sync Lenis scroll position with ScrollTrigger
     ScrollTrigger.update()
   })
