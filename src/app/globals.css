@@ -1,3 +1,5 @@
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
 @import '../styles/tokens.css';
 
 :root {
@@ -257,4 +259,28 @@ body::before {
 .global-btn svg[fill="none"] {
   fill: none;
 }
+
+/* --- Culture Cards Animations & Responsive 3D Transform --- */
+@keyframes waveFade {
+  0%   { opacity: 0; stroke-dashoffset: 1400; }
+  25%  { opacity: 0.4; }
+  65%  { opacity: 0.15; }
+  100% { opacity: 0; stroke-dashoffset: 0; }
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: var(--base-transform) translateY(0px); }
+  50%       { transform: var(--base-transform) translateY(-14px); }
+}
+
+.culture-card-item {
+  --base-transform: translateY(0px) rotateY(0deg) translateX(0px);
+}
+
+@media (min-width: 1024px) {
+  .culture-card-item {
+    --base-transform: var(--desktop-transform);
+  }
+}
+
 

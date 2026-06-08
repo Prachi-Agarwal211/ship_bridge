@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/Navbar";
+import OurCulture from "@/components/OurCulture";
 import styles from "./page.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -222,45 +223,7 @@ export default function CareersClient() {
       </section>
 
       {/* SECTION 2: OUR CULTURE */}
-      <section className={`culture-section ${styles.cultureSection}`}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionLabel}>WORKING AT SHIPBRIDGE</span>
-            <h2 className={styles.sectionTitle}>Our Culture</h2>
-            <div className={styles.underlineBar}></div>
-          </div>
-
-          <div className={styles.cultureGrid}>
-            {/* Culture 1 */}
-            <div className={`culture-card ${styles.cultureCard}`}>
-              <span className={styles.cultureIcon}>⚡</span>
-              <h3 className={styles.cultureTitle}>Move Fast</h3>
-              <p className={styles.cultureDesc}>We ship features, not decks. Speed and iteration are in our DNA.</p>
-            </div>
-
-            {/* Culture 2 */}
-            <div className={`culture-card ${styles.cultureCard}`}>
-              <span className={styles.cultureIcon}>🛡️</span>
-              <h3 className={styles.cultureTitle}>Own It</h3>
-              <p className={styles.cultureDesc}>Everyone here is a founder at heart. We value high agency and ownership.</p>
-            </div>
-
-            {/* Culture 3 */}
-            <div className={`culture-card ${styles.cultureCard}`}>
-              <span className={styles.cultureIcon}>🤝</span>
-              <h3 className={styles.cultureTitle}>Customer First</h3>
-              <p className={styles.cultureDesc}>Every product design decision starts and ends with customer empathy.</p>
-            </div>
-
-            {/* Culture 4 */}
-            <div className={`culture-card ${styles.cultureCard}`}>
-              <span className={styles.cultureIcon}>🇮🇳</span>
-              <h3 className={styles.cultureTitle}>Build for India</h3>
-              <p className={styles.cultureDesc}>We're solving real-world, localized problems for real transporters & users.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <OurCulture />
 
       {/* SECTION 3: OPEN POSITIONS */}
       <section className={`jobs-section ${styles.jobsSection}`} id="positions">

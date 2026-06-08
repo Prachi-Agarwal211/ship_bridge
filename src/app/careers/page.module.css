@@ -132,13 +132,6 @@
   }
 }
 
-/* SECTION 2: CULTURE */
-.cultureSection {
-  padding: 7rem 0;
-  position: relative;
-  background-color: transparent;
-}
-
 .sectionHeader {
   text-align: center;
   margin-bottom: 4.5rem;
@@ -165,47 +158,6 @@
   background-color: #f97316;
   border-radius: 2px;
   margin: 0 auto;
-}
-
-.cultureGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
-
-.cultureCard {
-  background: rgba(10, 10, 10, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  padding: 2.5rem 2rem;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cultureCard:hover {
-  transform: translateY(-6px);
-  border-color: rgba(249, 115, 22, 0.35);
-  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.08);
-}
-
-.cultureIcon {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  display: inline-block;
-}
-
-.cultureTitle {
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  color: #ffffff;
-}
-
-.cultureDesc {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #9ca3af;
 }
 
 /* SECTION 3: OPEN POSITIONS */
@@ -355,19 +307,9 @@
 
 
 /* RESPONSIVE DESIGN */
-@media (max-width: 992px) {
-  .cultureGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-}
-
 @media (max-width: 768px) {
   .heroTitle {
     font-size: 2.8rem;
-  }
-  .cultureGrid {
-    grid-template-columns: 1fr;
   }
   .formCard {
     padding: 2rem;
