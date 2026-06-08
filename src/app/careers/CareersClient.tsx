@@ -182,9 +182,9 @@ export default function CareersClient() {
             key={i}
             className={styles.particle}
             style={{
-              left: `${Math.random() * 95}%`,
+              left: `${[15, 85, 45, 70, 25, 60, 90, 35][i]}%`,
               animationDelay: `${i * 1.8}s`,
-              animationDuration: `${12 + Math.random() * 6}s`
+              animationDuration: `${[13, 17, 12, 16, 14, 15, 18, 13][i]}s`
             }}
           ></div>
         ))}
