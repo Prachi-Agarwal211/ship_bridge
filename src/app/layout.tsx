@@ -134,7 +134,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="lenis lenis-smooth">
+    <html lang="en" className="lenis lenis-smooth" data-scroll-behavior="smooth">
       <body className={inter.className}>
         <ReactLenis root options={{ lerp: 0.08, duration: 1.2, syncTouch: false, autoRaf: false }}>
           <GSAPProvider>
