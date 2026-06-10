@@ -45,40 +45,6 @@ export default function ProductCatalogPage() {
               <p className={styles.heroSub}>
                 ShipBridge has built a suite of interconnected products — a customer-facing app, an AI-powered admin platform, and a vendor management system — all working in real-time to deliver the perfect move.
               </p>
-
-              <div className={styles.heroPreviews}>
-                <div className={styles.previewCard} data-reveal>
-                  <div className={styles.previewImageWrapper}>
-                    <Image
-                      src="/Product/app_image.png"
-                      alt="Customer App Interface"
-                      fill
-                      sizes="(max-width: 992px) 100vw, 350px"
-                      className={styles.previewImage}
-                    />
-                  </div>
-                  <div className={styles.previewLabel}>
-                    <span className={`${styles.previewLabelTag}`} style={{ color: "#f97316" }}>MOBILE</span>
-                    <h4 className={styles.previewLabelTitle}>Customer App</h4>
-                  </div>
-                </div>
-
-                <div className={styles.previewCard} data-reveal>
-                  <div className={styles.previewImageWrapper}>
-                    <Image
-                      src="/Product/admin_portal.png"
-                      alt="Admin Portal Interface"
-                      fill
-                      sizes="(max-width: 992px) 100vw, 350px"
-                      className={styles.previewImage}
-                    />
-                  </div>
-                  <div className={styles.previewLabel}>
-                    <span className={`${styles.previewLabelTag}`} style={{ color: "#22c55e" }}>DESKTOP</span>
-                    <h4 className={styles.previewLabelTitle}>Operations Dashboard</h4>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -108,14 +74,6 @@ export default function ProductCatalogPage() {
               </div>
               <h2 className={styles.productTitle} data-reveal="slide-right">ShipBridge Customer App</h2>
               <span className={styles.productSub} data-reveal="slide-right">Book. Track. Move. Effortlessly.</span>
-
-              <div className={styles.platformPill} data-reveal="slide-right">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                  <line x1="12" y1="18" x2="12.01" y2="18" />
-                </svg>
-                <span>iOS & Android</span>
-              </div>
 
               <p className={styles.productDescription} data-reveal="slide-right">
                 The ShipBridge Customer App puts the power of professional logistics in your pocket. Book any service in under 3 minutes, track your move in real-time, communicate directly with your assigned team, and manage everything from a sleek, intuitive dashboard.
@@ -196,15 +154,6 @@ export default function ProductCatalogPage() {
               </div>
               <h2 className={styles.productTitle} data-reveal="slide-left">ShipBridge Admin Portal</h2>
               <span className={styles.productSub} style={{ color: "#22c55e" }} data-reveal="slide-left">The Brain Behind Every Move.</span>
-
-              <div className={styles.platformPill} data-reveal="slide-left">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <line x1="8" y1="21" x2="16" y2="21" />
-                  <line x1="12" y1="17" x2="12" y2="21" />
-                </svg>
-                <span>Web App — Desktop Optimized</span>
-              </div>
 
               <p className={styles.productDescription} data-reveal="slide-left">
                 A powerful command center for ShipBridge operations teams. Every lead, every booking, every driver, every truck, every invoice — managed from a single real-time dashboard. Built for scale with role-based access, analytics, and automated notifications.
