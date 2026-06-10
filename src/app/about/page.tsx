@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import ScrollRevealWrapper from "@/components/ScrollRevealWrapper";
+import HeroScrollFade from "@/components/HeroScrollFade";
 import styles from "./page.module.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,44 +26,46 @@ export default function AboutPage() {
 
 
       {/* SECTION 1: HERO BANNER */}
-      <section className={styles.heroSection}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          className={styles.heroVideo}
-        >
-          <source src="/videos/about-hero.mp4" type="video/mp4" />
-        </video>
-        <div className={styles.heroOverlay}></div>
-        <div className={styles.container}>
-          <div className={styles.heroContent} data-reveal>
+      <HeroScrollFade>
+        <section className={styles.heroSection}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className={styles.heroVideo}
+          >
+            <source src="/videos/about-hero.mp4" type="video/mp4" />
+          </video>
+          <div className={styles.heroOverlay}></div>
+          <div className={styles.container}>
+            <div className={`${styles.heroContent} heroScrollContent`} data-reveal>
 
-            <h1 className={styles.heroTitle}>
-              Building India's<br />
-              <span className={styles.highlightOrange}>Logistics Future.</span>
-            </h1>
+              <h1 className={styles.heroTitle}>
+                Building India&apos;s<br />
+                <span className={styles.highlightOrange}>Logistics Future.</span>
+              </h1>
 
-            <p className={styles.heroSub}>
-              We&apos;re building the technology to make every move in India simpler, safer, and more transparent — starting from Indore.
-            </p>
+              <p className={styles.heroSub}>
+                We&apos;re building the technology to make every move in India simpler, safer, and more transparent — starting from Indore.
+              </p>
 
-            <div className={styles.foundingStrip}>
-              <span className={styles.foundingItem}>📍 Founded in Indore, Madhya Pradesh • 2026</span>
-              <span className={styles.foundingDivider}>|</span>
-              <span className={styles.foundingItem}>🚀 Building India's Logistics Future</span>
+              <div className={styles.foundingStrip}>
+                <span className={styles.foundingItem}>📍 Founded in Indore, Madhya Pradesh • 2026</span>
+                <span className={styles.foundingDivider}>|</span>
+                <span className={styles.foundingItem}>🚀 Building India&apos;s Logistics Future</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </HeroScrollFade>
 
       {/* SECTION 2: OUR STORY */}
       <section className={styles.storySection} id="story">
         <div className={styles.container}>
           <div className={styles.storyGrid}>
-            <div className={styles.storyText} data-reveal>
+            <div className={styles.storyText} data-reveal="slide-left">
               <span className={styles.sectionLabel}>HOW WE STARTED</span>
               <h2 className={styles.sectionTitle}>Our Story</h2>
               <div className={styles.underlineBar}></div>
@@ -144,13 +147,13 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className={styles.storyImageCard} data-reveal>
+            <div className={styles.storyImageCard} data-reveal="clip">
               <div className={styles.storyImageWrapper}>
                 <Image
                   src="/company/founder.png"
                   alt="ShipBridge Founders"
                   fill
-                  
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   priority
                   className={styles.storyImage}
                 />
@@ -170,7 +173,7 @@ export default function AboutPage() {
         <div className={styles.container}>
           <div className={styles.mvGrid}>
             {/* Mission Card */}
-            <div className={styles.mvCard} data-reveal>
+            <div className={styles.mvCard} data-reveal="scale">
               <div className={styles.mvIconContainer}>
                 <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10" />
@@ -185,7 +188,7 @@ export default function AboutPage() {
             </div>
 
             {/* Vision Card */}
-            <div className={styles.mvCard} data-reveal>
+            <div className={styles.mvCard} data-reveal="scale">
               <div className={styles.mvIconContainer} style={{ color: "#22c55e", backgroundColor: "rgba(34, 197, 94, 0.1)", borderColor: "rgba(34, 197, 94, 0.2)" }}>
                 <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -194,7 +197,7 @@ export default function AboutPage() {
               </div>
               <h3 className={styles.mvCardTitle}>Our Vision</h3>
               <p className={styles.mvCardBody}>
-                To become India's #1 asset-light logistics aggregator platform, powering 10 million+ moves annually by 2030 through AI-driven automation and a pan-India transporter network.
+                To become India&apos;s #1 asset-light logistics aggregator platform, powering 10 million+ moves annually by 2030 through AI-driven automation and a pan-India transporter network.
               </p>
             </div>
           </div>
@@ -204,7 +207,7 @@ export default function AboutPage() {
       {/* SECTION 4: CORE VALUES */}
       <section className={styles.valuesSection}>
         <div className={styles.container}>
-          <div className={styles.valuesHeader} data-reveal>
+          <div className={styles.valuesHeader} data-reveal="blur">
             <span className={styles.sectionLabel}>WHAT DRIVES US</span>
             <h2 className={styles.sectionTitle}>Our Core Values</h2>
             <div className={styles.underlineBar}></div>
@@ -212,42 +215,42 @@ export default function AboutPage() {
 
           <div className={styles.valuesGrid}>
             {/* Reliability */}
-            <div className={styles.valueCard} data-reveal>
+            <div className={styles.valueCard} data-reveal="scale">
               <div className={styles.hexIconWrapper}>🛡️</div>
               <h3 className={styles.valueTitle}>Reliability</h3>
               <p className={styles.valueBody}>We deliver what we promise, every single time.</p>
             </div>
 
             {/* Speed */}
-            <div className={styles.valueCard} data-reveal>
+            <div className={styles.valueCard} data-reveal="scale">
               <div className={styles.hexIconWrapper}>⚡</div>
               <h3 className={styles.valueTitle}>Speed</h3>
               <p className={styles.valueBody}>Efficient logistics that saves your time and money.</p>
             </div>
 
             {/* Security */}
-            <div className={styles.valueCard} data-reveal>
+            <div className={styles.valueCard} data-reveal="scale">
               <div className={styles.hexIconWrapper}>🔒</div>
               <h3 className={styles.valueTitle}>Security</h3>
               <p className={styles.valueBody}>Your goods are insured, tracked, and protected.</p>
             </div>
 
             {/* Transparency */}
-            <div className={styles.valueCard} data-reveal>
+            <div className={styles.valueCard} data-reveal="scale">
               <div className={styles.hexIconWrapper}>🌐</div>
               <h3 className={styles.valueTitle}>Transparency</h3>
               <p className={styles.valueBody}>No hidden charges. Full visibility on every move.</p>
             </div>
 
             {/* Trust */}
-            <div className={styles.valueCard} data-reveal>
+            <div className={styles.valueCard} data-reveal="scale">
               <div className={styles.hexIconWrapper}>🤝</div>
               <h3 className={styles.valueTitle}>Trust</h3>
               <p className={styles.valueBody}>Verified professionals. Background-checked partners.</p>
             </div>
 
             {/* Innovation */}
-            <div className={styles.valueCard} data-reveal>
+            <div className={styles.valueCard} data-reveal="scale">
               <div className={styles.hexIconWrapper}>🚀</div>
               <h3 className={styles.valueTitle}>Innovation</h3>
               <p className={styles.valueBody}>Powered by AI, Flutter apps, and real-time data.</p>
@@ -259,7 +262,7 @@ export default function AboutPage() {
       {/* SECTION 5: THE TEAM */}
       <section className={styles.teamSection}>
         <div className={styles.container}>
-          <div className={styles.teamHeader} data-reveal>
+          <div className={styles.teamHeader} data-reveal="blur">
             <span className={styles.sectionLabel}>BRAINS BEHIND SHIPBRIDGE</span>
             <h2 className={styles.sectionTitle}>Meet Our Team</h2>
             <div className={styles.underlineBar}></div>
@@ -267,13 +270,13 @@ export default function AboutPage() {
 
           <div className={styles.teamGrid}>
             {/* Ashish Joshi */}
-            <div className={styles.teamCard} data-reveal>
+            <div className={styles.teamCard} data-reveal="rotate">
               <div className={styles.teamImageContainer}>
                 <Image
                   src="/company/founder.png"
                   alt="Ashish Joshi"
                   fill
-                  
+                  sizes="(max-width: 992px) 100vw, 400px"
                   className={styles.teamImage}
                 />
               </div>
@@ -281,20 +284,20 @@ export default function AboutPage() {
                 <h3 className={styles.teamName}>Ashish Joshi</h3>
                 <span className={styles.teamRole}>Founder & CEO</span>
                 <p className={styles.teamBio}>
-                  Ashish leads ShipBridge's business development, partnerships, and market expansion. 
+                  Ashish leads ShipBridge&apos;s business development, partnerships, and market expansion. 
                   Building the operational backbone of the platform from the ground up.
                 </p>
               </div>
             </div>
 
             {/* Prachi Agarwal */}
-            <div className={styles.teamCard} data-reveal>
+            <div className={styles.teamCard} data-reveal="rotate">
               <div className={styles.teamImageContainer}>
                 <Image
                   src="/company/coo.png"
                   alt="Prachi Agarwal"
                   fill
-                  
+                  sizes="(max-width: 992px) 100vw, 400px"
                   className={styles.teamImage}
                 />
               </div>
@@ -309,13 +312,13 @@ export default function AboutPage() {
             </div>
 
             {/* Anurag Singh */}
-            <div className={styles.teamCard} data-reveal>
+            <div className={styles.teamCard} data-reveal="rotate">
               <div className={styles.teamImageContainer}>
                 <Image
                   src="/company/cto.png"
                   alt="Anurag Singh"
                   fill
-                  
+                  sizes="(max-width: 992px) 100vw, 400px"
                   className={styles.teamImage}
                 />
               </div>
@@ -337,7 +340,7 @@ export default function AboutPage() {
       {/* SECTION 7: WHY CHOOSE SHIPBRIDGE */}
       <section className={styles.whySection}>
         <div className={styles.container}>
-          <div className={styles.whyHeader} data-reveal>
+          <div className={styles.whyHeader} data-reveal="blur">
             <span className={styles.sectionLabel}>WHY WE STAND OUT</span>
             <h2 className={styles.sectionTitle}>Why ShipBridge Stands Apart</h2>
             <div className={styles.underlineBar}></div>
@@ -345,7 +348,7 @@ export default function AboutPage() {
 
           <div className={styles.whyGrid}>
             {/* Item 1 */}
-            <div className={styles.whyItem} data-reveal>
+            <div className={styles.whyItem} data-reveal="slide-left">
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -353,12 +356,12 @@ export default function AboutPage() {
               </div>
               <div className={styles.whyText}>
                 <h4 className={styles.whyTitle}>Deep Tier 2/3 & Rural Reach</h4>
-                <p className={styles.whyDesc}>Unmatched last-mile penetration across India's underserved markets.</p>
+                <p className={styles.whyDesc}>Unmatched last-mile penetration across India&apos;s underserved markets.</p>
               </div>
             </div>
 
             {/* Item 2 */}
-            <div className={styles.whyItem} data-reveal>
+            <div className={styles.whyItem} data-reveal="slide-right">
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -371,7 +374,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 3 */}
-            <div className={styles.whyItem} data-reveal>
+            <div className={styles.whyItem} data-reveal="slide-left">
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -384,7 +387,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 4 */}
-            <div className={styles.whyItem} data-reveal>
+            <div className={styles.whyItem} data-reveal="slide-right">
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -397,7 +400,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 5 */}
-            <div className={styles.whyItem} data-reveal>
+            <div className={styles.whyItem} data-reveal="slide-left">
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -410,7 +413,7 @@ export default function AboutPage() {
             </div>
 
             {/* Item 6 */}
-            <div className={styles.whyItem} data-reveal>
+            <div className={styles.whyItem} data-reveal="slide-right">
               <div className={styles.whyIcon}>
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12" />
@@ -428,7 +431,7 @@ export default function AboutPage() {
       {/* SECTION 8: CTA BANNER */}
       <section className={styles.ctaSection}>
         <div className={styles.container}>
-          <div className={styles.ctaBanner} data-reveal>
+          <div className={styles.ctaBanner} data-reveal="scale">
             <h2 className={styles.ctaTitle}>Ready to Move Smarter?</h2>
             <p className={styles.ctaSub}>Join thousands of families and businesses who trust ShipBridge.</p>
             <div className={styles.ctaButtons}>

@@ -59,8 +59,8 @@
   letter-spacing: -0.5px;
 }
 
-.footerCol h4 {
-  font-size: 0.72rem;
+  .footerCol h4 {
+    font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-orange);
   margin-bottom: 1.25rem;
@@ -200,7 +200,7 @@
 .tagline {
   color: rgba(249, 115, 22, 0.6) !important;
   font-style: italic;
-  font-size: 0.82rem !important;
+  font-size: 0.85rem !important;
 }
 
 .socialIcons {
@@ -209,8 +209,8 @@
 }
 
 .socialIcons a {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
   display: flex;
@@ -230,7 +230,17 @@
 /* ═══════════════ RESPONSIVE ════════════════════════════ */
 @media (max-width: 1200px) {
   .footerGrid {
-    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .brandCol {
+    grid-column: 1 / -1;
   }
   .ctaCol {
     grid-column: 1 / -1;
@@ -245,13 +255,6 @@
 }
 
 @media (max-width: 768px) {
-  .footerGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-  .brandCol {
-    grid-column: 1 / -1;
-  }
   .ctaCol {
     flex-direction: column;
     align-items: flex-start;
@@ -265,6 +268,27 @@
 
 @media (max-width: 480px) {
   .footerGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .brandCol {
+    grid-column: 1 / -1;
+  }
+  .marqueeItem {
+    font-size: 1.2rem;
+  }
+  .footerCol h3 {
+    font-size: 1.5rem;
+  }
+  .footerCol p {
+    font-size: 0.85rem;
+  }
+  .footerCtaOutline {
+    font-size: 0.82rem;
+    padding: 0.65rem 1.25rem;
+  }
+  .socialIcons a {
+    width: 44px;
+    height: 44px;
   }
 }

@@ -69,6 +69,29 @@ html.lenis, html.lenis body {
   will-change: transform, opacity;
 }
 
+/* Split-word reveal animation */
+.reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+/* Staggered children reveal */
+[data-reveal="stagger"] > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Smooth transition for clip-path reveals */
+[data-reveal="clip"],
+[data-reveal="scale"],
+[data-reveal="blur"],
+[data-reveal="rotate"] {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
 /* Custom cursor */
 .cursor {
   position: fixed;
@@ -201,6 +224,70 @@ body::before {
   }
 }
 
+/* ── SUBTLE BACKGROUND ANIMATIONS ──
+   GPU-accelerated (transform/opacity only)
+   Very subtle drift and breathing effects
+   Auto-disabled by prefers-reduced-motion above
+*/
+@keyframes bgFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -10px) scale(1.02); }
+  66% { transform: translate(-10px, 8px) scale(0.98); }
+}
+
+@keyframes bgBreathe {
+  0%, 100% { opacity: 0.06; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.05); }
+}
+
+@keyframes bgDrift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(8px, -5px); }
+  50% { transform: translate(-5px, 10px); }
+  75% { transform: translate(10px, 3px); }
+}
+
+/* Apply to body background gradient orbs */
+body::before {
+  animation: bgFloat 20s ease-in-out infinite;
+}
+
+/* Touch-friendly interactive elements */
+@media (pointer: coarse) {
+  .global-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .desktopLinks a, .dropdownTrigger {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Prevent text overflow on all screens */
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Smooth scroll for all anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fix iOS safe area for notch devices */
+@supports (padding: env(safe-area-inset-top)) {
+  .navbar {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  .mobileMenu {
+    padding-left: calc(env(safe-area-inset-left) + 1rem);
+    padding-right: calc(env(safe-area-inset-right) + 1rem);
+  }
+}
+
 /* Global mobile breathing room reduction */
 @media (max-width: 768px) {
   .section-padding {
@@ -212,6 +299,20 @@ body::before {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .section-padding {
+    padding-inline: 1rem;
+  }
+}
+
+/* Extra small screens (360px and below) */
+@media (max-width: 360px) {
+  :root {
+    --text-hero: clamp(2.5rem, 9vw, 4rem);
+    --text-display: clamp(3rem, 10vw, 5rem);
+  }
+  .section-padding {
+    padding-inline: 0.75rem;
   }
 }
 

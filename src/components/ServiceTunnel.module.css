@@ -50,13 +50,13 @@
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 8px;
   transition: all 0.3s ease;
 }
 
@@ -85,6 +85,9 @@
     height: 58vh;
     min-height: 420px;
     max-height: 560px;
+  }
+  .tunnelSection {
+    padding: 4rem 0;
   }
 }
 
@@ -251,7 +254,7 @@
 }
 
 .tagBadge {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   padding: 0.4rem 0.8rem;
   border-radius: 100px;
@@ -304,8 +307,8 @@
 @media (max-width: 768px) {
   /* Smaller navigation arrows positioned closer to the edge on mobile */
   .navArrow {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: rgba(0, 0, 0, 0.6);
   }
   .prevArrow {
@@ -370,5 +373,37 @@
   .cardWrapper[data-offset^="5"] {
     opacity: 0;
     transform: scale(0.7) translateX(150%);
+  }
+}
+
+@media (max-width: 480px) {
+  .cardWrapper {
+    margin-left: -44%;
+    width: 88%;
+  }
+  .prevArrow {
+    left: 1%;
+  }
+  .nextArrow {
+    right: 1%;
+  }
+  .navArrow {
+    width: 44px;
+    height: 44px;
+  }
+  .sectionTitle {
+    font-size: 0.9rem;
+  }
+  .frontTitle {
+    font-size: 1.4rem;
+  }
+  .backTitle {
+    font-size: 1.4rem;
+  }
+  .glassOverlay {
+    padding: 2rem 1.25rem;
+  }
+  .backDescription {
+    font-size: 0.9rem;
   }
 }

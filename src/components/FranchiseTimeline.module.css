@@ -1,6 +1,6 @@
 .timelineSection {
   background-color: #0A0A0A;
-  padding: 80px 20px;
+  padding: 80px clamp(1rem, 5vw, 3rem);
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -145,7 +145,7 @@
 }
 
 .nodeTitle {
-  font-size: 11px;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #ffffff;
   text-align: center;
@@ -154,11 +154,11 @@
 }
 
 .nodeDesc {
-  font-size: 9.5px;
+  font-size: 0.78rem;
   color: #999999;
   text-align: center;
   line-height: 1.4;
-  max-width: 140px;
+  max-width: 150px;
 }
 
 .stemLine {
@@ -342,7 +342,7 @@
 }
 
 .mobileTitle {
-  font-size: 11px;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #ffffff;
   text-transform: uppercase;
@@ -350,8 +350,32 @@
 }
 
 .mobileDesc {
-  font-size: 9.5px;
+  font-size: 0.78rem;
   color: #999999;
   line-height: 1.4;
   max-width: 160px;
+}
+
+@media (max-width: 400px) {
+  .timelineSection {
+    padding: 60px 15px;
+  }
+  .sectionHeader {
+    margin-bottom: 3rem;
+  }
+  .mobileContent {
+    max-width: 140px;
+  }
+  .mobileIconWrapper {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .mobileTitle {
+    font-size: 0.78rem;
+  }
+  .mobileDesc {
+    font-size: 0.75rem;
+    max-width: 130px;
+  }
 }
