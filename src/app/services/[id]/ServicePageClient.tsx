@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import HexagonSection from "@/components/HexagonSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./page.module.css";
 import type { ServiceItem } from "@/data/services";
@@ -224,47 +225,8 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
           </div>
         </section>
 
-        {/* SECTION 4: PRICING GUIDE */}
-        <section className={styles.pricingSection}>
-          <div className={styles.sectionHeader} data-reveal>
-            <span className={styles.sectionLabel}>TRANSPARENT TARIFF</span>
-            <h2 className={styles.sectionTitle}>How Pricing Works</h2>
-            <div className={styles.underlineBar}></div>
-          </div>
-
-          <div className={styles.pricingGrid}>
-            {/* Card 1 */}
-            <div className={styles.pricingCard} data-reveal>
-              <span className={styles.pricingCardIcon}>📊</span>
-              <h4 className={styles.pricingCardTitle}>Factors That Affect Price</h4>
-              <p className={styles.pricingCardDesc}>
-                {currentConfig.pricingFactors && currentConfig.pricingFactors.length > 0
-                  ? currentConfig.pricingFactors.join(" • ")
-                  : "Pricing is determined by transport distance, volume size, floor height, lift access, and packaging quality."}
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className={styles.pricingCard} data-reveal>
-              <span className={styles.pricingCardIcon}>📋</span>
-              <h4 className={styles.pricingCardTitle}>How We Quote</h4>
-              <p className={styles.pricingCardDesc}>
-                We calculate distance and packaging variables to suggest correct transport carrier options. Our quote details structural splits, taxes, and service margins.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className={styles.pricingCard} data-reveal>
-              <span className={styles.pricingCardIcon}>💳</span>
-              <h4 className={styles.pricingCardTitle}>Payment Process</h4>
-              <p className={styles.pricingCardDesc}>
-                Pay a small advance token online to secure booking date, pay the secondary balance at cargo loading pickup, and settle remaining dues post-delivery.
-              </p>
-            </div>
-          </div>
-
-
-        </section>
+        {/* SECTION 4: PRICING — HEXAGON CARDS */}
+        <HexagonSection />
 
 
 
