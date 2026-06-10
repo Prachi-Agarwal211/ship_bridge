@@ -98,7 +98,7 @@ export default function ServiceTunnel() {
 
     // Crossfade background glow (desktop only)
     gsap.to(containerRef.current, {
-      '--tunnel-glow': services[activeIndex].glowColor,
+      '--tunnel-glow': services[activeIndex]?.glowColor || 'rgba(249, 115, 22, 0.4)',
       duration: 1.2,
       ease: 'power2.out'
     });
