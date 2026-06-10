@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -72,6 +72,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
+  min-font-size: 0.85rem;
 }
 
 .title {
@@ -93,11 +94,36 @@
   .title {
     font-size: clamp(2rem, 10.5vw, 5.5rem);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+  .slogan {
+    font-size: clamp(0.88rem, 2.5vw, 1.25rem);
+    letter-spacing: 0.15em;
+  }
+  .contentWrapper {
+    padding: 0 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
     padding-bottom: 2.5rem;
+  }
+  .title {
+    font-size: clamp(1.8rem, 11vw, 4rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    padding: 0 0.5rem;
+  }
+  .slogan {
+    font-size: clamp(0.82rem, 2.8vw, 1rem);
+    letter-spacing: 0.1em;
+    padding: 0 1rem;
+  }
+  .contentWrapper {
+    gap: 1rem;
+    padding: 0 0.5rem;
   }
 }

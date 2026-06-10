@@ -21,6 +21,24 @@
   }
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 6rem 1rem 2.5rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+  .text {
+    font-size: 0.95rem;
+  }
+  .listItem {
+    font-size: 0.95rem;
+  }
+}
+
 /* Background Glow Blobs */
 .bgGlow {
   position: absolute;

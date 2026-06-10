@@ -16,6 +16,8 @@ export default function FranchiseClient() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+
     const tl = gsap.timeline();
     tl.from('.hero-elem', {
       y: 40,
@@ -25,6 +27,24 @@ export default function FranchiseClient() {
       ease: 'power3.out',
       delay: 0.2
     });
+
+    if (isDesktop) {
+      const heroSection = containerRef.current?.querySelector(`.${styles.heroSection}`);
+      const heroContent = heroSection?.querySelector(`.${styles.heroContent}`);
+      if (heroSection && heroContent) {
+        gsap.to(heroContent, {
+          yPercent: -30,
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroSection,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+      }
+    }
 
   }, { scope: containerRef });
 

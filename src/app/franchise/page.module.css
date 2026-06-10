@@ -10,7 +10,7 @@
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
   position: relative;
   z-index: 10;
 }
@@ -19,6 +19,10 @@
 .heroSection {
   position: relative;
   padding: 10rem 0 6rem 0;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   overflow: hidden;
   text-align: center;
@@ -26,13 +30,13 @@
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 5.5rem 0 3rem 0;
+    padding: 8rem 0 4rem 0;
   }
 }
 
 @media (max-width: 480px) {
   .heroSection {
-    padding: 4.5rem 0 2.5rem 0;
+    padding: 7rem 0 3rem 0;
   }
 }
 
@@ -117,7 +121,7 @@
 }
 
 .sectionLabel {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 2px;
   color: #22c55e;
@@ -212,5 +216,21 @@
 @media (max-width: 480px) {
   .whyCard {
     padding: 1.6rem 1.25rem;
+  }
+  .heroTitle {
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+  }
+  .heroSub {
+    font-size: 1rem;
+  }
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ctaOutlined {
+    font-size: 0.9rem;
+    padding: 0.85rem 1.75rem;
   }
 }

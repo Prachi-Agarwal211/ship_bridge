@@ -229,7 +229,7 @@ export default function AboutCompany() {
                       src={member.image}
                       alt={member.name}
                       fill
-                      
+                      sizes="(max-width: 992px) 90vw, 480px"
                       className={styles.profileImage}
                       priority
                     />

@@ -40,7 +40,7 @@
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--color-orange);
   letter-spacing: 2px;
@@ -191,7 +191,7 @@
 }
 
 .categoryTag {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--color-orange);
   text-transform: uppercase;
@@ -245,7 +245,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 0.5rem 1rem;
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.5px;
@@ -281,6 +281,9 @@
   .headerInfo {
     align-items: flex-start;
     text-align: left;
+  }
+  .dragIndicator {
+    display: none;
   }
 }
 
@@ -336,6 +339,6 @@
   }
 
   .dragIndicator {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
   }
 }

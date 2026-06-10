@@ -245,12 +245,24 @@
 }
 
 @media (max-width: 480px) {
+  .section {
+    padding: 5rem 0;
+  }
   .timelineColumn {
-    height: 520px;
+    height: 480px;
   }
   .stepContent {
-    width: 180px;
-    padding: 0.7rem;
+    width: 160px;
+    padding: 0.65rem;
+  }
+  .title {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  .mobileSteps {
+    margin-top: 1.5rem;
   }
 }
 
@@ -356,7 +368,7 @@
 }
 
 .mobileStepDesc {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: rgba(255,255,255,0.65);
   line-height: 1.35;
   margin: 0;

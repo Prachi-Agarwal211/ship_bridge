@@ -145,7 +145,7 @@
 
 .eyebrow {
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 3px;
   color: var(--color-orange);
@@ -176,7 +176,7 @@
 }
 
 .featureTag {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #fff;
   background: rgba(255, 255, 255, 0.05);
@@ -231,5 +231,43 @@
   .rowReverse .floatingBadge {
     right: 10px;
     left: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .editorialSection {
+    padding: 3rem 0;
+  }
+  .introHeading {
+    font-size: clamp(2rem, 9vw, 3.5rem);
+  }
+  .stepTitle {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+  .stepBody {
+    font-size: 1rem;
+  }
+  .mediaBlock {
+    width: 95%;
+  }
+  .sequenceContainer {
+    gap: clamp(4rem, 12vw, 8rem);
+  }
+  .floatingBadge {
+    bottom: -12px;
+    right: 8px;
+    padding: 0.6rem 0.9rem;
+  }
+  .rowReverse .floatingBadge {
+    right: 8px;
+    left: auto;
+  }
+  .badgeText {
+    font-size: 0.82rem;
+  }
+  .badgeIcon {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
   }
 }
