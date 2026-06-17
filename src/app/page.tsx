@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import PincodeChecker from '@/components/PincodeChecker';
 import ServiceTunnel from '@/components/ServiceTunnel';
 import Process from '@/components/Process';
 import Product from '@/components/Product';
@@ -22,6 +23,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <PincodeChecker />
       <ServiceTunnel />
       <Process />
       <Product />
