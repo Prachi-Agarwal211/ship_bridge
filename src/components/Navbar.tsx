@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES_DATA } from '@/data/services';
+import { INDUSTRIES_DATA } from '@/data/industries';
 import MagneticButton from '@/components/animations/MagneticButton';
 import styles from './Navbar.module.css';
 
@@ -96,6 +97,28 @@ export default function Navbar() {
               </div>
             </li>
 
+            <li className={styles.dropdownContainer}>
+              <button className={styles.dropdownTrigger}>
+                Industries <span className={styles.chevron}>▼</span>
+              </button>
+              <div className={`${styles.megaMenu} ${styles.wideMenu}`}>
+                <div className={`${styles.megaMenuInner} ${styles.fourColGrid}`}>
+                  {INDUSTRIES_DATA.map((industry) => {
+                    const hasDedicatedPage = ['apparel', 'books', 'healthcare', 'fmcg', 'automotive', 'engineering', 'hitech', 'alliance'].includes(industry.id);
+                    const linkHref = hasDedicatedPage ? `/industries/${industry.id}` : `/services/household#booking-form?industry=${industry.id}`;
+                    return (
+                      <Link key={industry.id} href={linkHref} className={styles.megaMenuItem}>
+                        <div className={styles.megaMenuIcon}>{industry.icon}</div>
+                        <div className={styles.megaMenuContent}>
+                          <h4>{industry.title}</h4>
+                          <p>{industry.description}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </li>
             <li><Link href="/product" className={pathname === '/product' ? styles.active : ''}>Product</Link></li>
             <li><Link href="/about" className={pathname === '/about' ? styles.active : ''}>Company</Link></li>
             <li><Link href="/careers" className={pathname === '/careers' ? styles.active : ''}>Careers</Link></li>
@@ -163,6 +186,26 @@ export default function Navbar() {
                     </Link>
                   </motion.div>
                 ))}
+              </div>
+
+              <div className={styles.mobileServicesDivider}>INDUSTRIES</div>
+              <div className={styles.mobileServicesGrid}>
+                {INDUSTRIES_DATA.map((industry, i) => {
+                  const hasDedicatedPage = ['apparel', 'books', 'healthcare', 'fmcg', 'automotive', 'engineering', 'hitech', 'alliance'].includes(industry.id);
+                  const linkHref = hasDedicatedPage ? `/industries/${industry.id}` : `/services/household#booking-form?industry=${industry.id}`;
+                  return (
+                    <motion.div
+                      key={industry.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.7 + i * 0.05 }}
+                    >
+                      <Link href={linkHref} className={styles.mobileServiceChip}>
+                        {industry.icon} {industry.title}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </motion.div>

@@ -65,6 +65,7 @@ export default function Footer() {
             <h4>COMPANY</h4>
             <ul>
               <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/services/household#booking-form">Industries</Link></li>
               <li><Link href="/product">Our Products</Link></li>
               <li><Link href="/careers">Careers</Link></li>
               <li><Link href="/franchise">Franchise</Link></li>

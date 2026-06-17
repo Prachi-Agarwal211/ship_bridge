@@ -1,0 +1,456 @@
+.pageContainer {
+  background-color: transparent;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  z-index: 10;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+  color: #a0aec0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb a {
+  color: #22c55e;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: #16a34a;
+}
+
+.breadcrumbSeparator {
+  color: #718096;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  padding: 14rem 0 8rem 0;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08080a;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  filter: brightness(0.4) saturate(1.1);
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(8,8,10,0.3) 0%, rgba(8,16,8,0.85) 100%);
+  z-index: 1;
+}
+
+.heroContent {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+}
+
+.heroGlassCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
+  border-radius: 2rem;
+  text-align: center;
+  max-width: 850px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.heroTitle {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.highlightGreen {
+  color: #22c55e;
+}
+
+.heroSub {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.7;
+  color: #d1d5db;
+  font-weight: 400;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Introduction Tagline */
+.introSection {
+  padding: 5rem 0 3rem 0;
+  text-align: center;
+  background-color: #08080a;
+}
+
+.introText {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  line-height: 1.8;
+  color: #d1d5db;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-style: italic;
+  border-left: 4px solid #22c55e;
+  border-right: 4px solid #22c55e;
+  padding: 0 2rem;
+}
+
+.introText strong {
+  color: #22c55e;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sectionLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #22c55e;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.underlineBar {
+  width: 70px;
+  height: 4px;
+  background-color: #f97316;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* Capabilities list - Replaces standard checklist with 12 items */
+.capabilitiesSection {
+  padding: 4rem 0 6rem 0;
+  background-color: #08080a;
+}
+
+.capabilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 3rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 992px) {
+  .capabilitiesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.capabilityItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.capabilityItem:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.2);
+  background: rgba(34, 197, 94, 0.02);
+}
+
+.checkCircle {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.capabilityText {
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+/* Specialized VMI Section */
+.vmiSection {
+  padding: 6rem 0;
+  background-color: #0b0b0f;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.vmiCard {
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  backdrop-filter: blur(25px);
+}
+
+.vmiGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .vmiGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.vmiLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.vmiTitle {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.vmiParagraph {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #cbd5e0;
+  margin-bottom: 1.5rem;
+}
+
+.vmiParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.vmiParagraph strong {
+  color: #22c55e;
+}
+
+.vmiImageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vmiImage {
+  object-fit: cover;
+}
+
+/* VMI services grid list */
+.vmiIncludesSection {
+  padding: 5rem 0;
+  background-color: #08080a;
+}
+
+.vmiIncludesHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.vmiIncludesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .vmiIncludesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .vmiIncludesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vmiIncludeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.vmiIncludeItem:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.triangleIcon {
+  color: #22c55e;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.vmiIncludeText {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+/* After Market Split Container Section */
+.aftermarketSection {
+  padding: 6rem 0;
+  background-color: #08080a;
+}
+
+.aftermarketGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  border-radius: 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 992px) {
+  .aftermarketGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aftermarketImageCol {
+  position: relative;
+  min-height: 400px;
+}
+
+@media (max-width: 992px) {
+  .aftermarketImageCol {
+    min-height: 300px;
+  }
+}
+
+.aftermarketImage {
+  object-fit: cover;
+}
+
+.aftermarketContentCol {
+  padding: clamp(2.5rem, 6vw, 4.5rem);
+  background-color: #144B20; /* Dark forest green color matched from ShipBridge theme */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aftermarketTitle {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.aftermarketText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+.aftermarketText:last-of-type {
+  margin-bottom: 0;
+}
+
+/* CTA Footer Prompt Section */
+.ctaPromptSection {
+  text-align: center;
+  padding: 4rem 0 7rem 0;
+  background-color: #08080a;
+}
+
+.ctaPromptText {
+  font-size: 1.15rem;
+  color: #cbd5e0;
+  margin-bottom: 2rem;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaFilled {
+  display: inline-block;
+}
+
+.ctaOutlined {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ctaOutlined:hover {
+  border-color: #22c55e;
+  background-color: rgba(34, 197, 94, 0.05);
+  transform: translateY(-2px);
+}

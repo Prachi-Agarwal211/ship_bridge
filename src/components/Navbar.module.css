@@ -193,6 +193,29 @@
   gap: 1rem;
 }
 
+.wideMenu {
+  width: min(1200px, 95vw);
+}
+
+.fourColGrid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .wideMenu {
+    width: min(700px, 90vw);
+  }
+  .fourColGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .fourColGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .megaMenuItem {
   display: flex;
   align-items: flex-start;
