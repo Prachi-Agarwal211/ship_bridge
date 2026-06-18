@@ -15,10 +15,41 @@ export interface ServiceDetail {
   whatYouNeed: string[];
   faqs?: { q: string; a: string }[];
   stats?: { value: string; label: string }[];
-  pricingFactors?: string[];
 }
 
 export const SERVICES_DATA: ServiceItem[] = [
+  {
+    id: "ftl",
+    title: "Full Truck Load (FTL)",
+    subtitle: "Dedicated Freight",
+    description: "Book an entire truck exclusively for your cargo. FTL ensures faster transit, zero damage risk from sharing, and direct point-to-point delivery. Ideal for bulk shipments, high-value goods, and time-sensitive freight across India.",
+    image: "/services/warehouse.jpeg",
+    tags: ["Dedicated Truck", "Door-to-Door", "GPS Tracking", "Fastest Transit", "Zero Handling"]
+  },
+  {
+    id: "ptl",
+    title: "Part Truck Load (PTL)",
+    subtitle: "Shared Freight / LTL",
+    description: "Pay only for the space you use. PTL consolidates your shipment with others heading the same route, offering 20-30% savings over FTL while maintaining reliable transit times. Perfect for medium-sized B2B shipments.",
+    image: "/services/warehouse.jpeg",
+    tags: ["Cost Effective", "Shared Truck", "Flexible Volume", "Pan-India", "Regular Service"]
+  },
+  {
+    id: "express",
+    title: "Express Delivery",
+    subtitle: "Time-Definite Freight",
+    description: "Guaranteed time-definite delivery with air and surface express options. Choose same-day, next-day, or scheduled delivery windows. Real-time tracking and priority handling for urgent shipments.",
+    image: "/services/local.png",
+    tags: ["Same-Day", "Next-Day", "Time-Definite", "Priority Handling", "Air + Surface"]
+  },
+  {
+    id: "b2bcoloading",
+    title: "B2B Coloading",
+    subtitle: "Consolidated Freight",
+    description: "ShipBridge's signature service — consolidate your B2B shipments with other shippers going the same route. AI-optimized routing reduces costs by 20-30% while maintaining fast transit. Perfect for regular shippers.",
+    image: "/services/warehouse.jpeg",
+    tags: ["AI Optimized", "20-30% Savings", "Regular Routes", "Shared Load", "Eco-Friendly"]
+  },
   {
     id: "household",
     title: "Household Shifting",
@@ -66,11 +97,25 @@ export const SERVICES_DATA: ServiceItem[] = [
     description: "Time-critical setup and logistics management for exhibition pavilions, trade shows, and events. We coordinate booth material transport, on-site assembly, and secure reverse logistics post-event.",
     image: "/services/exhibition.png",
     tags: ["Booth Construction Setup", "Time-Critical Delivery", "On-Site Support", "Event Coordination", "Reverse Logistics"]
+  },
+  {
+    id: "ecommerce",
+    title: "E-commerce Logistics",
+    subtitle: "Last Mile & COD",
+    description: "End-to-end e-commerce fulfillment — from warehouse to customer door. COD collection, returns management, same-day/next-day delivery, and NDR resolution. Integrates with all major marketplaces.",
+    image: "/services/local.png",
+    tags: ["COD Management", "Returns Handling", "Same-Day Delivery", "Marketplace Integration", "NDR Resolution"]
+  },
+  {
+    id: "reverselog",
+    title: "Reverse Logistics",
+    subtitle: "Returns Management",
+    description: "Complete returns management — pickup, transit, inspection, grading, and restocking or disposal. Specialized for e-commerce returns across India.",
+    image: "/services/local.png",
+    tags: ["End-to-End Returns", "Inspection & Grading", "Restocking", "E-commerce Focus", "Pan-India Pickup"]
   }
 ];
 
-// Rich per-service content (journey, process, checklists, FAQs, stats, pricing notes).
-// Moved here from ServicePageClient for DRY + easier maintenance. Base data stays lean.
 export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
   household: {
     whyPill: "Door-to-door Premium Packing",
@@ -112,8 +157,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       { value: "4,800+", label: "Household moves" },
       { value: "Pan-India", label: "Coverage" },
       { value: "48hr", label: "Avg delivery" }
-    ],
-    pricingFactors: ["Number of rooms & inventory volume", "Floor & lift access at both ends", "Distance + city traffic", "Premium vs standard packing grade", "Specialty items (piano, art, antiques)"]
+    ]
   },
   office: {
     whyPill: "Weekend & After-Hours Shifting Available",
@@ -152,8 +196,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       { value: "620+", label: "Office moves" },
       { value: "0.2 days", label: "Avg downtime" },
       { value: "24x7", label: "Support" }
-    ],
-    pricingFactors: ["IT density & server count", "After-hours premium", "Floor access & building permissions", "Document volume & secure handling", "Weekend vs weekday timing"]
+    ]
   },
   warehouse: {
     whyPill: "24/7 CCTV & Climate Controlled Slots",
@@ -182,7 +225,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       "Secure keys and locks for custom container spaces."
     ],
     faqs: [
-      { q: "Is the storage climate controlled and insured?", a: "Yes — we offer both ambient and humidity-controlled zones (15-25°C, 45-55% RH). All goods are fully insured with 24/7 monitored CCTV and on-site guards." },
+      { q: "Is the storage climate controlled and insured?", a: "Yes — we offer both ambient and humidity-controlled zones. All goods are fully insured with 24/7 monitored CCTV and on-site guards." },
       { q: "Can I retrieve only part of my stored items?", a: "Absolutely. We support partial retrievals with 24-48hr notice. Your digital inventory lets us pull exact crates without disturbing the rest." },
       { q: "How do I know exactly what is stored?", a: "Every crate receives a unique barcode + photo at intake. You get a digital manifest with photos and can request live verification anytime." }
     ],
@@ -190,8 +233,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       { value: "18,000+", label: "Sq ft secure" },
       { value: "99.8%", label: "Retrieval on-time" },
       { value: "24/7", label: "Surveillance" }
-    ],
-    pricingFactors: ["Volume (cubic feet or pallets)", "Climate vs standard zone", "Duration (monthly discounts)", "Access frequency (self vs assisted)", "High-value rider insurance"]
+    ]
   },
   local: {
     whyPill: "Fast, Budget-Friendly Same-Day Moves",
@@ -229,9 +271,8 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
     stats: [
       { value: "9,100+", label: "Local shifts" },
       { value: "Same day", label: "Most moves" },
-      { value: "₹4.5k", label: "Starting from" }
-    ],
-    pricingFactors: ["Distance within city limits", "Vehicle type (Ace / Bolero / Container)", "Floor & parking access", "Basic vs premium wrap", "Peak hour / weekend surcharge"]
+      { value: "500+", label: "Cities covered" }
+    ]
   },
   vehicle: {
     whyPill: "Scratch-Free Enclosed Auto Carriers",
@@ -262,7 +303,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       "Prepare photocopies of RC book, insurance, and owner ID papers."
     ],
     faqs: [
-      { q: "Do you use enclosed carriers or open trailers?", a: "We default to enclosed carriers for cars (scratch & weather protection). Open carriers available for bikes/scooters at lower cost when requested." },
+      { q: "Do you use enclosed carriers or open trailers?", a: "We default to enclosed carriers for cars (scratch & weather protection). Open carriers available for bikes/scooters when requested." },
       { q: "What documents do I need to provide?", a: "RC copy, valid insurance, PUC, and owner ID. We handle permits for inter-state; you just hand over the keys after the pre-inspection." },
       { q: "How do I track my car during transit?", a: "Live GPS link + daily status SMS. You can also call the driver or our 24/7 control room anytime." }
     ],
@@ -270,8 +311,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
       { value: "3,200+", label: "Vehicles moved" },
       { value: "0.4%", label: "Claim rate" },
       { value: "Enclosed", label: "Default" }
-    ],
-    pricingFactors: ["Car vs bike vs scooter", "Enclosed vs open carrier", "Distance (inter-city)", "Make/model (specialty handling)", "Express vs standard schedule"]
+    ]
   },
   exhibition: {
     whyPill: "Time-Critical Setup & Reverse Logistics",
@@ -304,17 +344,247 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
     faqs: [
       { q: "Can you help with on-site booth setup and dismantling?", a: "Yes — our trained crew assists with unloading, stand assembly, electrical tie-ins, and full post-event pack-down + reverse logistics." },
       { q: "What if my materials arrive before the hall opens?", a: "We hold in our bonded buffer warehouse near the venue and deliver in your exact time window. No extra storage fees for standard exhibition windows." },
-      { q: "Do you handle international or multi-city exhibition tours?", a: "We coordinate end-to-end for domestic circuits and partner for international freight + customs clearance on larger programs." }
+      { q: "Do you handle international or multi-city exhibition tours?", a: "We coordinate end-to-end for domestic circuits and partner for international freight on larger programs." }
     ],
     stats: [
       { value: "410+", label: "Events supported" },
       { value: "98%", label: "On-time setup" },
       { value: "Multi-city", label: "Tours handled" }
+    ]
+  },
+  ftl: {
+    whyPill: "Dedicated Truck, Zero Sharing, Fastest Transit",
+    journeySteps: [
+      { icon: "📋", title: "Load Plan", desc: "Cargo volume & weight assessment" },
+      { icon: "🚛", title: "Vehicle Match", desc: "Right truck for your load size" },
+      { icon: "🛰️", title: "Live Tracking", desc: "GPS-enabled real-time transit updates" },
+      { icon: "🔑", title: "Direct Delivery", desc: "Point-to-point, no intermediate handling" }
     ],
-    pricingFactors: ["Stall size & material volume", "Express vs standard timing", "On-site crew hours", "Buffer storage duration", "Reverse logistics complexity"]
+    flowSteps: [
+      { icon: "📍", title: "Origin Pincode", brief: "Pickup address & dock details" },
+      { icon: "📍", title: "Destination Pincode", brief: "Delivery address & access info" },
+      { icon: "📦", title: "Cargo Details", brief: "Weight, dimensions, type of goods" },
+      { icon: "🚛", title: "Vehicle Type", brief: "Select truck (6W, 10W, 32ft, Trailer)" },
+      { icon: "📅", title: "Schedule", brief: "Pickup date & time window" },
+      { icon: "🚀", title: "Confirm & Book", brief: "Review quote and confirm booking" }
+    ],
+    whatWeDo: [
+      "Dedicated 10-wheeler, multi-axle, or container truck for your cargo.",
+      "GPS tracking with real-time location updates sent to your phone.",
+      "Door-to-door delivery with no intermediate handling or transfers.",
+      "Flexible scheduling — immediate or planned pickup windows."
+    ],
+    whatYouNeed: [
+      "Accurate cargo weight and dimensions for vehicle selection.",
+      "Loading/unloading arrangements at both origin and destination.",
+      "Proper packaging for fragile or high-value cargo.",
+      "GST details and shipping documents ready."
+    ],
+    faqs: [
+      { q: "What is FTL and when should I use it?", a: "Full Truck Load means you book the entire truck exclusively. Use FTL when you have enough cargo to fill a truck (typically 5+ tonnes) or when cargo safety requires no sharing." },
+      { q: "What truck sizes are available?", a: "LCV (6-wheeler, 9-11MT), 10-wheeler (16-20MT), Multi-axle (20-32MT), 32ft Container, and Trailers for heavy cargo." },
+      { q: "Can I track my shipment?", a: "Yes — live GPS tracking link is shared via SMS and WhatsApp. You can also call our 24/7 control room." }
+    ],
+    stats: [
+      { value: "50,000+", label: "FTL trips completed" },
+      { value: "99.2%", label: "On-time delivery" },
+      { value: "0.1%", label: "Damage rate" }
+    ]
+  },
+  ptl: {
+    whyPill: "Pay Only for Your Space, Save 20-30%",
+    journeySteps: [
+      { icon: "📦", title: "Cargo Measured", desc: "Weight & volumetric assessment" },
+      { icon: "🤝", title: "Space Shared", desc: "Consolidated with compatible loads" },
+      { icon: "🚛", title: "Hub Transit", desc: "Routed through nearest hub" },
+      { icon: "🔑", title: "Final Delivery", desc: "Direct to destination address" }
+    ],
+    flowSteps: [
+      { icon: "📍", title: "Origin Pincode", brief: "Pickup location details" },
+      { icon: "📍", title: "Destination Pincode", brief: "Delivery address details" },
+      { icon: "📦", title: "Cargo Details", brief: "Weight, dimensions, packages" },
+      { icon: "📅", title: "Schedule", brief: "Preferred pickup date" },
+      { icon: "🚀", title: "Confirm", brief: "Get instant rate & confirm" }
+    ],
+    whatWeDo: [
+      "Consolidate your shipment with others heading the same route.",
+      "Hub-and-spoke network ensuring reliable transit times.",
+      "Pay only for the weight you ship.",
+      "Pan-India coverage through 500+ partner network."
+    ],
+    whatYouNeed: [
+      "Accurate weight and dimensions of all packages.",
+      "Proper labeling with origin-destination tags.",
+      "Packaging suitable for multi-touch transit.",
+      "GST and invoice details for billing."
+    ],
+    faqs: [
+      { q: "What is the difference between PTL and FTL?", a: "PTL (Part Truck Load) shares truck space with other shippers. You pay only for your cargo's weight/volume. FTL is a dedicated truck. PTL saves 20-30% for loads under 5 tonnes." },
+      { q: "How long does PTL take?", a: "Same city: same day. 500km: 2-3 days. 1000km+: 3-5 days. Transit times include hub consolidation." },
+      { q: "Is my cargo safe in shared transport?", a: "Yes — each shipment is barcoded, sealed, and tracked. Hub handling follows strict SOPs with CCTV monitoring." }
+    ],
+    stats: [
+      { value: "1,00,000+", label: "PTL shipments" },
+      { value: "25%", label: "Avg savings vs FTL" },
+      { value: "500+", label: "Network hubs" }
+    ]
+  },
+  express: {
+    whyPill: "Guaranteed Time-Definite Delivery",
+    journeySteps: [
+      { icon: "⚡", title: "Priority Pickup", desc: "Immediate collection within hours" },
+      { icon: "✈️", title: "Fast Transit", desc: "Air or express surface routing" },
+      { icon: "🛰️", title: "Live Tracking", desc: "Real-time ETA updates" },
+      { icon: "🔑", title: "On-Time Drop", desc: "Delivered within committed window" }
+    ],
+    flowSteps: [
+      { icon: "📍", title: "Pickup Address", brief: "Origin details" },
+      { icon: "📍", title: "Drop Address", brief: "Destination details" },
+      { icon: "📦", title: "Cargo Details", brief: "Weight & contents" },
+      { icon: "⏱️", title: "Select Speed", brief: "Same-day / Next-day / 2-day" },
+      { icon: "🚀", title: "Book Now", brief: "Confirm & get instant tracking" }
+    ],
+    whatWeDo: [
+      "Same-day delivery within metro cities (before 10am cutoff).",
+      "Next-day delivery between major metros via air express.",
+      "Time-definite windows: Morning (10:30am), Afternoon (2pm), Evening (6pm).",
+      "Priority handling with dedicated express fleet."
+    ],
+    whatYouNeed: [
+      "Book before 10am for same-day delivery.",
+      "Ensure accurate address with landmark for faster delivery.",
+      "Pack cargo securely for express handling.",
+      "Keep phone accessible for delivery coordination."
+    ],
+    faqs: [
+      { q: "What is the cutoff for same-day delivery?", a: "Book before 10am for metro cities. For intercity express, book before 2pm for next-day delivery via air." },
+      { q: "Can I get a specific delivery time window?", a: "Yes — we offer Morning (10:30am), Afternoon (2pm), and Evening (6pm) delivery windows for metro routes." },
+      { q: "Is express available for all pin codes?", a: "Same-day is available in 8 major metros. Next-day covers 50+ cities. Standard express reaches all serviceable pincodes." }
+    ],
+    stats: [
+      { value: "25,000+", label: "Express deliveries" },
+      { value: "98.5%", label: "On-time rate" },
+      { value: "8 metros", label: "Same-day coverage" }
+    ]
+  },
+  b2bcoloading: {
+    whyPill: "AI-Optimized Shared Load, Maximum Savings",
+    journeySteps: [
+      { icon: "📋", title: "Shipper Profile", desc: "Regular route & volume analysis" },
+      { icon: "🤖", title: "AI Match", desc: "Smart consolidation with compatible loads" },
+      { icon: "🚛", title: "Consolidated Truck", desc: "Shared truck, dedicated space" },
+      { icon: "🔑", title: "Direct Delivery", desc: "No rehandling at destination" }
+    ],
+    flowSteps: [
+      { icon: "📍", title: "Origin Pincode", brief: "Regular pickup point" },
+      { icon: "📍", title: "Destination Pincode", brief: "Delivery area" },
+      { icon: "📦", title: "Cargo Profile", brief: "Typical weight & frequency" },
+      { icon: "📅", title: "Schedule", brief: "Daily / Weekly / On-demand" },
+      { icon: "🚀", title: "Get Started", brief: "Activate coloading account" }
+    ],
+    whatWeDo: [
+      "AI matches your cargo with other shippers on the same route.",
+      "You get a dedicated portion of the truck at shared cost.",
+      "20-30% cost savings vs individual FTL bookings.",
+      "Regular scheduled service for repeat shippers."
+    ],
+    whatYouNeed: [
+      "Minimum 500kg per shipment for optimal consolidation.",
+      "Flexible pickup windows (2-3 hour range).",
+      "Standardized packaging for easy loading.",
+      "Monthly volume commitment for best rates."
+    ],
+    faqs: [
+      { q: "How does B2B coloading work?", a: "ShipBridge's AI consolidates shipments from multiple shippers going the same route. Each shipper gets a dedicated section of the truck. You save 20-30% vs booking your own FTL." },
+      { q: "What is the minimum shipment size?", a: "Minimum 500kg per booking. For regular shippers, we offer monthly contracts with even better rates based on volume." },
+      { q: "Is my cargo safe with other shippers' goods?", a: "Yes — each shipment is individually sealed, barcoded, and tracked. Loading follows strict compatibility rules (no mixing hazardous with food, etc.)." },
+      { q: "How often does the coloading service run?", a: "Major routes run daily. Secondary routes run 3-5 times per week. Schedule is confirmed 24 hours before pickup." }
+    ],
+    stats: [
+      { value: "30%", label: "Avg cost savings" },
+      { value: "500+", label: "Regular shippers" },
+      { value: "Daily", label: "Major routes" }
+    ]
+  },
+  ecommerce: {
+    whyPill: "End-to-End E-commerce Fulfillment",
+    journeySteps: [
+      { icon: "🏭", title: "Warehouse Pickup", desc: "Collection from fulfillment center" },
+      { icon: "📦", title: "Sort & Route", desc: "AI-optimized last-mile routing" },
+      { icon: "🏍️", title: "Last Mile", desc: "Doorstep delivery with OTP" },
+      { icon: "💰", title: "COD Collection", desc: "Cash collection & remittance" }
+    ],
+    flowSteps: [
+      { icon: "🏭", title: "Warehouse Address", brief: "Fulfillment center pickup" },
+      { icon: "📍", title: "Customer Pincode", brief: "Delivery destination" },
+      { icon: "📦", title: "Order Details", brief: "Weight, value, COD amount" },
+      { icon: "⏱️", title: "SLA Selection", brief: "Same-day / Next-day / Standard" },
+      { icon: "🚀", title: "Book Shipment", brief: "Integrate via API or dashboard" }
+    ],
+    whatWeDo: [
+      "Marketplace integration with Flipkart, Amazon, Meesho, and more.",
+      "Same-day and next-day delivery in 50+ cities.",
+      "COD collection with next-day remittance to your bank.",
+      "Complete returns management with reverse pickup."
+    ],
+    whatYouNeed: [
+      "API credentials or marketplace seller account access.",
+      "Proper product packaging with shipping labels.",
+      "PIN code serviceability check before listing.",
+      "COD remittance bank account details."
+    ],
+    faqs: [
+      { q: "What marketplaces do you integrate with?", a: "All major Indian marketplaces — Flipkart, Amazon, Meesho, JioMart, Shopclues, and custom Shopify/WooCommerce stores via API." },
+      { q: "How fast is COD remittance?", a: "Next-business-day remittance for all metro deliveries. T+2 for Tier-2/3 cities. Weekly settlement for high-volume sellers." },
+      { q: "What is the RTO (Return to Origin) rate?", a: "Industry average is 23%. Our AI address verification and OTP-based delivery reduces RTO to under 15% for our sellers." },
+      { q: "Do you handle returns?", a: "Yes — complete reverse logistics from customer doorstep back to your warehouse. Inspection, grading, and restocking included." }
+    ],
+    stats: [
+      { value: "5,00,000+", label: "Monthly deliveries" },
+      { value: "15%", label: "RTO rate (vs 23% avg)" },
+      { value: "50+", label: "Cities same-day" }
+    ]
+  },
+  reverselog: {
+    whyPill: "Complete Returns Management",
+    journeySteps: [
+      { icon: "📱", title: "Return Request", desc: "Customer initiates return" },
+      { icon: "🏍️", title: "Reverse Pickup", desc: "Collection from customer door" },
+      { icon: "🏭", title: "Inspection", desc: "Grading & condition check" },
+      { icon: "♻️", title: "Disposition", desc: "Restock / Refurbish / Recycle" }
+    ],
+    flowSteps: [
+      { icon: "📍", title: "Pickup Address", brief: "Customer location" },
+      { icon: "📍", title: "Return Warehouse", brief: "Destination facility" },
+      { icon: "📦", title: "Product Details", brief: "Category, value, reason" },
+      { icon: "⏱️", title: "Pickup Window", brief: "Schedule reverse pickup" },
+      { icon: "🚀", title: "Confirm", brief: "Track return journey" }
+    ],
+    whatWeDo: [
+      "Pan-India reverse pickup from customer doorsteps.",
+      "Product inspection and grading (A/B/C/D categories).",
+      "Refurbishment coordination for resellable returns.",
+      "Disposal/recycling for end-of-life products."
+    ],
+    whatYouNeed: [
+      "Return policy and RMA process documentation.",
+      "Grading criteria for inspection (A/B/C/D).",
+      "Destination warehouse address for restocking.",
+      "API integration for automated return triggers."
+    ],
+    faqs: [
+      { q: "How fast is reverse pickup?", a: "Metro: same-day or next-day pickup. Tier-2/3 cities: 2-3 days. Remote areas: 3-5 days. SLA depends on your reverse logistics policy." },
+      { q: "Can you inspect and grade products?", a: "Yes — trained inspectors grade products as A (like new), B (minor defect), C (needs repair), D (scrap). Photos uploaded to dashboard for your review." },
+      { q: "Do you handle e-commerce RTO (Return to Origin)?", a: "Yes — RTO management is our specialty. We handle failed deliveries, customer returns, and seller returns with complete tracking." }
+    ],
+    stats: [
+      { value: "2,00,000+", label: "Returns processed" },
+      { value: "48 hrs", label: "Avg return cycle" },
+      { value: "Pan-India", label: "Coverage" }
+    ]
   }
 };
 
 export function getServiceDetail(id: string): ServiceDetail {
-  return SERVICE_DETAILS[id] || SERVICE_DETAILS.household;
+  return SERVICE_DETAILS[id] || SERVICE_DETAILS.ftl;
 }

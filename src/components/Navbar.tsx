@@ -111,7 +111,7 @@ export default function Navbar() {
                         <div className={styles.megaMenuIcon}>{industry.icon}</div>
                         <div className={styles.megaMenuContent}>
                           <h4>{industry.title}</h4>
-                          <p>{industry.description}</p>
+                          <p>{industry.subtitle}</p>
                         </div>
                       </Link>
                     );

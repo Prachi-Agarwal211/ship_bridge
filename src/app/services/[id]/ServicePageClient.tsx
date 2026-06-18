@@ -1,14 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import HexagonSection from "@/components/HexagonSection";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import styles from "./page.module.css";
 import type { ServiceItem } from "@/data/services";
 import { SERVICES_DATA, getServiceDetail } from "@/data/services";
+
+interface RouteData {
+  route: {
+    from: { oda: boolean; city: string; state: string };
+    to: { oda: boolean; city: string; state: string };
+    fromPin: string;
+    toPin: string;
+    distanceKm: number;
+    distanceLabel: string;
+    sameCity: boolean;
+    sameState: boolean;
+  };
+  vehicles?: {
+    type: string;
+    capacity: string;
+    bestFor: string;
+    icon: string;
+  }[];
+}
 
 interface PageClientProps {
   service: ServiceItem;
@@ -17,6 +37,13 @@ interface PageClientProps {
 
 export default function ServicePageClient({ service, relatedServices }: PageClientProps) {
   const revealRef = useScrollReveal();
+  const searchParams = useSearchParams();
+  const fromPin = searchParams.get("from");
+  const toPin = searchParams.get("to");
+
+  const [routeData, setRouteData] = useState<RouteData | null>(null);
+  const [routeLoading, setRouteLoading] = useState(false);
+
   // Form States
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,8 +56,24 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  // FAQ accordion (uses centralized faqs from data)
+  // FAQ accordion
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+
+  // Fetch route data when pincodes are present
+  useEffect(() => {
+    if (fromPin && toPin && fromPin !== toPin) {
+      setRouteLoading(true);
+      fetch(`/api/route-check?from=${fromPin}&to=${toPin}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success && data.route) {
+            setRouteData(data);
+          }
+        })
+        .catch(() => {})
+        .finally(() => setRouteLoading(false));
+    }
+  }, [fromPin, toPin]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,15 +88,20 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
       email,
       phone,
       message,
+      fromPin: fromPin || undefined,
+      toPin: toPin || undefined,
+      routeInfo: routeData?.route ? {
+        from: `${routeData.route.from.city}, ${routeData.route.from.state}`,
+        to: `${routeData.route.to.city}, ${routeData.route.to.state}`,
+        distance: routeData.route.distanceLabel,
+      } : undefined,
       submittedAt: new Date().toISOString()
     };
 
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadData),
       });
 
@@ -62,8 +110,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
       }
 
       setIsSuccess(true);
-
-      // Clear fields
       setFullName("");
       setEmail("");
       setPhone("");
@@ -78,7 +124,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
     }
   };
 
-  // Rich per-service details now come from centralized data (DRY).
   const currentConfig = getServiceDetail(service.id);
 
   return (
@@ -113,6 +158,26 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             <div className={styles.titleBar}></div>
             <p className={styles.description}>{service.description}</p>
 
+            {/* Route Info Banner (if pincodes present) */}
+            {fromPin && toPin && (
+              <div className={styles.routeBanner}>
+                {routeLoading ? (
+                  <span>Loading route details...</span>
+                ) : routeData?.route ? (
+                  <>
+                    <span className={styles.routeBannerPin}>{routeData.route.fromPin}</span>
+                    <span className={styles.routeBannerCity}>{routeData.route.from.city}</span>
+                    <span className={styles.routeBannerArrow}>→</span>
+                    <span className={styles.routeBannerPin}>{routeData.route.toPin}</span>
+                    <span className={styles.routeBannerCity}>{routeData.route.to.city}</span>
+                    <span className={styles.routeBannerDist}>{routeData.route.distanceLabel}</span>
+                  </>
+                ) : (
+                  <span>Route details unavailable</span>
+                )}
+              </div>
+            )}
+
             {/* Key Features Tags */}
             <h4 className={styles.tagsTitle}>Service Inclusions & Features</h4>
             <div className={styles.tagsGrid}>
@@ -122,8 +187,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                 </span>
               ))}
             </div>
-
-
 
             {/* Customer Journey Steps Strip */}
             <div className={styles.journeyStrip}>
@@ -168,7 +231,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         <section className={styles.flowSection}>
           <div className={styles.sectionHeader} data-reveal>
             <span className={styles.sectionLabel}>STEP BY STEP</span>
-            <h2 className={styles.sectionTitle}>Our Shifting Process</h2>
+            <h2 className={styles.sectionTitle}>Our Process</h2>
             <div className={styles.underlineBar}></div>
           </div>
 
@@ -189,7 +252,6 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
         {/* SECTION 3: WHAT'S INCLUDED */}
         <section className={styles.includedSection}>
           <div className={styles.includedGrid}>
-            
             {/* What We Do */}
             <div className={styles.includedCard} data-reveal>
               <div className={styles.includedCardHeader}>
@@ -221,21 +283,32 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                 ))}
               </ul>
             </div>
-
           </div>
         </section>
 
-        {/* SECTION 4: PRICING — HEXAGON CARDS */}
-        <HexagonSection />
-
-
+        {/* SECTION 4: HOW IT WORKS — HEXAGON CARDS */}
+        <HexagonSection
+          route={routeData?.route ? {
+            distanceLabel: routeData.route.distanceLabel,
+            from: routeData.route.from,
+            to: routeData.route.to,
+            sameCity: routeData.route.sameCity,
+          } : null}
+          vehicles={routeData?.vehicles || null}
+          serviceId={service.id}
+        />
 
         {/* SECTION 5: ENHANCED FORM */}
         <section className={styles.bookingSection} id="booking-form">
           <div className={styles.formCard} data-reveal>
             <div className={styles.formHeader}>
               <h3>Request a Service Quote</h3>
-              <p>Provide shipment parameters, and our logistics experts will compile custom quotes.</p>
+              <p>
+                {fromPin && toPin && routeData?.route
+                  ? `Shipping from ${routeData.route.from.city} to ${routeData.route.to.city} — ${routeData.route.distanceLabel}. Provide your details for a custom quote.`
+                  : "Provide shipment parameters, and our logistics experts will compile custom quotes."
+                }
+              </p>
             </div>
             
             <form onSubmit={handleSubmit}>
@@ -306,9 +379,21 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                     className={`${styles.formInput} ${styles.formSelect}`}
                     required
                   >
-                    {SERVICES_DATA.map((s) => (
-                      <option key={s.id} value={s.id}>{s.title}</option>
-                    ))}
+                    <optgroup label="Freight Services">
+                      {SERVICES_DATA.filter(s => ["ftl", "ptl", "express", "b2bcoloading", "ecommerce"].includes(s.id)).map((s) => (
+                        <option key={s.id} value={s.id}>{s.title}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Relocation Services">
+                      {SERVICES_DATA.filter(s => ["household", "office", "warehouse", "local", "vehicle", "exhibition"].includes(s.id)).map((s) => (
+                        <option key={s.id} value={s.id}>{s.title}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Support Services">
+                      {SERVICES_DATA.filter(s => ["reverselog"].includes(s.id)).map((s) => (
+                        <option key={s.id} value={s.id}>{s.title}</option>
+                      ))}
+                    </optgroup>
                   </select>
                 </div>
 
@@ -353,12 +438,9 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
                   </>
                 )}
               </button>
-
-
             </form>
           </div>
         </section>
-
 
         {/* SECTION 7: RELATED SERVICES STRIP */}
         <section className={styles.relatedSection}>
@@ -372,7 +454,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             {relatedServices.map((relService) => (
               <Link
                 key={relService.id}
-                href={`/services/${relService.id}`}
+                href={`/services/${relService.id}${fromPin && toPin ? `?from=${fromPin}&to=${toPin}` : ''}`}
                 className={styles.relatedCard}
                 data-reveal
               >
@@ -387,9 +469,7 @@ export default function ServicePageClient({ service, relatedServices }: PageClie
             ))}
           </div>
         </section>
-
       </main>
-
     </div>
   );
 }

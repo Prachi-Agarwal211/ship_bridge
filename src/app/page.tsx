@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import PincodeChecker from '@/components/PincodeChecker';
+import RouteChecker from '@/components/RouteChecker';
 import ServiceTunnel from '@/components/ServiceTunnel';
 import Process from '@/components/Process';
 import Product from '@/components/Product';
 import AboutCompany from '@/components/AboutCompany';
 
 export const metadata: Metadata = {
-  title: "ShipBridge | Premium Household, Office, Vehicle Shifting & Logistics in India",
-  description: "Book reliable household shifting, office relocation, car/bike transport, warehousing, and exhibition logistics across India. Safe packing, GPS tracking, insured moves. Get your quote in 60 seconds.",
-  keywords: "household shifting India, office relocation, vehicle transport, packers and movers, warehousing, exhibition logistics, safe moving services, ShipBridge",
+  title: "ShipBridge | FTL, PTL, Express Freight & Logistics Pan-India",
+  description: "Book Full Truck Load (FTL), Part Truck Load (PTL), express delivery, cold chain, e-commerce logistics, and warehousing across India. AI-optimized routing, GPS tracking, insured shipments. Get instant quote.",
+  keywords: "FTL truck booking, PTL freight, part truck load, full truck load, express delivery India, logistics India, freight forwarding, cold chain logistics, e-commerce logistics, warehouse storage, B2B coload, ShipBridge",
   openGraph: {
-    title: "ShipBridge | India's Premier Logistics & Relocation Platform",
-    description: "Premium shifting and logistics: household, office, vehicle, storage, events. Pan-India. Insured. On time.",
+    title: "ShipBridge | India's AI-Powered Freight & Logistics Platform",
+    description: "FTL, PTL, Express, Cold Chain, E-commerce logistics. Pan-India. GPS tracked. Insured. Instant quote.",
     images: [{ url: "/seo/og-image.jpg" }],
   },
 };
@@ -23,7 +23,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <PincodeChecker />
+      <RouteChecker />
       <ServiceTunnel />
       <Process />
       <Product />

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { SERVICES_DATA, getServiceDetail } from "@/data/services";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -20,21 +21,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const baseTitle = `${service.title} | Safe ${service.subtitle} Across India`;
-  const baseDesc = `${service.description} Professional ${service.subtitle.toLowerCase()} with premium packing, GPS tracking, full insurance, and on-time delivery. Pan-India coverage. Get your quote in minutes.`;
+  const baseTitle = `${service.title} | ShipBridge Logistics India`;
+  const baseDesc = `${service.description} Professional ${service.subtitle.toLowerCase()} with GPS tracking, real-time updates, full insurance, and on-time delivery. Pan-India coverage. Get instant quote.`;
 
   return {
-    title: `${baseTitle} | ShipBridge Logistics`,
+    title: `${baseTitle}`,
     description: baseDesc,
     keywords: [
       service.title.toLowerCase(),
       service.subtitle.toLowerCase(),
-      "packers and movers India",
-      "shifting services",
-      "relocation",
+      "freight India",
       "logistics India",
-      "safe transport",
-      "insured moving"
+      "truck booking",
+      "cargo transport",
+      "B2B logistics",
+      "shipbridge"
     ].join(", "),
     openGraph: {
       title: baseTitle,
@@ -123,7 +124,9 @@ export default async function ServicePage({ params }: PageProps) {
 
   return (
     <>
-      <ServicePageClient service={service} relatedServices={relatedServices} />
+      <Suspense fallback={<div style={{ minHeight: "100vh", background: "#0a0a0a" }} />}>
+        <ServicePageClient service={service} relatedServices={relatedServices} />
+      </Suspense>
       {combinedSchema.map((schema, i) => (
         <script
           key={i}
