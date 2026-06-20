@@ -198,9 +198,9 @@
 }
 
 .tagline {
-  color: rgba(249, 115, 22, 0.6) !important;
+  color: rgba(249, 115, 22, 0.6);
   font-style: italic;
-  font-size: 0.85rem !important;
+  font-size: 0.85rem;
 }
 
 .socialIcons {

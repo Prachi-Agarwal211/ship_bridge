@@ -76,9 +76,8 @@ export default function Hero() {
     const video = videoRef.current;
     if (video) {
       const playVideo = () => {
-        video.play().catch((err) => {
-          // Autoplay was blocked - common on mobile until user interaction
-          console.log('Video autoplay blocked on mobile:', err);
+        video.play().catch(() => {
+          // Autoplay blocked — common on mobile until user interaction
         });
       };
 

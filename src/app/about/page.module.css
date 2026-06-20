@@ -300,17 +300,27 @@
   aspect-ratio: 4 / 5;
   border-radius: 0.75rem;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.storyImage {
-  object-fit: cover;
-}
-
-.imageOverlay {
+.storyImagePlaceholder {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
-  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--color-orange);
+  opacity: 0.4;
+}
+
+.storyImagePlaceholder span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .storyImageLabel {
@@ -494,18 +504,6 @@
   transform: translateY(-8px);
   border-color: rgba(249, 115, 22, 0.6);
   box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
-}
-
-.teamImageContainer {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  max-height: 320px;
-  background-color: #111;
-}
-
-.teamImage {
-  object-fit: cover;
 }
 
 .teamInfo {
@@ -825,9 +823,6 @@
   }
   .ctaTitle {
     font-size: 1.8rem;
-  }
-  .teamImageContainer {
-    aspect-ratio: 4 / 5;
   }
   .storyNarrative {
     font-size: 1rem;

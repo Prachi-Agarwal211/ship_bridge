@@ -12,14 +12,14 @@ import { SERVICES_DATA } from '@/data/services';
 
 gsap.registerPlugin(Draggable);
 
-// Glow accents for the tunnel visual effect (kept here for creative home experience).
+// Glow accents for the tunnel visual effect — brand colors only
 const GLOW_COLORS = [
-  "rgba(249, 115, 22, 0.4)",
-  "rgba(6, 182, 212, 0.4)",
-  "rgba(168, 85, 247, 0.4)",
-  "rgba(59, 130, 246, 0.4)",
-  "rgba(34, 197, 94, 0.4)",
-  "rgba(236, 72, 153, 0.4)"
+  "rgba(249, 115, 22, 0.35)",
+  "rgba(34, 197, 94, 0.3)",
+  "rgba(249, 115, 22, 0.25)",
+  "rgba(34, 197, 94, 0.2)",
+  "rgba(249, 115, 22, 0.3)",
+  "rgba(34, 197, 94, 0.25)"
 ];
 
 const services = SERVICES_DATA.map((s, i) => ({

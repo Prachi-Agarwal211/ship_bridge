@@ -106,10 +106,10 @@ export default function Process() {
           <div className={styles.stickyHeader} data-reveal>
             <span className={styles.overline}>SHIP BRIDGE OPERATION</span>
             <h2 className={styles.title}>
-              We have the best team & process
+              Move like clockwork.
             </h2>
             <p className={styles.subtitle}>
-              Simplifying logistics down to an exact science. We replaced the chaos of moving with a structured, technology-driven workflow. Every step is predictable, transparent, and flawless.
+              Four steps. No surprises. Every move is GPS-tracked, every box is inventoried, every delivery is confirmed. You see exactly what we see, in real time.
             </p>
             <MagneticButton strength={25}>
               <button className={`${styles.ctaButton} global-btn`}>

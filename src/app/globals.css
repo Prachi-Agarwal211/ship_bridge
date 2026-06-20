@@ -38,7 +38,11 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne), 'Syne', sans-serif;
 }
 
 body {
@@ -350,17 +354,16 @@ html {
 }
 
 .global-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .global-btn-text {
   position: relative;
   z-index: 1;
-  background: linear-gradient(90deg, var(--color-green), var(--color-orange));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-orange);
+  font-weight: 700;
 }
 
 

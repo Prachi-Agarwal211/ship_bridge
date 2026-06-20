@@ -1,42 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import MagneticButton from '@/components/animations/MagneticButton';
 import styles from "./AboutCompany.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface TeamMember {
-  name: string;
-  role: string;
-  image: string;
-}
-
-const TEAM_MEMBERS: TeamMember[] = [
-  {
-    name: "Ashish Joshi",
-    role: "Founder & CEO",
-    image: "/company/founder.png"
-  },
-  {
-    name: "Anurag Singh",
-    role: "Chief Technology Officer",
-    image: "/company/cto.png"
-  },
-  {
-    name: "Prachi Agarwal",
-    role: "Chief Operations Officer",
-    image: "/company/coo.png"
-  }
+const TEAM_MEMBERS = [
+  { name: "Ashish Joshi", role: "Founder & CEO" },
+  { name: "Anurag Singh", role: "Chief Technology Officer" },
+  { name: "Prachi Agarwal", role: "Chief Operations Officer" },
 ];
 
 export default function AboutCompany() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   useGSAP(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
@@ -52,7 +29,6 @@ export default function AboutCompany() {
       }
     });
 
-    // Reveal logo row and title
     tl.from('.about-logo-row, .about-title-group', {
       y: 30,
       opacity: 0,
@@ -61,7 +37,6 @@ export default function AboutCompany() {
       ease: 'power3.out'
     });
 
-    // Reveal description text
     tl.from('.about-desc', {
       y: 20,
       opacity: 0,
@@ -69,7 +44,6 @@ export default function AboutCompany() {
       ease: 'power3.out'
     }, '-=0.4');
 
-    // Reveal highlight items
     tl.from('.about-highlight', {
       y: 30,
       opacity: 0,
@@ -78,46 +52,24 @@ export default function AboutCompany() {
       ease: 'back.out(1.2)'
     }, '-=0.4');
 
-    // Reveal right column slider
-    tl.from('.about-slider', {
-      x: 50,
+    tl.from('.about-team-card', {
+      y: 30,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.5,
+      stagger: 0.12,
       ease: 'power3.out'
-    }, '-=0.6');
+    }, '-=0.4');
 
   });
 
-  // Autoplay loop: auto-advances the slideshow every 4 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev === TEAM_MEMBERS.length - 1 ? 0 : prev + 1));
-    }, 4000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? TEAM_MEMBERS.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === TEAM_MEMBERS.length - 1 ? 0 : prev + 1));
-  };
-
   return (
     <section className={styles.aboutSection} id="company">
-      {/* Background ambient lighting glows */}
-      <div className={styles.sectionGlowOrange}></div>
-      <div className={styles.sectionGlowGreen}></div>
-
       <div className={styles.container}>
         <div className={styles.aboutGrid}>
           
           {/* Left Column: Text Content and Highlights */}
           <div className={styles.leftColumn}>
             
-            {/* Logo Row matching Mockup */}
             <div className={`about-logo-row ${styles.logoRow}`}>
               <svg className={styles.logoIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -130,17 +82,13 @@ export default function AboutCompany() {
             </div>
 
             <div className="about-title-group">
-              {/* Main Header */}
               <h2 className={styles.title}>About Company</h2>
               <div className={styles.titleUnderline}></div>
-
-              {/* Subheading */}
               <h3 className={styles.subheading}>
-                BUILDING BRIDGES. <span className={styles.subheadingGreen}>DELIVERING TRUST.</span>
+                BUILDING BRIDGES. <span className={styles.subheadingGreen}>MOVING INDIA.</span>
               </h3>
             </div>
 
-            {/* Narrative text */}
             <div className={`about-desc ${styles.descriptionText}`}>
               <p>
                 Shipbridge Logistics was founded with a vision to create a logistics company that stands for reliability, efficiency, and customer trust.
@@ -150,10 +98,7 @@ export default function AboutCompany() {
               </p>
             </div>
 
-            {/* Horizontal Highlights Row */}
             <div className={styles.highlightsBar}>
-              
-              {/* Highlight 1: Reliable */}
               <div className={`about-highlight ${styles.highlightItem}`}>
                 <div className={styles.hexIconBox}>
                   <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
@@ -175,7 +120,6 @@ export default function AboutCompany() {
                 </div>
               </div>
 
-              {/* Highlight 2: Efficient */}
               <div className={`about-highlight ${styles.highlightItem}`}>
                 <div className={styles.hexIconBox}>
                   <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
@@ -192,7 +136,6 @@ export default function AboutCompany() {
                 </div>
               </div>
 
-              {/* Highlight 3: Delivered */}
               <div className={`about-highlight ${styles.highlightItem}`}>
                 <div className={styles.hexIconBox}>
                   <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
@@ -210,88 +153,22 @@ export default function AboutCompany() {
                   <p>On time. Every time. Anywhere.</p>
                 </div>
               </div>
-
             </div>
           </div>
 
-          {/* Right Column: Diagonal Image Slider */}
-          <div className={`about-slider ${styles.rightColumn}`}>
-            <div className={styles.sliderContainer}>
-              
-              {/* Slider Images with Clip Path */}
-              <div className={styles.imageCard}>
-                {TEAM_MEMBERS.map((member, idx) => (
-                  <div
-                    key={member.name}
-                    className={`${styles.imageSlide} ${idx === currentIndex ? styles.activeSlide : ""}`}
-                  >
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      sizes="(max-width: 992px) 90vw, 480px"
-                      className={styles.profileImage}
-                      priority
-                    />
-                    
-                    {/* Dark gradient overlay inside card */}
-                    <div className={styles.imageOverlay}></div>
+          {/* Right Column: Team Members — names only */}
+          <div className={styles.rightColumn}>
+            <div className={styles.teamList}>
+              <span className={styles.teamOverline}>LEADERSHIP</span>
+              {TEAM_MEMBERS.map((member) => (
+                <div key={member.name} className={`about-team-card ${styles.teamCard}`}>
+                  <div className={styles.teamCardAccent}></div>
+                  <div className={styles.teamCardContent}>
+                    <h4 className={styles.teamName}>{member.name}</h4>
+                    <span className={styles.teamRole}>{member.role}</span>
                   </div>
-                ))}
-              </div>
-
-              {/* Name/Title Label Card - Placed outside of the clipped imageCard to prevent cropping */}
-              <div className={styles.memberLabelCard}>
-                <h4 className={styles.memberName}>{TEAM_MEMBERS[currentIndex].name}</h4>
-                <span className={styles.memberRole}>{TEAM_MEMBERS[currentIndex].role}</span>
-              </div>
-
-              {/* Glowing Hexagonal/Chevron Border Overlay */}
-              <div className={styles.borderOverlay}>
-                <svg className={styles.borderSvg} viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
-                  <defs>
-                    <linearGradient id="neonGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#f97316" />
-                      <stop offset="48%" stopColor="#f97316" />
-                      <stop offset="52%" stopColor="#22c55e" />
-                      <stop offset="100%" stopColor="#22c55e" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d="M 20 0 L 5 45 L 25 100"
-                    stroke="url(#neonGradient)"
-                    strokeWidth="1.8"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-              </div>
-
-              {/* Prev Button */}
-              <MagneticButton strength={20}>
-                <button
-                  onClick={handlePrev}
-                  className={`${styles.navButton} ${styles.prevBtn}`}
-                  aria-label="Previous Slide"
-                >
-                  <svg className={styles.arrowIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-              </MagneticButton>
-
-              {/* Next Button */}
-              <MagneticButton strength={20}>
-                <button
-                  onClick={handleNext}
-                  className={`${styles.navButton} ${styles.nextBtn}`}
-                  aria-label="Next Slide"
-                >
-                  <svg className={styles.arrowIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </MagneticButton>
-
+                </div>
+              ))}
             </div>
           </div>
 

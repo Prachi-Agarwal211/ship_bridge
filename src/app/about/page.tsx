@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import ScrollRevealWrapper from "@/components/ScrollRevealWrapper";
@@ -149,15 +148,12 @@ export default function AboutPage() {
 
             <div className={styles.storyImageCard} data-reveal="clip">
               <div className={styles.storyImageWrapper}>
-                <Image
-                  src="/company/founder.png"
-                  alt="ShipBridge Founders"
-                  fill
-                  sizes="(max-width: 992px) 100vw, 40vw"
-                  priority
-                  className={styles.storyImage}
-                />
-                <div className={styles.imageOverlay}></div>
+                <div className={styles.storyImagePlaceholder}>
+                  <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  <span>ShipBridge Logistics</span>
+                </div>
                 <div className={styles.storyImageLabel}>
                   <h4>Bridging India&apos;s Logistics</h4>
                   <p>Technology • Trust • Transparency</p>
@@ -269,17 +265,7 @@ export default function AboutPage() {
           </div>
 
           <div className={styles.teamGrid}>
-            {/* Ashish Joshi */}
             <div className={styles.teamCard} data-reveal="rotate">
-              <div className={styles.teamImageContainer}>
-                <Image
-                  src="/company/founder.png"
-                  alt="Ashish Joshi"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
-                  className={styles.teamImage}
-                />
-              </div>
               <div className={styles.teamInfo}>
                 <h3 className={styles.teamName}>Ashish Joshi</h3>
                 <span className={styles.teamRole}>Founder & CEO</span>
@@ -290,17 +276,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Prachi Agarwal */}
             <div className={styles.teamCard} data-reveal="rotate">
-              <div className={styles.teamImageContainer}>
-                <Image
-                  src="/company/coo.png"
-                  alt="Prachi Agarwal"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
-                  className={styles.teamImage}
-                />
-              </div>
               <div className={styles.teamInfo}>
                 <h3 className={styles.teamName}>Prachi Agarwal</h3>
                 <span className={styles.teamRole}>Chief Operations Officer (COO)</span>
@@ -311,17 +287,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Anurag Singh */}
             <div className={styles.teamCard} data-reveal="rotate">
-              <div className={styles.teamImageContainer}>
-                <Image
-                  src="/company/cto.png"
-                  alt="Anurag Singh"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
-                  className={styles.teamImage}
-                />
-              </div>
               <div className={styles.teamInfo}>
                 <h3 className={styles.teamName}>Anurag Singh</h3>
                 <span className={styles.teamRole}>Chief Technology Officer (CTO)</span>

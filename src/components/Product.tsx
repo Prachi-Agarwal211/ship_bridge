@@ -79,8 +79,8 @@ export default function Product() {
             </div>
             
             <h2 className={styles.title} data-reveal>
-              Smart Logistics. <br />
-              <span className={styles.highlight}>Seamless Control.</span>
+              Smart Logistics.<br />
+              <span className={styles.highlight}>Zero Surprises.</span>
             </h2>
 
             <p className={styles.description} data-reveal>

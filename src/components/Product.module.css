@@ -8,19 +8,9 @@
   z-index: var(--z-base);
 }
 
-/* Background animated glow shapes */
+/* Background - clean, no decorative glow */
 .sectionGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50vw;
-  height: 50vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(14, 56, 70, 0.1) 0%, transparent 70%);
-  filter: blur(100px);
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .container {
@@ -74,18 +64,11 @@
 }
 
 .imageCard:hover {
-  transform: translateY(-8px) scale(1.02);
+  transform: translateY(-8px);
 }
 
 .cardGlow {
-  position: absolute;
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
-  filter: blur(40px);
-  z-index: -1;
-  pointer-events: none;
+  display: none;
 }
 
 .imageContainer {
@@ -129,7 +112,7 @@
 }
 
 .bottomCardItem:hover {
-  transform: translateY(-6px) scale(1.08);
+  transform: translateY(-4px);
 }
 
 .bottomCardItem:hover .bottomCardIcon {
@@ -158,6 +141,7 @@
 .contentDetails {
   display: flex;
   flex-direction: column;
+  padding-left: clamp(0rem, 3vw, 2rem);
 }
 
 .overlineWrapper {
@@ -222,8 +206,7 @@
 .bentoCard:hover {
   background: rgba(255, 255, 255, 0.04);
   border-color: rgba(249, 115, 22, 0.35);
-  transform: translateY(-6px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(249, 115, 22, 0.05);
+  transform: translateY(-4px);
 }
 
 .featureIconBox {

@@ -55,7 +55,7 @@
 }
 
 .logoContainer:hover .logo {
-  transform: scale(1.05);
+  opacity: 0.85;
 }
 
 .brandText {
@@ -235,15 +235,21 @@
 }
 
 .megaMenuIcon {
-  font-size: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
   transition: background 0.3s ease;
+}
+
+.megaMenuSvgIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-orange);
 }
 
 .megaMenuItem:hover .megaMenuIcon {

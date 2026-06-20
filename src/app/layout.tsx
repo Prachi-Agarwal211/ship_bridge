@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { ReactLenis } from 'lenis/react';
 import GSAPProvider from '@/components/providers/GSAPProvider';
 import "./globals.css";
@@ -10,8 +10,14 @@ import { CONTACTS } from '@/data/contacts';
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-poppins",
 });
 
 export const viewport: Viewport = {
@@ -135,7 +141,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="lenis lenis-smooth" data-scroll-behavior="smooth">
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${poppins.variable} ${inter.className}`}>
         <ReactLenis root options={{ lerp: 0.08, duration: 1.2, syncTouch: false, autoRaf: false }}>
           <GSAPProvider>
             <SceneBackgroundClient />

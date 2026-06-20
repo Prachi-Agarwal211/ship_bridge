@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import RouteChecker from '@/components/RouteChecker';
-import ServiceTunnel from '@/components/ServiceTunnel';
+import ServicesShowcase from '@/components/ServicesShowcase';
 import Process from '@/components/Process';
 import Product from '@/components/Product';
 import AboutCompany from '@/components/AboutCompany';
@@ -23,8 +23,8 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <ServicesShowcase />
       <RouteChecker />
-      <ServiceTunnel />
       <Process />
       <Product />
       <AboutCompany />
