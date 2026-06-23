@@ -6,7 +6,11 @@
   background: linear-gradient(90deg, var(--color-orange), #ff9a44);
   transform-origin: left;
   z-index: 200;
-  transition: width 0.1s ease-out;
+  transition: width 0.1s ease-out, opacity 0.3s ease;
+}
+
+.scrollProgress.hidden {
+  opacity: 0;
 }
 
 .navbar {
@@ -29,6 +33,10 @@
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(249, 115, 22, 0.15); /* Soft orange bottom border */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(249, 115, 22, 0.05); /* Floating shadow */
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
 }
 
 .navInner {

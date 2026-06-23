@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -57,7 +57,9 @@ const IndustryIcon = ({ id }: { id: string }) => {
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -65,11 +67,20 @@ export default function Navbar() {
     const handleScroll = () => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 80);
-        const winScroll = document.documentElement.scrollTop;
+        const scrollY = window.scrollY;
+        setScrolled(scrollY > 80);
+
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const progress = height > 0 ? (winScroll / height) * 100 : 0;
+        const progress = height > 0 ? (scrollY / height) * 100 : 0;
         document.documentElement.style.setProperty('--scroll-progress', `${Math.min(progress, 100)}%`);
+
+        // Hide on scroll down, show on scroll up
+        if (scrollY > 100) {
+          setHidden(scrollY > lastScrollY.current);
+        } else {
+          setHidden(false);
+        }
+        lastScrollY.current = scrollY;
       });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -92,8 +103,8 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={styles.scrollProgress} style={{ width: 'var(--scroll-progress, 0%)' }} />
-      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+      <div className={`${styles.scrollProgress} ${hidden ? styles.hidden : ''}`} style={{ width: 'var(--scroll-progress, 0%)' }} />
+      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${hidden && !menuOpen ? styles.hidden : ''}`}>
         <div className={styles.navInner}>
           <Link href="/" className={styles.logoContainer}>
             <Image 
