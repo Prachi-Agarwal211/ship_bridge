@@ -45,13 +45,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const dynamicRoutes = SERVICES_DATA.map((service) => ({
-    url: `${baseUrl}/services/${service.id}`,
+    url: `${baseUrl}/services/${service.slug}`,
     changeFrequency: "weekly" as const,
     priority: 0.88,
+    lastModified: service.lastUpdated ? new Date(service.lastUpdated) : currentDate,
   }));
 
-  return [...staticRoutes, ...dynamicRoutes].map((route) => ({
-    ...route,
-    lastModified: currentDate,
-  }));
+  return [
+    ...staticRoutes.map((route) => ({
+      ...route,
+      lastModified: currentDate,
+    })),
+    ...dynamicRoutes
+  ];
 }

@@ -6,14 +6,14 @@ import ServicePageClient from "./ServicePageClient";
 
 interface PageProps {
   params: Promise<{
-    id: string;
+    slug: string;
   }>;
 }
 
 // Generate dynamic SEO metadata for each service page
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const service = SERVICES_DATA.find((item) => item.id === resolvedParams.id);
+  const service = SERVICES_DATA.find((item) => item.slug === resolvedParams.slug);
 
   if (!service) {
     return {
@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const baseTitle = `${service.title} | ShipBridge Logistics India`;
-  const baseDesc = `${service.description} Professional ${service.subtitle.toLowerCase()} with GPS tracking, real-time updates, full insurance, and on-time delivery. Pan-India coverage. Get instant quote.`;
+  const baseTitle = service.metaTitle || `${service.title} | ShipBridge Logistics India`;
+  const baseDesc = service.metaDescription || `${service.description} Professional ${service.subtitle.toLowerCase()} with GPS tracking, real-time updates, full insurance, and on-time delivery. Pan-India coverage. Get instant quote.`;
 
   return {
     title: `${baseTitle}`,
@@ -56,14 +56,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [service.image],
     },
     alternates: {
-      canonical: `https://www.shipbridge.in/services/${service.id}`,
+      canonical: `https://www.shipbridge.in/services/${service.slug}`,
     },
   };
 }
 
 export default async function ServicePage({ params }: PageProps) {
   const resolvedParams = await params;
-  const service = SERVICES_DATA.find((item) => item.id === resolvedParams.id);
+  const service = SERVICES_DATA.find((item) => item.slug === resolvedParams.slug);
 
   if (!service) {
     notFound();
@@ -80,8 +80,8 @@ export default async function ServicePage({ params }: PageProps) {
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
-      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.shipbridge.in/#services" },
-      { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://www.shipbridge.in/services/${service.id}` },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.shipbridge.in/services" },
+      { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://www.shipbridge.in/services/${service.slug}` },
     ],
   };
 
@@ -102,7 +102,7 @@ export default async function ServicePage({ params }: PageProps) {
       "@type": "Offer",
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      "url": `https://www.shipbridge.in/services/${service.id}#booking-form`
+      "url": `https://www.shipbridge.in/services/${service.slug}#booking-form`
     }
   };
 
@@ -116,7 +116,7 @@ export default async function ServicePage({ params }: PageProps) {
       "position": idx + 1,
       "name": step.title,
       "text": step.desc,
-      "url": `https://www.shipbridge.in/services/${service.id}`
+      "url": `https://www.shipbridge.in/services/${service.slug}`
     }))
   };
 

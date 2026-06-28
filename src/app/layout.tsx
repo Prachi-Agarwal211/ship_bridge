@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     canonical: CONTACTS.site.base,
   },
   verification: {
-    google: 'YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN',
+    google: process.env.GOOGLE_SEARCH_CONSOLE_TOKEN || '',
   },
   category: 'logistics',
   classification: 'Business',

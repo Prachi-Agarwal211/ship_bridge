@@ -1,10 +1,14 @@
 export interface ServiceItem {
   id: string;
+  slug: string;
   title: string;
   subtitle: string;
   description: string;
   image: string;
   tags: string[];
+  metaTitle?: string;
+  metaDescription?: string;
+  lastUpdated?: string;
 }
 
 export interface ServiceDetail {
@@ -20,99 +24,147 @@ export interface ServiceDetail {
 export const SERVICES_DATA: ServiceItem[] = [
   {
     id: "ftl",
+    slug: "full-truck-load-services",
     title: "Full Truck Load (FTL)",
     subtitle: "Dedicated Freight",
     description: "Book an entire truck exclusively for your cargo. FTL ensures faster transit, zero damage risk from sharing, and direct point-to-point delivery. Ideal for bulk shipments, high-value goods, and time-sensitive freight across India.",
     image: "/services/warehouse.jpeg",
-    tags: ["Dedicated Truck", "Door-to-Door", "GPS Tracking", "Fastest Transit", "Zero Handling"]
+    tags: ["Dedicated Truck", "Door-to-Door", "GPS Tracking", "Fastest Transit", "Zero Handling"],
+    metaTitle: "Full Truck Load (FTL) Services in India | ShipBridge Logistics",
+    metaDescription: "Book dedicated FTL freight services with ShipBridge. Point-to-point delivery, GPS tracking, and zero damage risk for your high-value bulk shipments across India.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "ptl",
+    slug: "part-truck-load-services",
     title: "Part Truck Load (PTL)",
     subtitle: "Shared Freight / LTL",
     description: "Pay only for the space you use. PTL consolidates your shipment with others heading the same route, offering 20-30% savings over FTL while maintaining reliable transit times. Perfect for medium-sized B2B shipments.",
     image: "/services/warehouse.jpeg",
-    tags: ["Cost Effective", "Shared Truck", "Flexible Volume", "Pan-India", "Regular Service"]
+    tags: ["Cost Effective", "Shared Truck", "Flexible Volume", "Pan-India", "Regular Service"],
+    metaTitle: "Part Truck Load (PTL) Services in India | ShipBridge Logistics",
+    metaDescription: "Save 20-30% with ShipBridge's shared PTL freight services. Reliable B2B consolidation, flexible volume pricing, and pan-India coverage.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "express",
+    slug: "express-delivery",
     title: "Express Delivery",
     subtitle: "Time-Definite Freight",
     description: "Guaranteed time-definite delivery with air and surface express options. Choose same-day, next-day, or scheduled delivery windows. Real-time tracking and priority handling for urgent shipments.",
     image: "/services/local.png",
-    tags: ["Same-Day", "Next-Day", "Time-Definite", "Priority Handling", "Air + Surface"]
+    tags: ["Same-Day", "Next-Day", "Time-Definite", "Priority Handling", "Air + Surface"],
+    metaTitle: "Express Delivery & Logistics in India | ShipBridge Logistics",
+    metaDescription: "Guaranteed time-definite express delivery services in India. Choose from same-day and next-day options with air and surface routing for urgent freight.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "b2bcoloading",
+    slug: "b2b-coloading",
     title: "B2B Coloading",
     subtitle: "Consolidated Freight",
     description: "ShipBridge's signature service — consolidate your B2B shipments with other shippers going the same route. AI-optimized routing reduces costs by 20-30% while maintaining fast transit. Perfect for regular shippers.",
     image: "/services/warehouse.jpeg",
-    tags: ["AI Optimized", "20-30% Savings", "Regular Routes", "Shared Load", "Eco-Friendly"]
+    tags: ["AI Optimized", "20-30% Savings", "Regular Routes", "Shared Load", "Eco-Friendly"],
+    metaTitle: "B2B Coloading Services | ShipBridge Logistics",
+    metaDescription: "Consolidate B2B shipments with ShipBridge's AI-optimized coloading service. Save 20-30% on transport costs with shared truck space and fast transit.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "household",
+    slug: "household-shifting",
     title: "Household Shifting",
     subtitle: "Residential Relocation",
     description: "Our expert team handles your household shifting with the utmost care. From premium packaging of delicate glassware to secure transit and furniture layout in your new home, we make moving completely stress-free.",
     image: "/services/household.jpeg",
-    tags: ["Premium Packing", "Furniture Disassembly", "Fragile Care", "Secure Transit", "Placement & Setup"]
+    tags: ["Premium Packing", "Furniture Disassembly", "Fragile Care", "Secure Transit", "Placement & Setup"],
+    metaTitle: "Household Shifting & Relocation Services | ShipBridge",
+    metaDescription: "Stress-free household shifting with ShipBridge. Premium packing for fragile items, secure transit, and professional unpacking across India.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "office",
+    slug: "office-shifting",
     title: "Office Shifting",
     subtitle: "Corporate Relocation",
     description: "Minimize downtime with our efficient workspace relocations. We specialize in packing complex server setups, high-value IT equipment, office workstations, and secure files with minimal operational disruption.",
     image: "/services/office.jpeg",
-    tags: ["IT Asset Management", "Server Packing", "Document Cataloging", "After-Hours Shifting", "Cubicle Setup"]
+    tags: ["IT Asset Management", "Server Packing", "Document Cataloging", "After-Hours Shifting", "Cubicle Setup"],
+    metaTitle: "Office Shifting & Corporate Relocation Services | ShipBridge",
+    metaDescription: "Minimize downtime with professional office relocation services. Safe packing for IT servers, workstations, and corporate documents across India.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "warehouse",
+    slug: "warehouse-storage",
     title: "Warehouse & Storage",
     subtitle: "Secure Warehousing",
     description: "Safe, climate-controlled, and fully insured storage solutions for your short-term or long-term inventory needs. Features 24/7 CCTV surveillance, fire prevention, and digital stock indexing.",
     image: "/services/warehouse.jpeg",
-    tags: ["24/7 Surveillance", "Climate Control", "Digital Inventory", "Short/Long Term", "Fire-Safety Certified"]
+    tags: ["24/7 Surveillance", "Climate Control", "Digital Inventory", "Short/Long Term", "Fire-Safety Certified"],
+    metaTitle: "Secure Warehouse & Storage Solutions | ShipBridge Logistics",
+    metaDescription: "Climate-controlled, fully insured warehousing and storage in India. 24/7 CCTV monitoring, digital inventory, and flexible short or long-term solutions.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "local",
+    slug: "local-shifting",
     title: "Local Shifting",
     subtitle: "Same-City Relocations",
     description: "Fast, reliable, and affordable moving services within your city. Our local teams navigate city routes efficiently to ensure your household or office belongings are safely moved on the very same day.",
     image: "/services/local.png",
-    tags: ["Same-Day Delivery", "Dedicated Trucks", "Local Route Experts", "Express Packing", "Budget Friendly"]
+    tags: ["Same-Day Delivery", "Dedicated Trucks", "Local Route Experts", "Express Packing", "Budget Friendly"],
+    metaTitle: "Fast Local Shifting Services in India | ShipBridge Logistics",
+    metaDescription: "Reliable same-day local shifting services for your home or office. Expert local packers and movers offering budget-friendly and efficient relocations.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "vehicle",
+    slug: "car-bike-transport",
     title: "Car & Bike Transport",
     subtitle: "Safe Vehicle Logistics",
     description: "Relocate your cars and motorcycles across long distances without adding miles or risk. We use specialized, secure auto-carriers and advanced harnessing to ensure scratch-free doorstep delivery.",
     image: "/services/vehicle.jpeg",
-    tags: ["Enclosed Carriers", "GPS Tracking", "Safety Harnessing", "Damage-Free Guarantee", "Doorstep Pickup"]
+    tags: ["Enclosed Carriers", "GPS Tracking", "Safety Harnessing", "Damage-Free Guarantee", "Doorstep Pickup"],
+    metaTitle: "Car & Bike Transport Services in India | ShipBridge Logistics",
+    metaDescription: "Safe and secure vehicle logistics across India. Enclosed carriers, GPS tracking, and scratch-free doorstep transport for cars and motorcycles.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "exhibition",
+    slug: "exhibition-trade-logistics",
     title: "Exhibition & Trade",
     subtitle: "Event Logistics",
     description: "Time-critical setup and logistics management for exhibition pavilions, trade shows, and events. We coordinate booth material transport, on-site assembly, and secure reverse logistics post-event.",
     image: "/services/exhibition.png",
-    tags: ["Booth Construction Setup", "Time-Critical Delivery", "On-Site Support", "Event Coordination", "Reverse Logistics"]
+    tags: ["Booth Construction Setup", "Time-Critical Delivery", "On-Site Support", "Event Coordination", "Reverse Logistics"],
+    metaTitle: "Exhibition, Trade Show & Event Logistics | ShipBridge",
+    metaDescription: "Time-critical exhibition logistics, on-site booth assembly, and secure reverse logistics for trade shows and events across India.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "ecommerce",
+    slug: "ecommerce-logistics",
     title: "E-commerce Logistics",
     subtitle: "Last Mile & COD",
     description: "End-to-end e-commerce fulfillment — from warehouse to customer door. COD collection, returns management, same-day/next-day delivery, and NDR resolution. Integrates with all major marketplaces.",
     image: "/services/local.png",
-    tags: ["COD Management", "Returns Handling", "Same-Day Delivery", "Marketplace Integration", "NDR Resolution"]
+    tags: ["COD Management", "Returns Handling", "Same-Day Delivery", "Marketplace Integration", "NDR Resolution"],
+    metaTitle: "E-commerce Logistics & Fulfillment Services | ShipBridge",
+    metaDescription: "End-to-end e-commerce fulfillment services in India. Cash on Delivery (COD), same-day delivery, marketplace integrations, and reliable last-mile logistics.",
+    lastUpdated: new Date().toISOString()
   },
   {
     id: "reverselog",
+    slug: "reverse-logistics",
     title: "Reverse Logistics",
     subtitle: "Returns Management",
     description: "Complete returns management — pickup, transit, inspection, grading, and restocking or disposal. Specialized for e-commerce returns across India.",
     image: "/services/local.png",
-    tags: ["End-to-End Returns", "Inspection & Grading", "Restocking", "E-commerce Focus", "Pan-India Pickup"]
+    tags: ["End-to-End Returns", "Inspection & Grading", "Restocking", "E-commerce Focus", "Pan-India Pickup"],
+    metaTitle: "Reverse Logistics & Returns Management | ShipBridge",
+    metaDescription: "Comprehensive reverse logistics for e-commerce returns. Fast reverse pickup, product grading, inspection, and restocking across India.",
+    lastUpdated: new Date().toISOString()
   }
 ];
 
