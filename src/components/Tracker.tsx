@@ -189,62 +189,19 @@ export default function Tracker() {
               </div>
 
               <div className={styles.infoCard}>
-                <div className={styles.infoRow}>
-                  <div className={styles.infoHalf}>
-                    <span className={styles.infoLabel}>From</span>
-                    <span className={styles.infoValue}>{d.consignor}</span>
-                    <span className={styles.infoSub}>{d.consignorAddress}, {d.consignorCity}, {d.consignorState}</span>
-                  </div>
-                  <div className={styles.infoArrow}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                  <div className={styles.infoHalf}>
-                    <span className={styles.infoLabel}>To</span>
-                    <span className={styles.infoValue}>{d.consignee}</span>
-                    <span className={styles.infoSub}>{d.consigneeAddress}, {d.consigneeCity}, {d.consigneeState}</span>
-                  </div>
+                <div className={styles.routeRow}>
+                  <span className={styles.routeCity}>{d.consignorCity}</span>
+                  <svg className={styles.routeArrow} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                  <span className={styles.routeCity}>{d.consigneeCity}</span>
                 </div>
-                <div className={styles.infoMeta}>
-                  <span className={styles.metaItem}>
-                    <span className={styles.metaLabel}>Weight</span>
-                    <span className={styles.metaValue}>{d.actualWeight} kg</span>
-                  </span>
-                  <span className={styles.metaItem}>
-                    <span className={styles.metaLabel}>Packages</span>
-                    <span className={styles.metaValue}>{d.numberOfPackages} × {d.packageType}</span>
-                  </span>
-                  <span className={styles.metaItem}>
-                    <span className={styles.metaLabel}>Service</span>
-                    <span className={styles.metaValue}>{d.service}</span>
-                  </span>
-                  <span className={styles.metaItem}>
-                    <span className={styles.metaLabel}>Payment</span>
-                    <span className={styles.metaValue}>{d.paymentType}</span>
-                  </span>
-                  {d.invoiceAmount > 0 && (
-                    <span className={styles.metaItem}>
-                      <span className={styles.metaLabel}>Value</span>
-                      <span className={styles.metaValue}>₹{d.invoiceAmount.toLocaleString()}</span>
-                    </span>
-                  )}
-                  {d.totalAmount > 0 && (
-                    <span className={styles.metaItem}>
-                      <span className={styles.metaLabel}>Total</span>
-                      <span className={styles.metaValue}>₹{d.totalAmount.toLocaleString()}</span>
-                    </span>
-                  )}
+                <div className={styles.detailRow}>
+                  {d.numberOfPackages && <span className={styles.detailTag}>{d.numberOfPackages} × {d.packageType}</span>}
+                  {d.service && <span className={styles.detailTag}>{d.service}</span>}
                 </div>
                 {d.epod && (
                   <a href={d.epod} target="_blank" rel="noopener noreferrer" className={styles.podBtn}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
-                      <line x1="16" y1="13" x2="8" y2="13" />
-                      <line x1="16" y1="17" x2="8" y2="17" />
-                      <polyline points="10 9 9 9 8 9" />
-                    </svg>
                     Download Proof of Delivery
                   </a>
                 )}
