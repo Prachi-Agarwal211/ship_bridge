@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Tracker from '@/components/Tracker';
 import RouteChecker from '@/components/RouteChecker';
 import ServicesShowcase from '@/components/ServicesShowcase';
 import Process from '@/components/Process';
@@ -23,6 +24,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <Tracker />
       <ServicesShowcase />
       <RouteChecker />
       <Process />
