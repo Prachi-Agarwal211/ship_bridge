@@ -14,6 +14,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "India's premier logistics platform. Story, team, mission for safer, simpler, transparent moves.",
       images: [{ url: "/seo/og-image.jpg" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/about',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "About ShipBridge Logistics",
+      description: "India's premier logistics platform. Story, team, mission for safer, simpler, transparent moves.",
+      images: ["/seo/og-image.jpg"],
+    },
   };
 }
 

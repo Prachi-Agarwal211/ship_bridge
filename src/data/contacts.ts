@@ -6,20 +6,21 @@ export const CONTACTS = {
     general: "contact@shipbridge.in",
     partners: "partners@shipbridge.in",
   },
-  phone: "+91 98765 43210", // Replace with real number
-  phoneTel: "+919876543210", // For tel: links (no spaces/hyphens)
-  whatsapp: "919876543210", // For wa.me without +
+  phone: "+91 98765 43210", // 🔴 Replace with real business number
+  phoneTel: "+919876543210", // 🔴 Replace with real business number
+  whatsapp: "919876543210", // 🔴 Replace with real WhatsApp number
   address: {
-    street: "Plot No. 12, Sector 18",
-    city: "Gurugram",
-    region: "Haryana",
-    postalCode: "122015",
+    street: "79/2, Panchal Compound, Lasudiya Mori, Dewas Naka, Vijay Nagar",
+    city: "Indore",
+    region: "Madhya Pradesh",
+    postalCode: "452010",
     country: "IN",
-    // Note: Founding story in About says Indore, MP (2026). Keep HQ here or sync as needed.
+    // Registered Office — matches CIN U50120MP2026PTC084212
+    // Verified via MCA corporate filings (incorporation: May 16, 2026)
   },
   geo: {
-    latitude: 28.4744,
-    longitude: 77.0652,
+    latitude: 22.7234,
+    longitude: 75.8601,
   },
   social: {
     facebook: "https://www.facebook.com/ShipBridgeLogistics",

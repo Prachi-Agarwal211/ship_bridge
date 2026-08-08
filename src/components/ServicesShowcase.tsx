@@ -9,25 +9,26 @@ import {
   Warehouse, Repeat, Home, Car, 
   Presentation, ArrowLeftRight, Briefcase, MapPin
 } from 'lucide-react';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   // Phase 1
-  { id: 1, title: 'FTL Transport', description: 'Full Truck Load for massive cargo, ensuring dedicated capacity and faster transit times pan-India.', icon: Truck, image: '/services/warehouse.jpeg' },
-  { id: 2, title: 'PTL Transport', description: 'Part Truck Load solutions offering cost-effective freight shipping for smaller volume cargo.', icon: Package, image: '/services/local.png' },
-  { id: 3, title: 'Express Delivery', description: 'Time-critical express freight forwarding via air and surface for urgent shipments.', icon: Repeat, image: '/services/local.png' },
-  { id: 4, title: 'Cold Chain', description: 'Temperature-controlled logistics for perishables, pharmaceuticals, and sensitive goods.', icon: Snowflake, image: '/services/warehouse.jpeg' },
+  { id: 1, title: 'FTL Transport', description: 'Full Truck Load for massive cargo, ensuring dedicated capacity and faster transit times pan-India.', icon: Truck, image: '/services/ftl-transport.svg' },
+  { id: 2, title: 'PTL Transport', description: 'Part Truck Load solutions offering cost-effective freight shipping for smaller volume cargo.', icon: Package, image: '/services/ptl-transport.svg' },
+  { id: 3, title: 'Express Delivery', description: 'Time-critical express freight forwarding via air and surface for urgent shipments.', icon: Repeat, image: '/services/express-delivery.svg' },
+  { id: 4, title: 'Cold Chain', description: 'Temperature-controlled logistics for perishables, pharmaceuticals, and sensitive goods.', icon: Snowflake, image: '/services/cold-chain.svg' },
   // Phase 2
-  { id: 5, title: 'E-Commerce', description: 'End-to-end e-commerce fulfillment, last-mile delivery, and return management.', icon: ShoppingCart, image: '/services/office.jpeg' },
-  { id: 6, title: 'Warehouse Storage', description: 'Secure, tech-enabled warehousing and distribution centers across major Indian hubs.', icon: Warehouse, image: '/services/warehouse.jpeg' },
-  { id: 7, title: 'B2B Coload', description: 'Optimized co-loading solutions for B2B enterprises to maximize efficiency and reduce costs.', icon: MapPin, image: '/services/office.jpeg' },
+  { id: 5, title: 'E-Commerce', description: 'End-to-end e-commerce fulfillment, last-mile delivery, and return management.', icon: ShoppingCart, image: '/services/e-commerce.svg' },
+  { id: 6, title: 'Warehouse Storage', description: 'Secure, tech-enabled warehousing and distribution centers across major Indian hubs.', icon: Warehouse, image: '/services/warehouse-rack.svg' },
+  { id: 7, title: 'B2B Coload', description: 'Optimized co-loading solutions for B2B enterprises to maximize efficiency and reduce costs.', icon: MapPin, image: '/services/b2b-network.svg' },
   { id: 8, title: 'Household Shifting', description: 'Professional, damage-free relocation services for homes and corporate offices.', icon: Home, image: '/services/household.jpeg' },
   // Phase 3
   { id: 9, title: 'Vehicle Logistics', description: 'Safe and insured transportation for two-wheelers, cars, and commercial vehicles.', icon: Car, image: '/services/vehicle.jpeg' },
   { id: 10, title: 'Exhibition & Trade', description: 'Specialized handling and time-definite delivery for exhibitions and trade shows.', icon: Presentation, image: '/services/exhibition.png' },
-  { id: 11, title: 'Reverse Logistics', description: 'Efficient product returns and exchange management to improve your customer satisfaction.', icon: ArrowLeftRight, image: '/services/local.png' },
-  { id: 12, title: 'Project Cargo', description: 'Heavy and over-dimensional cargo (ODC) handling for industrial and infrastructure projects.', icon: Briefcase, image: '/services/exhibition.png' },
+  { id: 11, title: 'Reverse Logistics', description: 'Efficient product returns and exchange management to improve your customer satisfaction.', icon: ArrowLeftRight, image: '/services/reverse-logistics.svg' },
+  { id: 12, title: 'Project Cargo', description: 'Heavy and over-dimensional cargo (ODC) handling for industrial and infrastructure projects.', icon: Briefcase, image: '/services/project-cargo.svg' },
 ];
 
 const bentoLayouts = [
@@ -43,10 +44,13 @@ const CellContent = ({ service, phaseClass }: { service: any, phaseClass: string
   return (
     <div className={`${phaseClass} absolute inset-0 group overflow-hidden w-full h-full`}>
       {/* Background Image */}
-      <img 
+      <Image 
         src={service.image} 
         alt={service.title} 
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" 
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+        unoptimized
       />
       {/* Always-on gradient for title readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100"></div>
@@ -180,10 +184,13 @@ export default function ServicesShowcase() {
         <div className="md:hidden flex flex-col gap-6">
           {services.map((service) => (
             <div key={service.id} className="bento-cell relative bg-[var(--color-surface)] border border-[var(--color-border)] rounded-3xl overflow-hidden h-64">
-              <img 
+              <Image 
                 src={service.image} 
                 alt={service.title} 
-                className="absolute inset-0 w-full h-full object-cover" 
+                fill
+                sizes="100vw"
+                className="object-cover"
+                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/50 to-transparent"></div>
               

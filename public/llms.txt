@@ -1,0 +1,48 @@
+# ShipBridge — LLM & AI Crawler Readiness File
+> India's premier logistics and relocation platform — FTL, PTL, express delivery, warehousing, household shifting, and supply chain solutions across PAN India.
+
+## About
+- ShipBridge India: https://www.shipbridge.in — AI-powered logistics and relocation platform
+
+## Services
+- Full Truck Load (FTL): https://www.shipbridge.in/services/full-truck-load-services — Full truckload freight across India
+- Part Truck Load (PTL): https://www.shipbridge.in/services/part-truck-load-services — Shared truckload freight
+- Express Delivery: https://www.shipbridge.in/services/express-delivery — Time-critical parcel delivery
+- Household Shifting: https://www.shipbridge.in/services/household-shifting — Door-to-door relocation
+- Office Relocation: https://www.shipbridge.in/services/office-shifting — Corporate moving services
+- Vehicle Transport: https://www.shipbridge.in/services/car-bike-transport — Car and bike shipping
+- Warehousing: https://www.shipbridge.in/services/warehouse-storage — Storage and inventory management
+- Local Shifting: https://www.shipbridge.in/services/local-shifting — Same-day local moves
+- E-commerce Logistics: https://www.shipbridge.in/services/ecommerce-logistics — Online order fulfillment
+- Exhibition Logistics: https://www.shipbridge.in/services/exhibition-trade-logistics — Trade show logistics
+- B2B Coloading: https://www.shipbridge.in/services/b2b-coloading — Optimized B2B shipping
+- Reverse Logistics: https://www.shipbridge.in/services/reverse-logistics — Returns and exchange management
+
+## Products
+- ShipBridge Platform: https://www.shipbridge.in/product — Full logistics management solution
+
+## Industries
+- Industries Hub: https://www.shipbridge.in/industries — Overview of all industry solutions
+- Automotive & Spares: https://www.shipbridge.in/industries/automotive — VMI, express distribution, assembly-line ready deliveries
+- Engineering & Electronics: https://www.shipbridge.in/industries/engineering — Time-definite logistics, heavy machinery transport, reverse logistics
+- Hi-Tech & Telecom: https://www.shipbridge.in/industries/hitech — Secure damage-free handling, material handling equipment
+- Alliance Partner (3PL): https://www.shipbridge.in/industries/alliance — Customized 3PL logistics and warehouse management
+- FMCG & Consumer Electronics: https://www.shipbridge.in/industries/fmcg — Direct-to-dealer distribution, Sunday/holiday deliveries
+- Apparel & Lifestyle: https://www.shipbridge.in/industries/apparel — Stock2Shelf retail replenishment, mall fulfillment
+- Healthcare & Pharma: https://www.shipbridge.in/industries/healthcare — Direct2MR sample distribution, temperature-controlled cargo
+- Books & Periodicals: https://www.shipbridge.in/industries/books — Secure time-definite shipping for publishers and libraries
+- E-Commerce: https://www.shipbridge.in/industries/ecommerce — Last-mile delivery, fulfillment, reverse returns
+- Manufacturing: https://www.shipbridge.in/industries/manufacturing — Raw material supply chain, finished goods distribution
+
+## Cities & States
+- City Logistics: https://www.shipbridge.in/services/logistics/{city} — City-specific logistics pages (50+ cities)
+- State Logistics: https://www.shipbridge.in/services/logistics/state/{state} — State-specific logistics pages (31 states)
+
+## Optional
+- About Us: https://www.shipbridge.in/about — Company story and team
+- Careers: https://www.shipbridge.in/careers — Join ShipBridge
+- Franchise: https://www.shipbridge.in/franchise — Become a partner
+- Products: https://www.shipbridge.in/product — Full logistics management solution
+- Route Checker: https://www.shipbridge.in — Enter origin/destination pincodes for services
+- Privacy Policy: https://www.shipbridge.in/privacy
+- Terms of Service: https://www.shipbridge.in/terms

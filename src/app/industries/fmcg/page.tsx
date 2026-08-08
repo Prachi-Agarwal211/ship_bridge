@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Direct distribution to dealers, distributors, and retailers. Scaleable aggregator fleet and Sunday delivery slots across India.",
       images: [{ url: "/industries/fmcg_hero.png" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/industries/fmcg',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "FMCG & Consumer Electronics Logistics Solutions | ShipBridge",
+      description: "Direct distribution to dealers, distributors, and retailers. Scaleable aggregator fleet and Sunday delivery slots across India.",
+      images: ["/industries/fmcg_hero.png"],
+    },
   };
 }
 
@@ -194,6 +203,20 @@ export default function FmcgIndustryPage() {
           </div>
         </div>
       </section>
+
+      {/* BREADCRUMB JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
+            { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.shipbridge.in/industries" },
+            { "@type": "ListItem", "position": 3, "name": "FMCG & Consumer Electronics", "item": "https://www.shipbridge.in/industries/fmcg" },
+          ]
+        }) }}
+      />
 
       {/* CTA SECTION */}
       <section className={styles.ctaSection}>

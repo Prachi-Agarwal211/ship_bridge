@@ -9,6 +9,15 @@ export const metadata: Metadata = {
     description: "Help build India's most trusted logistics platform. Open roles in tech, ops, and growth.",
     images: [{ url: "/seo/og-image.jpg" }],
   },
+  alternates: {
+    canonical: 'https://www.shipbridge.in/careers',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Careers at ShipBridge",
+    description: "Help build India's most trusted logistics platform. Open roles in tech, ops, and growth.",
+    images: ["/seo/og-image.jpg"],
+  },
 };
 
 export default function CareersPage() {

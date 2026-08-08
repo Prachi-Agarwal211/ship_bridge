@@ -82,11 +82,7 @@ export default function PincodeChecker() {
 
   return (
     <section className={styles.section}>
-      {/* Background effects */}
-      <div className={styles.bgGlow} aria-hidden="true" />
-      <div className={`grid-bg ${styles.gridBg}`} aria-hidden="true" />
-
-      <div className={styles.container}>
+      <div className={styles.glassCard}>
         <div className={styles.content}>
           <h2 className={styles.label}>Check Service Availability</h2>
           <p className={styles.description}>

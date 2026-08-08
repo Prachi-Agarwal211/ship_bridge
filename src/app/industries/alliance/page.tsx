@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Avail customized 3PL offerings and our extensive shipping network to serve your customers seamlessly.",
       images: [{ url: "/industries/ecommerce_hero.png" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/industries/alliance',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Alliance Partner Management | 3PL Logistics | ShipBridge",
+      description: "Avail customized 3PL offerings and our extensive shipping network to serve your customers seamlessly.",
+      images: ["/industries/ecommerce_hero.png"],
+    },
   };
 }
 
@@ -181,6 +190,20 @@ export default function AlliancePartnerPage() {
           </div>
         </div>
       </section>
+
+      {/* BREADCRUMB JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
+            { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.shipbridge.in/industries" },
+            { "@type": "ListItem", "position": 3, "name": "Alliance Partner Management", "item": "https://www.shipbridge.in/industries/alliance" },
+          ]
+        }) }}
+      />
 
       {/* CTA SECTION */}
       <section className={styles.ctaPromptSection}>

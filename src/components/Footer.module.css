@@ -36,6 +36,111 @@
   opacity: 0.7;
 }
 
+/* ── CTA BANNER ────────────────────────────────────────── */
+.ctaBanner {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  overflow: hidden;
+}
+
+.ctaBannerGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ctaBannerContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3.5rem);
+  border-radius: var(--radius-xl, 1.5rem);
+  background: rgba(255, 255, 255, 0.003);
+  backdrop-filter: blur(16px) saturate(160%) brightness(0.9);
+  -webkit-backdrop-filter: blur(16px) saturate(160%) brightness(0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(249, 115, 22, 0.25);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4),
+              inset 0 1px 1px rgba(255, 255, 255, 0.03);
+  margin-bottom: 0;
+  transition: border-color 0.6s var(--ease-smooth, cubic-bezier(0.25, 1, 0.3, 1));
+}
+
+.ctaBannerText {
+  max-width: 520px;
+}
+
+.ctaBannerEyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--color-orange);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.ctaBannerTitle {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.2;
+  color: #ffffff;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.02em;
+}
+
+.ctaBannerDesc {
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ctaBannerActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.ctaBannerCallBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s var(--ease-smooth, cubic-bezier(0.25, 1, 0.3, 1));
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ctaBannerCallBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.ctaBannerCallBtn svg {
+  color: var(--color-orange);
+}
+
 /* ── MAIN GRID ────────────────────────────────────────── */
 .footerMain {
   max-width: 1400px;
@@ -255,6 +360,15 @@
 }
 
 @media (max-width: 768px) {
+  .ctaBannerContent {
+    flex-direction: column;
+    text-align: center;
+    padding: clamp(2rem, 6vw, 3rem) clamp(1.5rem, 4vw, 2rem);
+  }
+  .ctaBannerActions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
   .ctaCol {
     flex-direction: column;
     align-items: flex-start;

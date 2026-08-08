@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Direct2MR sample distribution, secure temperature-controlled cargo, and Sunday deliveries with zero extra cost across India.",
       images: [{ url: "/industries/healthcare_hero.png" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/industries/healthcare',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Healthcare & Pharma Logistics Solutions | ShipBridge",
+      description: "Direct2MR sample distribution, secure temperature-controlled cargo, and Sunday deliveries with zero extra cost across India.",
+      images: ["/industries/healthcare_hero.png"],
+    },
   };
 }
 
@@ -198,6 +207,20 @@ export default function HealthcareIndustryPage() {
           </div>
         </div>
       </section>
+
+      {/* BREADCRUMB JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
+            { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.shipbridge.in/industries" },
+            { "@type": "ListItem", "position": 3, "name": "Healthcare & Pharma", "item": "https://www.shipbridge.in/industries/healthcare" },
+          ]
+        }) }}
+      />
 
       {/* CTA SECTION */}
       <section className={styles.ctaSection}>

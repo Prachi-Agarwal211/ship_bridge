@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Trusted logistics, safe first-to-last mile handling, and rapid components distribution across India.",
       images: [{ url: "/industries/hitech_hero.png" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/industries/hitech',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Hi-Tech & Telecom Logistics Solutions | ShipBridge",
+      description: "Trusted logistics, safe first-to-last mile handling, and rapid components distribution across India.",
+      images: ["/industries/hitech_hero.png"],
+    },
   };
 }
 
@@ -187,6 +196,20 @@ export default function HiTechIndustryPage() {
           </div>
         </div>
       </section>
+
+      {/* BREADCRUMB JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
+            { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.shipbridge.in/industries" },
+            { "@type": "ListItem", "position": 3, "name": "Hi-Tech & Telecom", "item": "https://www.shipbridge.in/industries/hitech" },
+          ]
+        }) }}
+      />
 
       {/* CTA SECTION */}
       <section className={styles.ctaPromptSection}>

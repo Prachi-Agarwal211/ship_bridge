@@ -12,6 +12,15 @@ export const metadata: Metadata = {
     description: "Low investment, high support logistics franchise across India. Full tech stack and training included.",
     images: [{ url: "/seo/og-image.jpg" }],
   },
+  alternates: {
+    canonical: 'https://www.shipbridge.in/franchise',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "ShipBridge Franchise Opportunities",
+    description: "Low investment, high support logistics franchise across India. Full tech stack and training included.",
+    images: ["/seo/og-image.jpg"],
+  },
 };
 
 export default function FranchisePage() {

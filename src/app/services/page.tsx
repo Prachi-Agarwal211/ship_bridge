@@ -48,6 +48,7 @@ export default function ServicesPage() {
                     fill 
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized={service.image.endsWith('.svg')}
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">

@@ -26,6 +26,38 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* ── CTA BANNER ── */}
+      <div className={styles.ctaBanner}>
+        <div className={styles.ctaBannerGlow} />
+        <div className={styles.ctaBannerContent}>
+          <div className={styles.ctaBannerText}>
+            <span className={styles.ctaBannerEyebrow}>READY TO MOVE?</span>
+            <h2 className={styles.ctaBannerTitle}>
+              <span className="gradient-text">Book your shipment</span>
+              <br />
+              in under 60 seconds
+            </h2>
+            <p className={styles.ctaBannerDesc}>
+              Get an instant quote, schedule a pickup, and track your shipment — all from one place.
+            </p>
+          </div>
+          <div className={styles.ctaBannerActions}>
+            <Link href="/services/household#booking-form" className="global-btn">
+              <span className="global-btn-text">Get a Quote</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
+            <a href={`tel:${CONTACTS.phoneTel}`} className={styles.ctaBannerCallBtn}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              Call Us
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Main grid */}
       <div className={styles.footerMain}>
         <div className={styles.footerGrid}>
@@ -96,6 +128,19 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className={styles.footerBottom} data-reveal>
           <p>© {new Date().getFullYear()} ShipBridge Logistics. Made with ❤️ in India 🇮🇳</p>
+          <p style={{ fontSize: '0.75rem', opacity: 0.85, marginTop: '0.25rem', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+            <span>Designed &amp; Engineered by</span>
+            <a
+              href="https://reverbex.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/reverbex-logo.png" alt="Reverbex Technology" style={{ width: '18px', height: '18px', borderRadius: '4px', objectFit: 'contain' }} />
+              <span>Reverbex Technology</span>
+            </a>
+          </p>
           <div className={styles.socialIcons}>
             <a href={CONTACTS.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>

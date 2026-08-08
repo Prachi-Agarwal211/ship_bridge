@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Smart storing, mall-fulfillment, and reverse logistics for fashion brands. Tier I-V city distribution across India.",
       images: [{ url: "/industries/apparel_hero.png" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/industries/apparel',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Apparel & Lifestyle Retail Logistics | ShipBridge",
+      description: "Smart storing, mall-fulfillment, and reverse logistics for fashion brands. Tier I-V city distribution across India.",
+      images: ["/industries/apparel_hero.png"],
+    },
   };
 }
 
@@ -234,6 +243,20 @@ export default function ApparelIndustryPage() {
 
         </div>
       </section>
+
+      {/* BREADCRUMB JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
+            { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.shipbridge.in/industries" },
+            { "@type": "ListItem", "position": 3, "name": "Apparel & Lifestyle", "item": "https://www.shipbridge.in/industries/apparel" },
+          ]
+        }) }}
+      />
 
       {/* CTA SECTION */}
       <section className={styles.ctaSection}>

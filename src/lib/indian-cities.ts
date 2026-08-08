@@ -1,0 +1,100 @@
+// Indian cities & states for local SEO pages
+// Source: Census 2011 + major logistics hubs
+
+export interface City {
+  name: string
+  slug: string
+  state: string
+  stateSlug: string
+  isMajor?: boolean // Top 50 cities
+}
+
+const cities: City[] = [
+  // ─── MAJOR CITIES (Top 50) ───
+  { name: 'Mumbai', slug: 'mumbai', state: 'Maharashtra', stateSlug: 'maharashtra', isMajor: true },
+  { name: 'Delhi', slug: 'delhi', state: 'Delhi', stateSlug: 'delhi', isMajor: true },
+  { name: 'Bengaluru', slug: 'bengaluru', state: 'Karnataka', stateSlug: 'karnataka', isMajor: true },
+  { name: 'Hyderabad', slug: 'hyderabad', state: 'Telangana', stateSlug: 'telangana', isMajor: true },
+  { name: 'Ahmedabad', slug: 'ahmedabad', state: 'Gujarat', stateSlug: 'gujarat', isMajor: true },
+  { name: 'Chennai', slug: 'chennai', state: 'Tamil Nadu', stateSlug: 'tamil-nadu', isMajor: true },
+  { name: 'Kolkata', slug: 'kolkata', state: 'West Bengal', stateSlug: 'west-bengal', isMajor: true },
+  { name: 'Pune', slug: 'pune', state: 'Maharashtra', stateSlug: 'maharashtra', isMajor: true },
+  { name: 'Jaipur', slug: 'jaipur', state: 'Rajasthan', stateSlug: 'rajasthan', isMajor: true },
+  { name: 'Lucknow', slug: 'lucknow', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Surat', slug: 'surat', state: 'Gujarat', stateSlug: 'gujarat', isMajor: true },
+  { name: 'Nagpur', slug: 'nagpur', state: 'Maharashtra', stateSlug: 'maharashtra', isMajor: true },
+  { name: 'Indore', slug: 'indore', state: 'Madhya Pradesh', stateSlug: 'madhya-pradesh', isMajor: true },
+  { name: 'Bhopal', slug: 'bhopal', state: 'Madhya Pradesh', stateSlug: 'madhya-pradesh', isMajor: true },
+  { name: 'Visakhapatnam', slug: 'visakhapatnam', state: 'Andhra Pradesh', stateSlug: 'andhra-pradesh', isMajor: true },
+  { name: 'Vadodara', slug: 'vadodara', state: 'Gujarat', stateSlug: 'gujarat', isMajor: true },
+  { name: 'Guwahati', slug: 'guwahati', state: 'Assam', stateSlug: 'assam', isMajor: true },
+  { name: 'Chandigarh', slug: 'chandigarh', state: 'Chandigarh', stateSlug: 'chandigarh', isMajor: true },
+  { name: 'Patna', slug: 'patna', state: 'Bihar', stateSlug: 'bihar', isMajor: true },
+  { name: 'Ludhiana', slug: 'ludhiana', state: 'Punjab', stateSlug: 'punjab', isMajor: true },
+  { name: 'Agra', slug: 'agra', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Nashik', slug: 'nashik', state: 'Maharashtra', stateSlug: 'maharashtra', isMajor: true },
+  { name: 'Ranchi', slug: 'ranchi', state: 'Jharkhand', stateSlug: 'jharkhand', isMajor: true },
+  { name: 'Meerut', slug: 'meerut', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Varanasi', slug: 'varanasi', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Srinagar', slug: 'srinagar', state: 'Jammu and Kashmir', stateSlug: 'jammu-and-kashmir', isMajor: true },
+  { name: 'Aurangabad', slug: 'aurangabad', state: 'Maharashtra', stateSlug: 'maharashtra', isMajor: true },
+  { name: 'Coimbatore', slug: 'coimbatore', state: 'Tamil Nadu', stateSlug: 'tamil-nadu', isMajor: true },
+  { name: 'Kochi', slug: 'kochi', state: 'Kerala', stateSlug: 'kerala', isMajor: true },
+  { name: 'Bhubaneswar', slug: 'bhubaneswar', state: 'Odisha', stateSlug: 'odisha', isMajor: true },
+  { name: 'Mysuru', slug: 'mysuru', state: 'Karnataka', stateSlug: 'karnataka', isMajor: true },
+  { name: 'Raipur', slug: 'raipur', state: 'Chhattisgarh', stateSlug: 'chhattisgarh', isMajor: true },
+  { name: 'Dehradun', slug: 'dehradun', state: 'Uttarakhand', stateSlug: 'uttarakhand', isMajor: true },
+  { name: 'Jodhpur', slug: 'jodhpur', state: 'Rajasthan', stateSlug: 'rajasthan', isMajor: true },
+  { name: 'Gwalior', slug: 'gwalior', state: 'Madhya Pradesh', stateSlug: 'madhya-pradesh', isMajor: true },
+  { name: 'Madurai', slug: 'madurai', state: 'Tamil Nadu', stateSlug: 'tamil-nadu', isMajor: true },
+  { name: 'Gurugram', slug: 'gurugram', state: 'Haryana', stateSlug: 'haryana', isMajor: true },
+  { name: 'Noida', slug: 'noida', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Jalandhar', slug: 'jalandhar', state: 'Punjab', stateSlug: 'punjab', isMajor: true },
+  { name: 'Thiruvananthapuram', slug: 'thiruvananthapuram', state: 'Kerala', stateSlug: 'kerala', isMajor: true },
+  { name: 'Amritsar', slug: 'amritsar', state: 'Punjab', stateSlug: 'punjab', isMajor: true },
+  { name: 'Allahabad', slug: 'allahabad', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Kanpur', slug: 'kanpur', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Rajkot', slug: 'rajkot', state: 'Gujarat', stateSlug: 'gujarat', isMajor: true },
+  { name: 'Vijayawada', slug: 'vijayawada', state: 'Andhra Pradesh', stateSlug: 'andhra-pradesh', isMajor: true },
+  { name: 'Thane', slug: 'thane', state: 'Maharashtra', stateSlug: 'maharashtra', isMajor: true },
+  { name: 'Faridabad', slug: 'faridabad', state: 'Haryana', stateSlug: 'haryana', isMajor: true },
+  { name: 'Ghaziabad', slug: 'ghaziabad', state: 'Uttar Pradesh', stateSlug: 'uttar-pradesh', isMajor: true },
+  { name: 'Jammu', slug: 'jammu', state: 'Jammu and Kashmir', stateSlug: 'jammu-and-kashmir', isMajor: true },
+  { name: 'Panaji', slug: 'panaji', state: 'Goa', stateSlug: 'goa', isMajor: true },
+]
+
+export const INDIA_STATES = [
+  { name: 'Andhra Pradesh', slug: 'andhra-pradesh' },
+  { name: 'Arunachal Pradesh', slug: 'arunachal-pradesh' },
+  { name: 'Assam', slug: 'assam' },
+  { name: 'Bihar', slug: 'bihar' },
+  { name: 'Chandigarh', slug: 'chandigarh' },
+  { name: 'Chhattisgarh', slug: 'chhattisgarh' },
+  { name: 'Delhi', slug: 'delhi' },
+  { name: 'Goa', slug: 'goa' },
+  { name: 'Gujarat', slug: 'gujarat' },
+  { name: 'Haryana', slug: 'haryana' },
+  { name: 'Himachal Pradesh', slug: 'himachal-pradesh' },
+  { name: 'Jammu and Kashmir', slug: 'jammu-and-kashmir' },
+  { name: 'Jharkhand', slug: 'jharkhand' },
+  { name: 'Karnataka', slug: 'karnataka' },
+  { name: 'Kerala', slug: 'kerala' },
+  { name: 'Madhya Pradesh', slug: 'madhya-pradesh' },
+  { name: 'Maharashtra', slug: 'maharashtra' },
+  { name: 'Manipur', slug: 'manipur' },
+  { name: 'Meghalaya', slug: 'meghalaya' },
+  { name: 'Mizoram', slug: 'mizoram' },
+  { name: 'Nagaland', slug: 'nagaland' },
+  { name: 'Odisha', slug: 'odisha' },
+  { name: 'Punjab', slug: 'punjab' },
+  { name: 'Rajasthan', slug: 'rajasthan' },
+  { name: 'Sikkim', slug: 'sikkim' },
+  { name: 'Tamil Nadu', slug: 'tamil-nadu' },
+  { name: 'Telangana', slug: 'telangana' },
+  { name: 'Tripura', slug: 'tripura' },
+  { name: 'Uttar Pradesh', slug: 'uttar-pradesh' },
+  { name: 'Uttarakhand', slug: 'uttarakhand' },
+  { name: 'West Bengal', slug: 'west-bengal' },
+]
+
+export default cities

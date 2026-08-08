@@ -6,7 +6,7 @@ import styles from './page.module.css';
 export const metadata: Metadata = {
   title: "Terms of Service | ShipBridge Logistics",
   description: "Terms governing use of the ShipBridge website, apps, and logistics services including household shifting, office moves, and vehicle transport.",
-  robots: "index, follow",
+  robots: "noindex, nofollow",
 };
 
 export default function TermsPage() {

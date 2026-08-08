@@ -6,7 +6,7 @@ import styles from './page.module.css';
 export const metadata: Metadata = {
   title: "Privacy Policy | ShipBridge Logistics",
   description: "How ShipBridge collects, uses, and protects your data when you book logistics and relocation services.",
-  robots: "index, follow",
+  robots: "noindex, nofollow",
 };
 
 export default function PrivacyPage() {

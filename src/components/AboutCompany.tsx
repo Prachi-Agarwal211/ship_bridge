@@ -1,177 +1,245 @@
-"use client";
+'use client';
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import styles from "./AboutCompany.module.css";
+import { useRef } from 'react';
+import Image from 'next/image';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+import Counter from '@/components/animations/Counter';
+import styles from './AboutCompany.module.css';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const SCALE_MODULES = [
+  {
+    word: 'HOUSEHOLDS',
+    stat: 50000,
+    statLabel: 'households relocated',
+    description: 'Across 29 states and 2,000+ cities — families, students, and professionals trust ShipBridge for door-to-door relocation.',
+    image: '/services/household.jpeg',
+    suffix: '+',
+  },
+  {
+    word: 'BUSINESSES',
+    stat: 2000,
+    statLabel: 'corporate clients',
+    description: 'From startups to enterprises, we provide end-to-end logistics — office relocation, warehousing, and supply chain management.',
+    image: '/services/office.jpeg',
+    suffix: '+',
+  },
+  {
+    word: 'VEHICLES',
+    stat: 10000,
+    statLabel: 'vehicles shipped monthly',
+    description: 'Cars, bikes, and commercial vehicles transported safely with GPS tracking and insurance on every shipment.',
+    image: '/services/vehicle.jpeg',
+    suffix: '+',
+  },
+  {
+    word: 'WAREHOUSES',
+    stat: 5000000,
+    statLabel: 'sq. ft. of storage',
+    description: 'Tech-enabled warehousing and distribution centers across major Indian logistics hubs — Delhi, Mumbai, Bangalore, Chennai, Kolkata, and more.',
+    suffix: '+ sq. ft.',
+    image: '/services/warehouse.jpeg',
+  },
+];
 
 const TEAM_MEMBERS = [
-  { name: "Ashish Joshi", role: "Founder & CEO" },
-  { name: "Anurag Singh", role: "Chief Technology Officer" },
-  { name: "Prachi Agarwal", role: "Chief Operations Officer" },
+  { name: 'Ashish Joshi', role: 'Founder & CEO' },
+  { name: 'Anurag Singh', role: 'Chief Technology Officer' },
+  { name: 'Prachi Agarwal', role: 'Chief Operations Officer' },
 ];
 
 export default function AboutCompany() {
+  const sectionRef = useRef<HTMLElement>(null);
+
   useGSAP(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
 
-    const isDesktop = window.matchMedia('(min-width: 769px)').matches;
-    if (!isDesktop) return;
+    // For each scale module: reveal giant word with SplitText, then image + content
+    const modules = sectionRef.current?.querySelectorAll(`.${styles.scaleModule}`);
+    if (!modules) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#company',
-        start: 'top 75%',
-        end: 'bottom 20%',
+    modules.forEach((module) => {
+      const wordEl = module.querySelector(`.${styles.giantWord}`) as HTMLElement;
+      const imageEl = module.querySelector(`.${styles.moduleImage}`) as HTMLElement;
+      const contentEl = module.querySelector(`.${styles.moduleContent}`) as HTMLElement;
+
+      // Only run SplitText on desktop — word might be too big on mobile
+      const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: module,
+          start: 'top 75%',
+          end: 'bottom 25%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+
+      // Giant word reveal
+      if (wordEl) {
+        if (isDesktop) {
+          const split = new SplitText(wordEl, { type: 'chars' });
+          tl.from(split.chars, {
+            opacity: 0,
+            y: 80,
+            rotateX: -60,
+            stagger: 0.04,
+            duration: 1.2,
+            ease: 'power4.out',
+            transformOrigin: '50% 100% -50',
+          }, 0);
+        } else {
+          tl.from(wordEl, {
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            ease: 'power3.out',
+          }, 0);
+        }
+      }
+
+      // Image slide in
+      if (imageEl) {
+        tl.from(imageEl, {
+          clipPath: 'inset(0 100% 0 0)',
+          duration: 1.2,
+          ease: 'power3.inOut',
+        }, '-=0.6');
+      }
+
+      // Content fades up
+      if (contentEl) {
+        tl.from(contentEl, {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.6');
       }
     });
 
-    tl.from('.about-logo-row, .about-title-group', {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: 'power3.out'
-    });
+    // Leadership section reveal
+    const leadership = sectionRef.current?.querySelector(`.${styles.leadership}`);
+    if (leadership) {
+      gsap.from(leadership.querySelectorAll(`.${styles.teamCard}`), {
+        scrollTrigger: {
+          trigger: leadership,
+          start: 'top 80%',
+        },
+        y: 40,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+    }
 
-    tl.from('.about-desc', {
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power3.out'
-    }, '-=0.4');
-
-    tl.from('.about-highlight', {
-      y: 30,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.1,
-      ease: 'back.out(1.2)'
-    }, '-=0.4');
-
-    tl.from('.about-team-card', {
-      y: 30,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.12,
-      ease: 'power3.out'
-    }, '-=0.4');
-
-  });
+  }, { scope: sectionRef });
 
   return (
-    <section className={styles.aboutSection} id="company">
-      <div className={styles.container}>
-        <div className={styles.aboutGrid}>
-          
-          {/* Left Column: Text Content and Highlights */}
-          <div className={styles.leftColumn}>
-            
-            <div className={`about-logo-row ${styles.logoRow}`}>
-              <svg className={styles.logoIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M12 8v8M8 12h8" />
-              </svg>
-              <div className={styles.logoText}>
-                <span className={styles.logoTextPrimary}>SHIPBRIDGE</span>
-                <span className={styles.logoTextSecondary}>LOGISTICS</span>
-              </div>
-            </div>
+    <section className={styles.aboutSection} id="company" ref={sectionRef}>
+      {/* Section Header */}
+      <div className={styles.sectionHeader}>
+        <span className="section-number">04</span>
+        <h2 className={styles.heading}>Operational Scale</h2>
+        <p className={styles.subheading}>
+          Numbers don&apos;t lie.{' '}
+          <span className={styles.highlightText}>Every stat is a promise kept.</span>
+        </p>
+      </div>
 
-            <div className="about-title-group">
-              <h2 className={styles.title}>About Company</h2>
-              <div className={styles.titleUnderline}></div>
-              <h3 className={styles.subheading}>
-                BUILDING BRIDGES. <span className={styles.subheadingGreen}>MOVING INDIA.</span>
-              </h3>
-            </div>
-
-            <div className={`about-desc ${styles.descriptionText}`}>
-              <p>
-                Shipbridge Logistics was founded with a vision to create a logistics company that stands for reliability, efficiency, and customer trust.
-              </p>
-              <p>
-                Our mission is simple — to bridge distances and deliver promises. Every. Single. Time.
-              </p>
-            </div>
-
-            <div className={styles.highlightsBar}>
-              <div className={`about-highlight ${styles.highlightItem}`}>
-                <div className={styles.hexIconBox}>
-                  <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
-                    <defs>
-                      <linearGradient id="hexGradient" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#f97316" />
-                        <stop offset="100%" stopColor="#22c55e" />
-                      </linearGradient>
-                    </defs>
-                    <path d="M 24 2 L 44 13 L 44 39 L 24 50 L 4 39 L 4 13 Z" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                  </svg>
-                  <svg className={styles.highlightIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                  </svg>
+      {/* Editorial Scale Modules */}
+      <div className={styles.modulesContainer}>
+        {SCALE_MODULES.map((module, index) => (
+          <div key={module.word} className={styles.scaleModule}>
+            <div className={styles.moduleGrid}>
+              {/* Left: Giant Word + Counter */}
+              <div className={styles.moduleTextSide}>
+                <div className={styles.moduleNumber}>
+                  {String(index + 1).padStart(2, '0')}
                 </div>
-                <div className={styles.highlightText}>
-                  <h4>Reliable</h4>
-                  <p>We deliver what we promise.</p>
+                <h3 className={styles.giantWord}>{module.word}</h3>
+                <div className={styles.moduleContent}>
+                  <div className={styles.statRow}>
+                    <Counter
+                      to={module.stat}
+                      suffix={module.suffix}
+                      duration={2.5}
+                      ease="power3.out"
+                      className={styles.statNumber}
+                    />
+                    <span className={styles.statLabel}>{module.statLabel}</span>
+                  </div>
+                  <p className={styles.moduleDescription}>{module.description}</p>
                 </div>
               </div>
 
-              <div className={`about-highlight ${styles.highlightItem}`}>
-                <div className={styles.hexIconBox}>
-                  <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
-                    <path d="M 24 2 L 44 13 L 44 39 L 24 50 L 4 39 L 4 13 Z" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                  </svg>
-                  <svg className={styles.highlightIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="3" />
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                  </svg>
-                </div>
-                <div className={styles.highlightText}>
-                  <h4>Efficient</h4>
-                  <p>Smart solutions for operations.</p>
-                </div>
-              </div>
-
-              <div className={`about-highlight ${styles.highlightItem}`}>
-                <div className={styles.hexIconBox}>
-                  <svg className={styles.hexSvg} viewBox="0 0 48 52" fill="none">
-                    <path d="M 24 2 L 44 13 L 44 39 L 24 50 L 4 39 L 4 13 Z" stroke="url(#hexGradient)" strokeWidth="1.5" />
-                  </svg>
-                  <svg className={styles.highlightIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="1" y="3" width="15" height="13" rx="2" ry="2" />
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
-                    <circle cx="5.5" cy="18.5" r="2.5" />
-                    <circle cx="18.5" cy="18.5" r="2.5" />
-                  </svg>
-                </div>
-                <div className={styles.highlightText}>
-                  <h4>Delivered</h4>
-                  <p>On time. Every time. Anywhere.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Team Members — names only */}
-          <div className={styles.rightColumn}>
-            <div className={styles.teamList}>
-              <span className={styles.teamOverline}>LEADERSHIP</span>
-              {TEAM_MEMBERS.map((member) => (
-                <div key={member.name} className={`about-team-card ${styles.teamCard}`}>
-                  <div className={styles.teamCardAccent}></div>
-                  <div className={styles.teamCardContent}>
-                    <h4 className={styles.teamName}>{member.name}</h4>
-                    <span className={styles.teamRole}>{member.role}</span>
+              {/* Right: Editorial Image */}
+              <div className={styles.moduleImageSide}>
+                <div className={styles.moduleImageWrapper}>
+                  <Image
+                    src={module.image}
+                    alt={module.word}
+                    fill
+                    className={styles.moduleImage}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    unoptimized
+                  />
+                  <div className={styles.imageOverlay} />
+                  <div className={styles.imageBadge}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    Verified
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
 
+            {/* Horizontal rule between modules */}
+            {index < SCALE_MODULES.length - 1 && (
+              <div className={styles.moduleDivider} />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Leadership Section */}
+      <div className={styles.leadership}>
+        <div className={styles.leadershipHeader}>
+          <span className="section-number">TEAM</span>
+          <h2 className={styles.leadershipTitle}>Leadership</h2>
+          <div className={styles.leadershipKeyline} />
+        </div>
+        <div className={styles.teamGrid}>
+          {TEAM_MEMBERS.map((member) => (
+            <div key={member.name} className={styles.teamCard}>
+              <div className={styles.teamCardAccent} />
+              <div className={styles.teamCardContent}>
+                <div className={styles.teamAvatar}>
+                  {member.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <h4 className={styles.teamName}>{member.name}</h4>
+                  <span className={styles.teamRole}>{member.role}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className={styles.aboutCta}>
+          <p className={styles.aboutCtaText}>
+            Building bridges.{' '}
+            <span className={styles.highlightText}>Moving India.</span>
+          </p>
         </div>
       </div>
     </section>

@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Time-definite logistics, secure heavy machinery transport, and seamless reverse logistics for the engineering tools sector.",
       images: [{ url: "/industries/engineering_hero.png" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/industries/engineering',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Engineering & Electronics Logistics Solutions | ShipBridge",
+      description: "Time-definite logistics, secure heavy machinery transport, and seamless reverse logistics for the engineering tools sector.",
+      images: ["/industries/engineering_hero.png"],
+    },
   };
 }
 
@@ -199,6 +208,20 @@ export default function EngineeringIndustryPage() {
           </div>
         </div>
       </section>
+
+      {/* BREADCRUMB JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
+            { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.shipbridge.in/industries" },
+            { "@type": "ListItem", "position": 3, "name": "Engineering", "item": "https://www.shipbridge.in/industries/engineering" },
+          ]
+        }) }}
+      />
 
       {/* CTA SECTION */}
       <section className={styles.ctaPromptSection}>

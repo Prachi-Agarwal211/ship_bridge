@@ -28,15 +28,18 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(CONTACTS.site.base),
-  title: "ShipBridge | India's Premier Logistics & Relocation Platform",
-  description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
+  title: {
+    default: "ShipBridge | India's Leading Logistics & Relocation Platform",
+    template: '%s | ShipBridge India',
+  },
+  description: "ShipBridge India — logistics and relocation platform offering FTL, PTL, express delivery, warehousing, and household shifting across PAN India. GPS tracked, insured, instant quotes.",
   keywords: "logistics India, household shifting, office relocation, packers movers India, vehicle transport, warehousing India, exhibition logistics, Tier 2 logistics, SME logistics India, ShipBridge",
   openGraph: {
     type: "website",
     url: CONTACTS.site.base,
     siteName: CONTACTS.site.name,
-    title: "ShipBridge | India's Premier Logistics & Relocation Platform",
-    description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
+    title: "ShipBridge | India's Leading Logistics & Relocation Platform",
+    description: "ShipBridge India — logistics and relocation platform offering FTL, PTL, express delivery, warehousing, and household shifting across PAN India.",
     images: [
       {
         url: "/seo/og-image.jpg",
@@ -49,8 +52,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@ShipBridge",
-    title: "ShipBridge | India's Premier Logistics & Relocation Platform",
-    description: "ShipBridge is India's premier logistics and relocation platform. Household shifting, office moving, vehicle transport, warehousing, and exhibition logistics. Safe. Reliable. On-Time.",
+    title: "ShipBridge | India's Leading Logistics & Relocation Platform",
+    description: "ShipBridge India — logistics and relocation platform offering FTL, PTL, express delivery, warehousing, and household shifting across PAN India.",
     images: ["/seo/og-image.jpg"],
   },
   robots: "index, follow",
@@ -73,6 +76,12 @@ export const metadata: Metadata = {
     shortcut: '/logo/favicon.ico',
     apple: '/logo/icon-192.png',
   },
+  other: {
+    'ai-content-declaration': 'public',
+    'geo-optimized': 'true',
+    'geo.region': 'IN-MP',
+    'geo.placename': 'Indore, Madhya Pradesh',
+  },
 };
 
 import Footer from '@/components/Footer';
@@ -85,9 +94,20 @@ export default function RootLayout({
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${CONTACTS.site.base}/#organization`,
     "name": CONTACTS.site.name,
+    "alternateName": "ShipBridge India",
     "url": CONTACTS.site.base,
     "logo": `${CONTACTS.site.base}/logo/logo_new.png`,
+    "description": "India's AI-powered logistics and relocation platform offering FTL, PTL, express delivery, warehousing, and household shifting across PAN India.",
+    "creator": {
+      "@type": "Organization",
+      "name": "Reverbex Technology",
+      "url": "https://reverbex.in",
+      "description": "Elite Software Engineering, AI Automations, and Web Systems."
+    },
+    "foundingDate": "2026-05-16",
+    "identifier": "QXXXXXXXX", // 🔴 Replace with real Wikidata QID after creation
     "sameAs": [
       CONTACTS.social.facebook,
       CONTACTS.social.twitter,
@@ -99,18 +119,90 @@ export default function RootLayout({
       "telephone": CONTACTS.phone,
       "contactType": "customer service",
       "email": CONTACTS.email.general,
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi"],
     },
+    "areaServed": {
+      "@type": "Country",
+      "name": "India",
+    },
+    "knowsAbout": [
+      "Logistics India",
+      "Full Truck Load Freight",
+      "Part Truck Load Shipping",
+      "Household Moving Services",
+      "Office Relocation India",
+      "Warehousing Solutions",
+      "Vehicle Transport India",
+      "Exhibition Logistics",
+      "Supply Chain Management",
+    ],
+    "slogan": CONTACTS.site.tagline,
+  };
+
+  const faqPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${CONTACTS.site.base}/#faq`,
+    mainEntity: [
+      {
+        '@type': 'Question',
+        'name': 'What services does ShipBridge offer?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'ShipBridge offers FTL (Full Truck Load), PTL (Part Truck Load), express delivery, cold chain logistics, e-commerce fulfillment, warehousing, household shifting, office relocation, vehicle transport, exhibition logistics, B2B coloading, and reverse logistics — all across PAN India with GPS tracking and insurance coverage.',
+        },
+      },
+      {
+        '@type': 'Question',
+        'name': 'How do I track my ShipBridge shipment?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Enter your waybill number on the ShipBridge website or app to get real-time tracking updates. You will see the current status, estimated delivery date, and a detailed timeline of every event from pickup to delivery.',
+        },
+      },
+      {
+        '@type': 'Question',
+        'name': 'Does ShipBridge operate across India?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes, ShipBridge provides logistics and relocation services across all 29 states and union territories of India, covering 2,000+ cities with both direct and extended delivery areas.',
+        },
+      },
+      {
+        '@type': 'Question',
+        'name': 'How do I get a quote from ShipBridge?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Visit the ShipBridge website and use the instant quote tool. Enter your pickup and delivery locations, shipment weight, and type of service required. You will receive a transparent, no-hidden-fee quote within seconds.',
+        },
+      },
+      {
+        '@type': 'Question',
+        'name': 'Is ShipBridge insured and reliable?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Yes. All ShipBridge shipments are insured against damage and loss. The company uses GPS-tracked fleet, AI-optimized routing, and has a 98% on-time delivery rate across 50,000+ successful moves.',
+        },
+      },
+    ],
   };
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${CONTACTS.site.base}/#business`,
     "name": CONTACTS.site.name,
+    "alternateName": "ShipBridge India",
     "image": `${CONTACTS.site.base}/logo/logo_new.png`,
     "url": CONTACTS.site.base,
     "telephone": CONTACTS.phone,
     "email": CONTACTS.email.general,
     "logo": `${CONTACTS.site.base}/logo/logo_new.png`,
+    "priceRange": "₹₹",
+    "currenciesAccepted": "INR",
+    "paymentAccepted": "Cash, Bank Transfer, UPI, Credit Card",
+    "areaServed": "IN",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": CONTACTS.address.street,
@@ -139,8 +231,28 @@ export default function RootLayout({
     },
   };
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${CONTACTS.site.base}/#website`,
+    url: CONTACTS.site.base,
+    name: CONTACTS.site.name,
+    description: "India's AI-powered logistics and relocation platform offering FTL, PTL, express delivery, warehousing, and household shifting across PAN India.",
+    inLanguage: 'en-IN',
+    publisher: { '@id': `${CONTACTS.site.base}/#organization` },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: [
+        '.seo-page-title',
+        '.section-heading',
+        '.service-description',
+        '.hero-tagline',
+      ],
+    },
+  };
+
   return (
-    <html lang="en" className="lenis lenis-smooth" data-scroll-behavior="smooth">
+    <html lang="en-IN" className="lenis lenis-smooth" data-scroll-behavior="smooth">
       <body className={`${inter.variable} ${poppins.variable} ${inter.className}`}>
         <ReactLenis root options={{ lerp: 0.08, duration: 1.2, syncTouch: false, autoRaf: false }}>
           <GSAPProvider>
@@ -163,6 +275,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
         />
       </body>
     </html>

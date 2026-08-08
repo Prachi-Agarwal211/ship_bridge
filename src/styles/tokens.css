@@ -1,45 +1,122 @@
 :root {
-  /* Colors */
-  --color-bg: #000000;
-  --color-surface: #08080a;
-  --color-surface-2: #0f0f12;
+  /* ── COLORS ── */
+  --color-bg: #08080a;
+  --color-surface: #0c0c10;
+  --color-surface-2: #121218;
+  --color-surface-3: #1a1a22;
   --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+
+  /* Brand: Orange */
   --color-orange: #f97316;
+  --color-orange-deep: #ea580c;
   --color-orange-muted: rgba(249, 115, 22, 0.12);
+  --color-orange-glow: rgba(249, 115, 22, 0.15);
+
+  /* Brand: Green */
   --color-green: #22c55e;
+  --color-green-deep: #16a34a;
   --color-green-muted: rgba(34, 197, 94, 0.1);
+  --color-green-glow: rgba(34, 197, 94, 0.12);
+
+  /* Brand: Silver */
+  --color-silver: #9ca3af;
+  --color-silver-muted: rgba(156, 163, 175, 0.15);
+
+  /* Text */
   --color-text: #ffffff;
   --color-text-muted: rgba(255, 255, 255, 0.65);
   --color-text-dim: #6b7280;
+  --color-text-bright: #ffffff;
 
-  /* Spacing */
-  --space-section: clamp(5rem, 12vw, 9rem);
+  /* Status */
+  --color-success: #22c55e;
+  --color-warning: #f97316;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* ── TYPOGRAPHY ── */
+  --font-display: var(--font-syne), 'Syne', sans-serif;
+  --font-body: var(--font-inter), 'Inter', sans-serif;
+
+  /* Fluid type scale */
+  --text-xs:      clamp(0.7rem, 1.2vw, 0.8rem);
+  --text-sm:      clamp(0.8rem, 1.5vw, 0.9rem);
+  --text-base:    clamp(0.9rem, 1.8vw, 1.05rem);
+  --text-lg:      clamp(1rem, 2vw, 1.15rem);
+  --text-xl:      clamp(1.15rem, 2.3vw, 1.35rem);
+  --text-2xl:     clamp(1.35rem, 2.8vw, 1.75rem);
+  --text-3xl:     clamp(1.75rem, 3.5vw, 2.25rem);
+  --text-4xl:     clamp(2.25rem, 5vw, 3.5rem);
+  --text-hero:    clamp(2.8rem, 7vw, 6rem);
+  --text-giant:   clamp(3.5rem, 9vw, 8rem);
+  --text-display: clamp(4rem, 12vw, 10rem);
+
+  /* ── SPACING ── */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-section: clamp(4rem, 10vw, 8rem);
   --space-gap: clamp(1.25rem, 3vw, 2.5rem);
 
-  /* Borders */
-  --radius-sm: 0.5rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
+  /* ── BORDERS ── */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
   --radius-full: 9999px;
 
-  /* Shadows */
+  /* ── SHADOWS ── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
   --shadow-orange: 0 0 30px rgba(249, 115, 22, 0.15);
-  --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-green: 0 0 30px rgba(34, 197, 94, 0.12);
   --shadow-glow: 0 0 60px rgba(249, 115, 22, 0.08);
 
-  /* Transitions */
+  /* ── EASINGS ── */
   --ease-smooth: cubic-bezier(0.25, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.22, 1.5, 0.36, 1);
+  --ease-snappy: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --ease-organic: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-cinematic: cubic-bezier(0.125, 0.425, 0.270, 1.000);
+
+  /* Durations */
   --duration-fast: 200ms;
   --duration-base: 400ms;
   --duration-slow: 700ms;
+  --duration-cinematic: 1200ms;
 
-  /* Z-index scale */
+  /* ── Z-INDEX SCALE ── */
   --z-base: 1;
   --z-raised: 10;
   --z-sticky: 50;
   --z-nav: 100;
+  --z-overlay: 500;
+  --z-modal: 1000;
   --z-cursor: 9998;
-  --z-modal: 9999;
+  --z-toast: 9999;
+
+  /* ── LAYOUT ── */
+  --content-max-width: 1400px;
+  --content-padding: clamp(1rem, 4vw, 3rem);
+  --nav-height: 72px;
+  --glass-blur: blur(16px);
+  --glass-bg: rgba(8, 8, 10, 0.6);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── OKLCH GRADIENTS ── */
+:root {
+  --grad-orange: linear-gradient(135deg, oklch(0.75 0.15 45), oklch(0.65 0.12 35));
+  --grad-green: linear-gradient(135deg, oklch(0.75 0.18 145), oklch(0.65 0.15 135));
+  --grad-orange-green: linear-gradient(90deg, oklch(0.75 0.15 45), oklch(0.75 0.18 145));
+  --grad-surface: linear-gradient(180deg, oklch(0.08 0.01 270), oklch(0.06 0.01 270));
 }

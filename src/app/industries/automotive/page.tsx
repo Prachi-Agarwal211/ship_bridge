@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Vendor Managed Inventory (VMI), assembly line-ready deliveries, and fast After Market spares distribution across India.",
       images: [{ url: "/industries/automotive_hero.png" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/industries/automotive',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "Automotive & Spares Logistics Solutions | ShipBridge",
+      description: "Vendor Managed Inventory (VMI), assembly line-ready deliveries, and fast After Market spares distribution across India.",
+      images: ["/industries/automotive_hero.png"],
+    },
   };
 }
 
@@ -191,6 +200,20 @@ export default function AutomotiveIndustryPage() {
           </div>
         </div>
       </section>
+
+      {/* BREADCRUMB JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shipbridge.in" },
+            { "@type": "ListItem", "position": 2, "name": "Industries", "item": "https://www.shipbridge.in/industries" },
+            { "@type": "ListItem", "position": 3, "name": "Automotive", "item": "https://www.shipbridge.in/industries/automotive" },
+          ]
+        }) }}
+      />
 
       {/* CTA SECTION */}
       <section className={styles.ctaPromptSection}>

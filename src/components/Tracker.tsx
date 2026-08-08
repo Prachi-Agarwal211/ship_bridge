@@ -111,10 +111,7 @@ export default function Tracker() {
 
   return (
     <section className={styles.section}>
-      <div className={styles.bgGlow} aria-hidden="true" />
-      <div className={`grid-bg ${styles.gridBg}`} aria-hidden="true" />
-
-      <div className={styles.container}>
+      <div className={styles.glassCard}>
         <div className={styles.content}>
           <h2 className={styles.label}>Track Your Package</h2>
           <p className={styles.description}>

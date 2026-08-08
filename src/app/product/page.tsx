@@ -15,6 +15,15 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Mobile apps and portal for seamless logistics. Real-time tracking, easy booking, full visibility.",
       images: [{ url: "/seo/og-image.jpg" }],
     },
+    alternates: {
+      canonical: 'https://www.shipbridge.in/product',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: "ShipBridge Products - Apps & Platform",
+      description: "Mobile apps and portal for seamless logistics. Real-time tracking, easy booking, full visibility.",
+      images: ["/seo/og-image.jpg"],
+    },
   };
 }
 

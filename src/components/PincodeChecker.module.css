@@ -1,41 +1,35 @@
 .section {
   position: relative;
-  min-height: 60vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6rem 1.5rem;
+  padding: 4rem 1.5rem;
   overflow: hidden;
-  background: var(--color-bg);
 }
 
-/* Background glow */
-.bgGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.06) 0%, rgba(34, 197, 94, 0.04) 40%, transparent 70%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.gridBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.3;
-}
-
-.container {
+/* Glass card wrapping the pincode content */
+.glassCard {
   position: relative;
-  z-index: 1;
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
+  padding: 2.5rem 2rem;
+  background: rgba(8, 8, 10, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.glassCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.03), rgba(249, 115, 22, 0.03));
+  pointer-events: none;
 }
 
 .content {
